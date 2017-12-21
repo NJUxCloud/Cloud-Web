@@ -25,6 +25,7 @@
     font-size: 16px;
     cursor: pointer;
     margin-left: 20px;
+    font-weight: 600;
   }
 
   .nav-button-wrapper:hover {

@@ -42,3 +42,27 @@
   margin-top: 25px;
   line-height: 20px;
 }
+
+.collapse-nav-element {
+  background: none;
+  border: none;
+  color: #76B6C2;
+  width: 100%;
+  border-bottom: 1px solid #a7d7d6;
+  border-radius: 0;
+  margin: 0;
+}
+
+.collapse-nav-element:hover {
+  color: #a7d7d6;
+}
+
+.collapse-nav-button {
+  background: none;
+  border: none;
+  color: white ;
+  font-size: 30px;
+  font-weight: 600;
+  float: right;
+  margin-top: 10px;
+}

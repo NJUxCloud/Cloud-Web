@@ -14,7 +14,7 @@
           </h1>
           <br>
           <div @click="scrollToInfos">
-            <my-button content="了  解  更  多" style="margin-left: -150px; margin-top: 100px; margin-bottom: 80px;"></my-button>
+            <my-button content="了  解  更  多" :style="[largeSize ? largeButton : smallButton]"></my-button>
           </div>
         </el-col>
         <el-col :xs="24" :sm="24" :md="14" :lg="12" style="text-align: center; position: relative;">
@@ -34,6 +34,7 @@
   import ElCol from 'element-ui/packages/col/src/col'
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import $ from 'jquery'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
@@ -44,6 +45,15 @@
     },
     data () {
       return {
+        largeButton: {
+          marginLeft: '-150px',
+          marginTop: '100px',
+          marginBottom: '80px'
+        },
+        smallButton: {
+          marginTop: '60px',
+          marginBottom: '60px'
+        }
       }
     },
     methods: {
@@ -52,6 +62,14 @@
         $('html, body').animate({scrollTop: $('.header-wrapper').height()}, 1000)
 //        $(window).scrollTop(100)
       }
+    },
+    computed: {
+      ...mapGetters({
+        largeSize: 'largeSize',
+        mainWidth: 'mainWidth'
+      })
+    },
+    watch: {
     }
   }
 </script>

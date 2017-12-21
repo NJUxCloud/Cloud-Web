@@ -24,24 +24,24 @@
     </div>
     <div class="body-content-wrapper">
       <el-row :gutter="20" style="position:relative; display: inline-block; width: 100%;" v-for="content in contents" :key="content.index">
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" v-if="content.left">
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" v-show="content.left">
           <img src="../../assets/data-image.png">
         </el-col>
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" style="text-align: left; left: 15%; position: relative;" v-else>
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" style="text-align: left; left: 15%; position: relative;" v-show="!content.left">
           <h2>{{ content.title }}</h2>
           <block-line></block-line>
           <ul>
             <li v-for="c in content.contents">{{ c }}</li>
           </ul>
         </el-col>
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" style="text-align: left; left: 15%; position: relative; width: 35%;" v-if="content.left">
-          <h2>输入数据 可视化分析</h2>
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" :style="[largeSize ? largeContent : smallContent]" v-show="content.left">
+          <h2>{{ content.title }}</h2>
           <block-line></block-line>
           <ul>
             <li v-for="c in content.contents">{{ c }}</li>
           </ul>
         </el-col>
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" v-else>
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" v-show="!content.left">
           <img src="../../assets/data-image.png">
         </el-col>
       </el-row>
@@ -55,6 +55,7 @@
   import ElRow from 'element-ui/packages/row/src/row'
   import ElCol from 'element-ui/packages/col/src/col'
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button.vue'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
@@ -107,7 +108,38 @@
             contents: ['·二分类评估', '·多指标分析', '·图表展示分析结果'],
             left: true
           }
-        ]
+        ],
+        smallContent: {
+          marginBottom: '30px'
+        },
+        largeContent: {
+          textAlign: 'left',
+          left: '15%',
+          position: 'relative',
+          width: '35%'
+        }
+      }
+    },
+    computed: {
+      ...mapGetters({
+        largeSize: 'largeSize'
+      })
+    },
+    watch: {
+      largeSize: function () {
+//        alert(this.largeSize)
+        if (this.largeSize) {
+          this.contents[1].left = false
+        } else {
+          this.contents[1].left = true
+        }
+      }
+    },
+    mounted () {
+      if (this.largeSize) {
+        this.contents[1].left = false
+      } else {
+        this.contents[1].left = true
       }
     }
   }
