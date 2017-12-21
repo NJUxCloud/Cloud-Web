@@ -1,0 +1,76 @@
+
+html, body, :global(#root) {
+  position: relative;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  /*background-color: #bbe4d2;*/
+  /*background-color: #D5E8D5;*/
+  height: auto;
+  color: #333;
+  background: #fff;
+  text-rendering: optimizelegibility;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+a {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  width: auto;
+  color: #666;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  font-family: Arial, sans-serif;
+  margin: 1.4em 0 0.8em;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
+/* 现代排版：保证块/段落之间的空白隔行 */
+.typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr {
+  margin: 1em 0 0.6em;
+}
