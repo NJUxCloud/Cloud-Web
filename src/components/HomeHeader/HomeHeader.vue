@@ -13,7 +13,7 @@
             云计算平台。
           </h1>
           <br>
-          <div @click="scrollToInfos">
+          <div @click="scrollToInfos" style="position: relative; display: inline-block;">
             <my-button content="了  解  更  多" :style="[largeSize ? largeButton : smallButton]"></my-button>
           </div>
         </el-col>
@@ -21,7 +21,9 @@
           <!--<p>SAd</p>-->
           <img src="../../assets/header-card.png">
           <br>
-          <my-button content="开  始  探  索" style="top: -60px;"></my-button>
+          <div style="position: relative; display: inline-block; top: -60px;">
+            <my-button content="开  始  探  索"></my-button>
+          </div>
         </el-col>
       </el-row>
     </div>

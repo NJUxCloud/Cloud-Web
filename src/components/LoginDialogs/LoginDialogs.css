@@ -1,0 +1,105 @@
+.dialog-wrapper {
+  overflow: visible;
+}
+
+.dialog-wrapper .login-wrapper{
+  width: 88%;
+  position: absolute;
+  margin: 0;
+  top: 10%;
+  left: 0;
+}
+
+.dialog-wrapper .signin-wrapper{
+  width: 100%;
+}
+
+.dialog-wrapper div {
+  position: relative;
+  display: inline-block;
+}
+
+.dialog-wrapper h1 {
+  margin-left: 60px;
+  margin-top: 30px;
+  color: #666;
+  letter-spacing: 0.5em;
+  font-weight: 600;
+}
+
+.dialog-wrapper a {
+  position: absolute;
+  float: right;
+  right: 0;
+  margin-right: 30px;
+  top: 10%;
+  cursor: pointer;
+  color: #76B6C2;
+}
+
+.dialog-wrapper h2 {
+  width: 100%;
+  text-align: center;
+  color: #666;
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+
+/deep/ .el-dialog {
+  background-color: #ffffff00;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+/deep/ .el-dialog img {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.dialog-wrapper .footer-wrapper {
+  position: absolute;
+  display: inline-block;
+  /* float: right; */
+  width: 90%;
+  text-align: center;
+  left: 0;
+  bottom: 20%;
+}
+
+.dialog-wrapper i {
+  /*margin-left: -20px;*/
+  cursor: pointer;
+  /*z-index: 1000000;*/
+}
+
+/deep/ .el-input {
+  width: 70%;
+  margin-left: 20%;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  padding-bottom: 2px;
+  margin-top: 10%;
+  z-index: 0;
+}
+
+/deep/ .el-input input {
+  border: none;
+  padding: 0;
+  font-size: 1.2em;
+  height: auto;
+  background: none;
+  border-bottom: 2px solid #999;
+  border-radius: 0;
+  z-index: 0;
+}
+
+/deep/ .el-input input:focus {
+  border-bottom: 2px solid #a7d7d6;
+}

@@ -26,6 +26,7 @@
     cursor: pointer;
     margin-left: 20px;
     font-weight: 600;
+    font-family: "Songti SC";
   }
 
   .nav-button-wrapper:hover {

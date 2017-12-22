@@ -9,13 +9,15 @@
       <el-col :xs="12" :sm="12" :md="12" :lg="12"  class="hidden-sm-and-down">
         <!--<p>NJUxCloud</p>-->
         <div class="buttons-wrapper" v-show="!isLogin">
-          <my-nav-button content="登录" class="button"></my-nav-button>
-          <my-nav-button content="注册" class="button"></my-nav-button>
+          <div style="position: relative; display: inline-block" @click="openLoginDialog">
+            <my-nav-button content="登录" class="button"></my-nav-button>
+          </div>
+          <div style="position: relative; display: inline-block" @click="openSignInDialog">
+            <my-nav-button content="注册" class="button"></my-nav-button>
+          </div>
         </div>
 
         <div class="buttons-wrapper" v-show="isLogin">
-          <!--<my-nav-button content="首页" class="button"></my-nav-button>-->
-
           <el-popover
             ref="popover2"
             placement="top-start"
@@ -35,7 +37,6 @@
           <el-button class="collapse-nav-button" style="color: #76B6C2" v-popover:popover2><i class="el-icon-more" ></i> </el-button>
           <!--<el-button class="collapse-nav-button" style="color: #76B6C2;" v-popover:popover1><i class="el-icon-more" ></i> </el-button>-->
         </div>
-
       </el-col>
 
       <el-col :xs="12" :sm="12" :md="12" :lg="12" class="hidden-md-and-up">
@@ -48,8 +49,8 @@
         >
           <!--<my-nav-button content="登录" class="button"></my-nav-button>-->
           <div v-show="!isLogin">
-            <el-button class="collapse-nav-element">登录</el-button>
-            <el-button class="collapse-nav-element">注册</el-button>
+            <el-button class="collapse-nav-element" @click="openLoginDialog">登录</el-button>
+            <el-button class="collapse-nav-element" @click="openSignInDialog">注册</el-button>
             <el-button class="collapse-nav-element">联系</el-button>
             <el-button class="collapse-nav-element" style="border: none;">关于</el-button>
           </div>
@@ -66,9 +67,10 @@
           </div>
         </el-popover>
         <el-button class="collapse-nav-button" v-popover:popover1 ><i class="el-icon-more" ></i> </el-button>
-
       </el-col>
     </el-row>
+
+    <login-dialogs :openLogin="openLogin" :openSignIn="openSignIn" @closeLogin="openLogin = false"></login-dialogs>
   </div>
 </template>
 
@@ -78,9 +80,10 @@
   import MyNavButton from '../Basic/MyNavButton/MyNavButton.vue'
   import { mapGetters } from 'vuex'
   import 'element-ui/lib/theme-chalk/display.css'
-
+  import LoginDialogs from '../LoginDialogs/LoginDialogs.vue'
   export default {
     components: {
+      LoginDialogs,
       ElCol,
       ElRow,
       MyNavButton
@@ -89,7 +92,9 @@
     data () {
       return {
         isCollapse: true,
-        isLogin: false
+        isLogin: false,
+        openLogin: false,
+        openSignIn: false
       }
     },
     methods: {
@@ -98,6 +103,14 @@
       },
       handleClose (key, keyPath) {
         console.log(key, keyPath)
+      },
+      openLoginDialog () {
+        this.openLogin = true
+        this.openSignIn = false
+      },
+      openSignInDialog () {
+        this.openLogin = true
+        this.openSignIn = true
       }
     },
     computed: {
