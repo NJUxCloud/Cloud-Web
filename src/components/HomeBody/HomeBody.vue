@@ -25,7 +25,7 @@
     <div class="body-content-wrapper">
       <el-row :gutter="20" style="position:relative; display: inline-block; width: 100%;" v-for="content in contents" :key="content.index">
         <el-col :xs="24" :sm="24" :md="12" :lg="12" v-show="content.left">
-          <img src="../../assets/data-image.png">
+          <img :src="content.url">
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="12" style="text-align: left; left: 15%; position: relative;" v-show="!content.left">
           <h2>{{ content.title }}</h2>
@@ -42,7 +42,7 @@
           </ul>
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="12" v-show="!content.left">
-          <img src="../../assets/data-image.png">
+          <img :src="content.url">
         </el-col>
       </el-row>
 
@@ -89,21 +89,21 @@
         contents: [
           {
             index: 1,
-            url: require('../../assets/data-icon.png'),
+            url: require('../../assets/data-image.png'),
             title: '输入数据 可视化分析',
             contents: ['·多维度分析上传数据', '·图标展示分析结果', '·选择数据集并划分使用比例'],
             left: true
           },
           {
             index: 2,
-            url: require('../../assets/model-icon.png'),
+            url: require('../../assets/model-image.png'),
             title: '训练模型 展示训练过程',
             contents: ['·每个节点的状态', '·CPU、内存使用情况', '·每一次的损失loss'],
             left: false
           },
           {
             index: 3,
-            url: require('../../assets/result-icon.png'),
+            url: require('../../assets/result-image.png'),
             title: '测试模型 评估训练结果',
             contents: ['·二分类评估', '·多指标分析', '·图表展示分析结果'],
             left: true
