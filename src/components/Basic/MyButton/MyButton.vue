@@ -1,14 +1,18 @@
 <template>
   <!--<div>-->
-  <button class="button-wrapper">{{ content }}</button>
+  <button class="button-wrapper" :style="buttonColor">{{ content }}</button>
   <!--</div>-->
 </template>
 
 <script>
   export default {
-    props: ['content'],
+    props: ['content', 'color'],
     data () {
-      return {}
+      return {
+        buttonColor: {
+          color: this.color
+        }
+      }
     }
   }
 </script>
@@ -25,6 +29,7 @@
     font-size: 16px;
     cursor: pointer;
     box-shadow:  0px 8px 15px 6px #00000040;
+    white-space: nowrap;
   }
 
   .button-wrapper:hover {

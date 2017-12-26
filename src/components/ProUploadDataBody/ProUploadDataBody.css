@@ -1,0 +1,75 @@
+.breadcrumb-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 30px;
+  /*width: 90%;*/
+  /*margin-left: 5%;*/
+  margin-left: 30px;
+}
+
+.breadcrumb-wrapper i {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.body-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 50px;
+  width: 96%;
+  margin-left: 2%;
+}
+
+.body-wrapper .left-wrapper {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  /*margin-top: 30px;*/
+}
+
+.body-wrapper .left-wrapper .button-wrapper {
+  position: relative;
+  display: inline-block;
+  /*margin-left: 5%;*/
+  /*width: 100%;*/
+  /*text-align: center;*/
+}
+
+.body-wrapper .left-wrapper .intro-wrapper {
+  position: relative;
+  display: inline-block;
+  height: 580px;
+  border: 4px solid #EBF5F8;
+  width: 100%;
+  margin-top: 60px;
+}
+
+
+.body-wrapper .right-wrapper {
+  position: relative;
+  display: inline-block;
+  border: 4px solid #EBF5F8;
+  width: 100%;
+  height: 680px;
+  /*right: 30px;*/
+  /*left: 30px;*/
+}
+
+.body-wrapper .right-wrapper .data-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 80%;
+  height: 100px;
+  background-color: #9ACEDB20;
+  margin-top: 20px;
+  margin-left: 10%;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .header-wrapper {
+  color: #333;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .header-wrapper i {
+  color: #333;
+}

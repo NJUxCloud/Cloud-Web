@@ -32,8 +32,14 @@
             <el-button class="collapse-nav-element" style="border: none">退出登录</el-button>
           </el-popover>
 
-          <my-nav-button content="专业上传" class="button"></my-nav-button>
-          <my-nav-button content="流程探索" class="button"></my-nav-button>
+          <router-link to="/proUploadData">
+            <my-nav-button content="专业上传" class="button" ></my-nav-button>
+          </router-link>
+
+          <router-link to="/proUploadData">
+            <my-nav-button content="流程探索" class="button"></my-nav-button>
+          </router-link>
+          <!--<my-nav-button content="专业上传" class="button" ></my-nav-button>-->
           <el-button class="collapse-nav-button" style="color: #76B6C2" v-popover:popover2><i class="el-icon-more" ></i> </el-button>
           <!--<el-button class="collapse-nav-button" style="color: #76B6C2;" v-popover:popover1><i class="el-icon-more" ></i> </el-button>-->
         </div>
@@ -81,6 +87,7 @@
   import { mapGetters } from 'vuex'
   import 'element-ui/lib/theme-chalk/display.css'
   import LoginDialogs from '../LoginDialogs/LoginDialogs.vue'
+
   export default {
     components: {
       LoginDialogs,
@@ -92,7 +99,7 @@
     data () {
       return {
         isCollapse: true,
-        isLogin: false,
+        isLogin: true,
         openLogin: false,
         openSignIn: false
       }
