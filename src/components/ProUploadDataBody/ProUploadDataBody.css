@@ -45,6 +45,19 @@
   margin-top: 60px;
 }
 
+.body-wrapper .left-wrapper .intro-wrapper h3 {
+  margin-top: 10px;
+}
+
+.body-wrapper .left-wrapper .intro-wrapper p {
+  /*margin-top: 10px;*/
+  position: relative;
+  display: inline-block;
+  width: 80%;
+  background-color: #eee;
+  /*line-height: 3em;*/
+  margin-top: 3em;
+}
 
 .body-wrapper .right-wrapper {
   position: relative;
@@ -56,20 +69,76 @@
   /*left: 30px;*/
 }
 
+.body-wrapper .right-wrapper h3{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
 .body-wrapper .right-wrapper .data-wrapper {
   position: relative;
   display: inline-block;
-  width: 80%;
+  width: 90%;
   height: 100px;
   background-color: #9ACEDB20;
   margin-top: 20px;
-  margin-left: 10%;
+  margin-left: 5%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .body-wrapper .right-wrapper .data-wrapper .header-wrapper {
-  color: #333;
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  /*margin-left: 30px;*/
 }
 
 .body-wrapper .right-wrapper .data-wrapper .header-wrapper i {
   color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .header-wrapper h4 {
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .path-wrapper p{
+  position: relative;
+  display: inline-block;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .path-wrapper a{
+  position: relative;
+  display: inline-block;
+  color: #9AD9D7;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .time-wrapper {
+  /*margin-left: 30px;*/
+}
+
+.body-wrapper .right-wrapper .data-wrapper .time-wrapper p {
+  color: #999;
+}
+
+.body-wrapper .right-wrapper .data-wrapper .icon-wrapper {
+  position: absolute;
+  right: 20px;
+  /*line-height: 100px;*/
+  top:0;
+  /*top: -50%;*/
+  /*transform: translate(0, 50%);*/
+}
+
+.body-wrapper .right-wrapper .data-wrapper .icon-wrapper i {
+  color: #BCE5E0;
+  font-size: 26px;
+  margin-top: 37px;
+  cursor: pointer;
+  /*margin-top: 10px;*/
 }

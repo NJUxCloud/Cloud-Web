@@ -26,7 +26,9 @@
             :disabled="!isLogin"
           >
             <!--<my-nav-button content="登录" class="button"></my-nav-button>-->
-            <el-button class="collapse-nav-element">首页</el-button>
+            <router-link to="/">
+              <el-button class="collapse-nav-element">首页</el-button>
+            </router-link>
             <el-button class="collapse-nav-element">我的数据</el-button>
             <el-button class="collapse-nav-element">个人信息</el-button>
             <el-button class="collapse-nav-element" style="border: none">退出登录</el-button>
