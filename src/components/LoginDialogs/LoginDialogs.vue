@@ -33,10 +33,10 @@
 
       <span slot="footer" class="dialog-footer footer-wrapper">
           <div @click="closeLoginDialogs">
-            <my-nav-button content="取消"></my-nav-button>
+            <my-dialog-button content="取消"></my-dialog-button>
           </div>
           <div @click="closeLoginDialogs">
-            <my-nav-button content="确定"></my-nav-button>
+            <my-dialog-button content="确定"></my-dialog-button>
           </div>
       </span>
     </el-dialog>
@@ -45,12 +45,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import MyNavButton from '../Basic/MyNavButton/MyNavButton.vue'
+  import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
 
   export default {
     props: ['openLogin', 'openSignIn'],
     components: {
-      MyNavButton
+      MyDialogButton
     },
     data () {
       return {

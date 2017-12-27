@@ -51,7 +51,7 @@
                   </div>
 
                   <div class="icon-wrapper">
-                    <i :class="singleData.iconClass" @mouseover="changeIconClass(singleData)" @mouseleave="changeIconClass(singleData)" @click="deleteData(singleData)"></i>
+                    <i :class="singleData.iconClass" @mouseover="changeIconClass(singleData)" @mouseleave="changeIconClass(singleData)" @click="tryDeleteData(singleData)"></i>
                   </div>
                 </div>
               </el-col>
@@ -61,18 +61,42 @@
       </el-row>
     </div>
 
+    <el-dialog
+      title="删除数据"
+      :visible.sync="confirmDeleteDataStatus"
+      width="300px"
+      :modal=true
+      :modal-append-to-body=false
+      :show-close=false
+      :close-on-click-modal=false
+      :close-on-press-escape=false
+      center>
+      <span>您确定要删除该数据吗？</span>
+      <span slot="footer" class="dialog-footer" style="display: inline-block;">
+        <div @click="confirmDeleteDataStatus = false" style="display: inline-block;">
+          <my-dialog-button content="取 消"></my-dialog-button>
+        </div>
+        <div @click="deleteData" style="display: inline-block;">
+          <my-dialog-button type="primary" content="确 定"></my-dialog-button>
+        </div>
+  </span>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
   import MyButton from '../Basic/MyButton/MyButton.vue'
+  import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
 
   export default {
     components: {
-      MyButton
+      MyButton,
+      MyDialogButton
     },
     data () {
       return {
+        confirmDeleteDataStatus: false,
         dataList: [
           {
             index: 1,
@@ -109,7 +133,8 @@
             updateTime: '2017-12-12 12:12:12',
             iconClass: 'el-icon-circle-check'
           }
-        ]
+        ],
+        dataToBeDeleted: {}
       }
     },
     methods: {
@@ -120,9 +145,14 @@
           singleData.iconClass = 'el-icon-circle-check'
         }
       },
-      deleteData: function (singleData) {
+      tryDeleteData: function (singleData) {
+        this.dataToBeDeleted = singleData
+        this.confirmDeleteDataStatus = true
+      },
+      deleteData: function () {
         // todo
-        console.log(singleData)
+//        console.log(singleData)
+        this.confirmDeleteDataStatus = false
       }
     }
   }

@@ -31,7 +31,7 @@
             </router-link>
             <el-button class="collapse-nav-element">我的数据</el-button>
             <el-button class="collapse-nav-element">个人信息</el-button>
-            <el-button class="collapse-nav-element" style="border: none">退出登录</el-button>
+            <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出登录</el-button>
           </el-popover>
 
           <router-link to="/proUploadData">
@@ -107,12 +107,6 @@
       }
     },
     methods: {
-      handleOpen (key, keyPath) {
-        console.log(key, keyPath)
-      },
-      handleClose (key, keyPath) {
-        console.log(key, keyPath)
-      },
       openLoginDialog () {
         this.openLogin = true
         this.openSignIn = false
@@ -120,6 +114,11 @@
       openSignInDialog () {
         this.openLogin = true
         this.openSignIn = true
+      },
+      doQuitLog () {
+        // todo
+        this.$router.push('/')
+//        this.isLogin = false
       }
     },
     computed: {

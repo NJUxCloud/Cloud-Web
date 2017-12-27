@@ -10,6 +10,7 @@
 .breadcrumb-wrapper i {
   cursor: pointer;
   margin-left: 10px;
+  outline: none;
 }
 
 .body-wrapper {
@@ -26,6 +27,7 @@
   text-align: center;
   width: 100%;
   /*margin-top: 30px;*/
+  margin-bottom: 30px;
 }
 
 .body-wrapper .left-wrapper .button-wrapper {
@@ -67,6 +69,7 @@
   height: 680px;
   /*right: 30px;*/
   /*left: 30px;*/
+  overflow: scroll;
 }
 
 .body-wrapper .right-wrapper h3{
@@ -80,7 +83,7 @@
   width: 90%;
   height: 100px;
   background-color: #9ACEDB20;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 5%;
   padding-left: 20px;
   padding-right: 20px;
