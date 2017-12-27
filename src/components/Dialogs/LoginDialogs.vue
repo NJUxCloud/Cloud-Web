@@ -119,4 +119,4 @@
   }
 </script>
 
-<style scoped src="./LoginDialogs.css"></style>
+<style scoped src="./Dialogs.css"></style>

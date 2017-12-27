@@ -59,8 +59,8 @@
           <div v-show="!isLogin">
             <el-button class="collapse-nav-element" @click="openLoginDialog">登录</el-button>
             <el-button class="collapse-nav-element" @click="openSignInDialog">注册</el-button>
-            <el-button class="collapse-nav-element">联系</el-button>
-            <el-button class="collapse-nav-element" style="border: none;">关于</el-button>
+            <el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>
+            <el-button class="collapse-nav-element" style="border: none;" @click="openAbout = true">关于</el-button>
           </div>
 
           <div v-show="isLogin">
@@ -69,9 +69,9 @@
             <el-button class="collapse-nav-element">流程探索</el-button>
             <el-button class="collapse-nav-element">我的数据</el-button>
             <el-button class="collapse-nav-element">个人信息</el-button>
-            <el-button class="collapse-nav-element">联系</el-button>
-            <el-button class="collapse-nav-element">关于</el-button>
-            <el-button class="collapse-nav-element" style="border: none">退出</el-button>
+            <el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>
+            <el-button class="collapse-nav-element" @click="openAbout = true">关于</el-button>
+            <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出</el-button>
           </div>
         </el-popover>
         <el-button class="collapse-nav-button" v-popover:popover1 ><i class="el-icon-more" ></i> </el-button>
@@ -79,6 +79,9 @@
     </el-row>
 
     <login-dialogs :openLogin="openLogin" :openSignIn="openSignIn" @closeLogin="openLogin = false"></login-dialogs>
+    <contact-dialog :openContact="openContact" @closeContact="openContact = false"></contact-dialog>
+    <about-dialog :openAbout="openAbout" @closeAbout="openAbout = false"></about-dialog>
+
   </div>
 </template>
 
@@ -88,14 +91,18 @@
   import MyNavButton from '../Basic/MyNavButton/MyNavButton.vue'
   import { mapGetters } from 'vuex'
   import 'element-ui/lib/theme-chalk/display.css'
-  import LoginDialogs from '../LoginDialogs/LoginDialogs.vue'
+  import LoginDialogs from '../Dialogs/LoginDialogs.vue'
+  import ContactDialog from '../Dialogs/ContactDialog.vue'
+  import AboutDialog from '../Dialogs/AboutDialog.vue'
 
   export default {
     components: {
       LoginDialogs,
       ElCol,
       ElRow,
-      MyNavButton
+      MyNavButton,
+      ContactDialog,
+      AboutDialog
     },
     props: ['showBg'],
     data () {
@@ -103,7 +110,9 @@
         isCollapse: true,
         isLogin: true,
         openLogin: false,
-        openSignIn: false
+        openSignIn: false,
+        openContact: false,
+        openAbout: false
       }
     },
     methods: {
@@ -118,7 +127,7 @@
       doQuitLog () {
         // todo
         this.$router.push('/')
-//        this.isLogin = false
+        this.isLogin = false
       }
     },
     computed: {

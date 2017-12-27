@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
-import ProfessionalUploadDataPage from '../pages/ProfessionalUploadDataPage.vue'
-
+import ProUploadDataPage from '../pages/ProUploadDataPage.vue'
+import ProModelCollectionsPage from '../pages/ProModelCollectionsPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -14,8 +14,13 @@ export default new Router({
     },
     {
       path: '/proUploadData',
-      name: 'ProfessionalUploadDataPage',
-      component: ProfessionalUploadDataPage
+      name: 'ProUploadDataPage',
+      component: ProUploadDataPage
+    },
+    {
+      path: '/proModelCollections',
+      name: 'ProModelCollectionsPage',
+      component: ProModelCollectionsPage
     }
   ]
 })

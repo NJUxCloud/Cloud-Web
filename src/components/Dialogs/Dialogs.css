@@ -10,10 +10,6 @@
   left: 0;
 }
 
-.dialog-wrapper .signin-wrapper{
-  width: 100%;
-}
-
 .dialog-wrapper div {
   position: relative;
   display: inline-block;
