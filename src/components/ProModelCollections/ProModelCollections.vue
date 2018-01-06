@@ -30,7 +30,8 @@
 
             </div>
             <div class="buttons-wrapper">
-
+              <i class="el-icon-edit"></i>
+              <i class="el-icon-close"></i>
             </div>
           </div>
         </el-col>
