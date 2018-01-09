@@ -1,3 +1,7 @@
+.model-collections-wrapper {
+  min-height: 800px;
+}
+
 .breadcrumb-wrapper {
   position: relative;
   display: inline-block;
@@ -32,21 +36,25 @@
 .body-wrapper {
   position: relative;
   display: inline-block;
-  margin-top: 50px;
-  width: 96%;
-  margin-left: 2%;
+  margin-top: 80px;
+  width: 90%;
+  margin-left: 5%;
 }
 
 .body-wrapper .collection-wrapper {
+  position: relative;
+  display: inline-block;
   width: 168px;
   height: 216px;
   background-color: #EBF5F8;
   box-shadow: 0px 2px 2px 0px #00000024;
+  margin-bottom: 80px;
 }
 
 .body-wrapper .collection-wrapper .name-wrapper {
   position: relative;
   display: inline-block;
+  text-align: left;
   width: 100%;
   height: 168px;
   padding: 20px;
@@ -63,5 +71,22 @@
   height: 48px;
   background-color: #FAFAFA;
   box-shadow: 0px 2px 2px 0px #00000024;
+  white-space: nowrap;
+}
 
+.el-button {
+  position: relative;
+  display: inline-block;
+  background-color: #ffffff00;
+  border: none;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 48px;
+}
+
+.el-button:hover {
+  color: #9AD9D7;
 }

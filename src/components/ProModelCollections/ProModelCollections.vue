@@ -23,15 +23,19 @@
 
     <div class="body-wrapper">
       <el-row :gutter="20" style="margin: 0;">
-        <el-col>
+        <el-col :xs="24" :sm="12" :md="8" :lg="4"  v-for="collection in collections" style="text-align: center">
           <div class="collection-wrapper">
             <div class="name-wrapper">
               <h3>模型<br>文件夹1</h3>
 
             </div>
             <div class="buttons-wrapper">
-              <i class="el-icon-edit"></i>
-              <i class="el-icon-close"></i>
+              <el-button>
+                <i class="el-icon-edit"></i>
+              </el-button>
+              <el-button>
+                <i class="el-icon-close"></i>
+              </el-button>
             </div>
           </div>
         </el-col>
@@ -50,7 +54,27 @@
     },
     data () {
       return {
-
+        collections: [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ]
       }
     },
     computed: {
