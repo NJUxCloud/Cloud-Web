@@ -15,7 +15,7 @@
       <div class="login-wrapper">
         <h1>修改信息</h1>
         <!--<a @click="changeDialog">去注册 ></a>-->
-        <h2>文件夹名</h2>
+        <h2 style="margin-top: 25%">文件夹名</h2>
         <el-input v-model="collectionInput"></el-input>
 
       </div>
@@ -37,7 +37,7 @@
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
 
   export default {
-    props: ['openModifyCollection','collectionName'],
+    props: ['openModifyCollection', 'collectionName'],
     components: {
       MyDialogButton
     },

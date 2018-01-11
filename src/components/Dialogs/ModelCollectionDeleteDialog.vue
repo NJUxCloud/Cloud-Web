@@ -37,7 +37,7 @@
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
 
   export default {
-    props: ['openDeleteCollection','collectionName'],
+    props: ['openDeleteCollection', 'collectionName'],
     components: {
       MyDialogButton
     },
