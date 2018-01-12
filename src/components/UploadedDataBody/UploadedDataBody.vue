@@ -66,7 +66,9 @@
         openDeleteCollection: false,
         openModifyCollection: false,
         collections: [
-          {},
+          {
+
+          },
           {},
           {},
           {},

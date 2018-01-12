@@ -17,6 +17,12 @@
         <a @click="changeDialog">去注册 ></a>
         <h2>用户名</h2>
         <el-input v-model="usernameInput"></el-input>
+        <h2>邮箱</h2>
+        <el-input v-model="emailInput" :class="[isCorrectEmail? '': 'error-email']"></el-input>
+        <el-tooltip :content="errorInfo" placement="bottom" effect="light">
+          <i v-show="this.emailInput.length !== 0" :class="[ {'el-icon-circle-check-outline': isCorrectEmail}, {'success-icon': isCorrectEmail}, {'el-icon-circle-close-outline': !isCorrectEmail}, {'error-icon': !isCorrectEmail}]"></i>
+        </el-tooltip>
+
         <h2>密码</h2>
         <el-input v-model="passwordInput" type="password"></el-input>
       </div>
@@ -26,6 +32,16 @@
         <a @click="changeDialog">去登录 ></a>
         <h2>用户名</h2>
         <el-input v-model="usernameInput"></el-input>
+        <el-tooltip content="用户名已被注册" placement="bottom" effect="light">
+          <i v-show="!isCorrectUsername" :class="[ {'el-icon-circle-check-outline': isCorrectUsername}, {'success-icon': isCorrectUsername}, {'el-icon-circle-close-outline': !isCorrectUsername}, {'error-icon': !isCorrectUsername}]"></i>
+        </el-tooltip>
+
+        <h2>邮箱</h2>
+        <el-input v-model="emailInput"></el-input>
+        <el-tooltip :content="errorInfo" placement="bottom" effect="light">
+          <i v-show="this.emailInput.length !== 0" :class="[ {'el-icon-circle-check-outline': isCorrectEmail}, {'success-icon': isCorrectEmail}, {'el-icon-circle-close-outline': !isCorrectEmail}, {'error-icon': !isCorrectEmail}]"></i>
+        </el-tooltip>
+
         <h2>密码</h2>
         <el-input v-model="passwordInput" :type="password"></el-input>
         <i class="el-icon-view" @mouseover="changeInputType" @mouseleave="changeInputType"></i>
@@ -60,8 +76,12 @@
         },
         usernameInput: '',
         passwordInput: '',
+        emailInput: '',
         loginDialog: true,
-        password: 'password'
+        password: 'password',
+        isCorrectEmail: true,
+        isCorrectUsername: true,
+        errorInfo: '邮箱格式错误...'
       }
     },
     computed: {
@@ -106,7 +126,24 @@
       openLogin: function () {
         this.usernameInput = ''
         this.passwordInput = ''
+        this.emailInput = ''
         this.loginDialog = !this.openSignIn
+      },
+      emailInput: function () {
+        let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+//        alert(reg.test(this.emailInput))
+        if (this.emailInput === '' || reg.test(this.emailInput)) {
+          this.isCorrectEmail = true
+          this.errorInfo = '邮箱格式正确'
+        } else {
+          this.isCorrectEmail = false
+          this.errorInfo = '邮箱格式错误'
+        }
+      },
+      loginDialog: function () {
+        this.usernameInput = ''
+        this.passwordInput = ''
+        this.emailInput = ''
       }
     },
     mounted () {
@@ -115,6 +152,7 @@
 //      alert(this.openSignIn)
       this.usernameInput = ''
       this.passwordInput = ''
+      this.emailInput = ''
     }
   }
 </script>
