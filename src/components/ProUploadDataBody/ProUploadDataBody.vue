@@ -22,12 +22,13 @@
             <div class="intro-wrapper">
               <h3>数据说明</h3>
               <!--<img src="../../assets/box-border.png"/>-->
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
-              <p>&nbsp;</p>
+              <p style="text-align: left">接受格式：</p>
+              <p>.zip</p>
+              <p style="text-align: left">包含格式：</p>
+              <p>.txt</p>
+              <p>.png</p>
+              <p>.jpg</p>
+              <p>.mp3</p>
             </div>
           </div>
         </el-col>
@@ -65,6 +66,7 @@
       title="删除数据"
       :visible.sync="confirmDeleteDataStatus"
       width="300px"
+      top="300px"
       :modal=true
       :modal-append-to-body=false
       :show-close=false

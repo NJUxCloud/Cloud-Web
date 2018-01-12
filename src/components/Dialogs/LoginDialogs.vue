@@ -130,7 +130,7 @@
         this.loginDialog = !this.openSignIn
       },
       emailInput: function () {
-        let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
 //        alert(reg.test(this.emailInput))
         if (this.emailInput === '' || reg.test(this.emailInput)) {
           this.isCorrectEmail = true
