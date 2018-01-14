@@ -5,8 +5,9 @@
         <div class="breadcrumb-wrapper">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>已上传数据
-              <el-tooltip content="呈现所有已上传数据以供使用、修改和删除" placement="bottom" effect="light">
+            <el-breadcrumb-item>专业上传</el-breadcrumb-item>
+            <el-breadcrumb-item>上传代码
+              <el-tooltip content="上传数据以供模型选用" placement="bottom" effect="light">
                 <i class="el-icon-question"></i>
               </el-tooltip>
             </el-breadcrumb-item>
