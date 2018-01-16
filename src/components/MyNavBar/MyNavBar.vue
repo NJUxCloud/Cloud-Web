@@ -54,7 +54,9 @@
             <router-link to="/uploadedData">
               <el-button class="collapse-nav-element">我的数据</el-button>
             </router-link>
-            <el-button class="collapse-nav-element">个人信息</el-button>
+            <router-link to="/info">
+              <el-button class="collapse-nav-element">个人信息</el-button>
+            </router-link>
             <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出登录</el-button>
           </el-popover>
 
@@ -130,7 +132,9 @@
             <router-link to="/uploadedData">
               <el-button class="collapse-nav-element">我的数据</el-button>
             </router-link>
-            <el-button class="collapse-nav-element">个人信息</el-button>
+            <router-link to="/info">
+              <el-button class="collapse-nav-element">个人信息</el-button>
+            </router-link>
             <el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>
             <el-button class="collapse-nav-element" @click="openAbout = true">关于</el-button>
             <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出</el-button>
