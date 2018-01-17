@@ -35,7 +35,6 @@ export default new Router({
       name: 'ProUploadFilePage',
       component: ProUploadFilePage
     },
-    ,
     {
       path: '/info',
       name: 'UserInfoPage',

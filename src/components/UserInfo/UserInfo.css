@@ -1,3 +1,28 @@
 .user-info-wrapper {
+  position: relative;
+  display: inline-block;
   min-height: 700px;
+  margin-top: 30px;
+  width: 60%;
+  margin-left: 20%;
+}
+
+.user-info-wrapper h3 {
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  color: #666;
+  letter-spacing: 1em;
+}
+
+.user-info-wrapper /deep/ .el-input {
+  /*font-weight: 600;*/
+  margin-bottom: 60px;
+}
+
+.user-info-wrapper .modify-button-wrapper {
+  margin-top: 30px;
+  position: relative;
+  display: inline-block;
+  float: right;
 }

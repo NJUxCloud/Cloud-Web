@@ -90,3 +90,27 @@ h5, h6 {
   outline: none;
 }
 
+/deep/ .el-input {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  padding-bottom: 2px;
+  /*border-bottom: 2px solid #999;*/
+  z-index: 0;
+  font-family:  Menlo, "Songti SC", PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+
+/deep/ .el-input input {
+  border: none;
+  font-size: 1.2em;
+  height: auto;
+  background: none;
+  border-bottom: 2px solid #999;
+  border-radius: 0;
+  z-index: 0;
+  padding: 2px;
+}
+
+/deep/ .el-input input:focus {
+  border-bottom: 2px solid #a7d7d6;
+}
