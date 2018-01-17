@@ -28,11 +28,13 @@
     padding: 6px 50px 6px 50px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow:  0px 8px 15px 6px #00000040;
+    box-shadow:  0px 4px 7px 3px #00000040;
+    /*box-shadow:  0px 8px 15px 6px #00000040;*/
     white-space: nowrap;
   }
 
   .button-wrapper:hover {
-    border-color: white;
+    background-color: #a4e2e0;
+    /*box-shadow:  0px 4px 7px 3px #00000040;*/
   }
 </style>
