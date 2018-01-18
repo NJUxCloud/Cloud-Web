@@ -17,6 +17,30 @@
 
     </el-row>
 
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose">
+      <el-submenu :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'object'">
+        <template slot="title">
+          <span>{{ root.name }}</span>
+        </template>
+
+        <el-submenu :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'object'">
+          <template slot="title">
+            <span>{{ root.name }}</span>
+          </template>
+        </el-submenu>
+        <el-menu-item :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'string'">
+          <span slot="title">{{ root.name }}</span>
+        </el-menu-item>
+
+      </el-submenu>
+      <el-menu-item :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'string'">
+        <span slot="title">{{ root.name }}</span>
+      </el-menu-item>
+    </el-menu>
 
   </div>
 </template>
@@ -31,12 +55,40 @@
     },
     data () {
       return {
+        roots: [],
+        openCatalog: [],
+        catalog: {
+          'image_process.py': 'image_process.py',
+          'mnist': {
+            'mnist_inference.py': 'mnist_inference.py',
+            'mnist_train.py': 'mnist_train.py',
+            'mnist_eval.py': 'mnist_eval.py',
+            '__init__.py': '__init__.py',
+            '__pycache__': {
+              'mnist_train.cpython-36.pyc': 'mnist_train.cpython-36.pyc',
+              'mnist_inference.cpython-36.pyc': 'mnist_inference.cpython-36.pyc'
+            }
+          }
+        }
       }
     },
     computed: {
       ...mapGetters({
         largeSize: 'largeSize'
       })
+    },
+    methods: {
+      changeOpenCatalog: function (curCatalog) {
+        this.openCatalog = this.catalog['']
+      }
+    },
+    mounted () {
+      for (let key in this.catalog) {
+        this.roots.push({
+          name: key,
+          type: typeof this.catalog[key]
+        })
+      }
     }
   }
 </script>
