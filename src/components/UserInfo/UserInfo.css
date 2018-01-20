@@ -15,7 +15,7 @@
   letter-spacing: 1em;
 }
 
-.user-info-wrapper /deep/ .el-input {
+.user-info-wrapper .inputs-wrapper /deep/ .el-input {
   /*font-weight: 600;*/
   margin-bottom: 60px;
 }

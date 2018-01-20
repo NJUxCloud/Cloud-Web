@@ -3,9 +3,10 @@
     <img src="../../assets/nav-bg.png" class="bg" v-if="showBg"/>
     <el-row :gutter="20" style="overflow: hidden; margin: 0;">
       <el-col :xs="4" :sm="4" :md="12" :lg="12">
-        <img src="../../assets/logo.png" v-show="largeSize"/>
-        <img src="../../assets/logo-sm.png" v-show="!largeSize"/>
-
+        <router-link to="/">
+          <img src="../../assets/logo.png" v-if="largeSize"/>
+          <img src="../../assets/logo-sm.png" v-if="!largeSize"/>
+        </router-link>
       </el-col>
       <el-col :xs="20" :sm="20" :md="12" :lg="12"  class="hidden-sm-and-down">
         <!--<p>NJUxCloud</p>-->

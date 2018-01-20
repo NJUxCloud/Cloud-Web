@@ -9,10 +9,15 @@ import './typo.css'
 import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import TreeFolder from './components/TreeFolder/TreeFolder.vue'
+import TreeFolderContents from './components/TreeFolder/TreeFolderContents.vue'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Vuex)
+
+Vue.component('tree-folder', TreeFolder)
+Vue.component('tree-folder-contents', TreeFolderContents)
 
 /* eslint-disable no-new */
 new Vue({

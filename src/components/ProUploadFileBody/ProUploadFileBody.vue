@@ -17,30 +17,20 @@
 
     </el-row>
 
-    <el-menu
-      default-active="2"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose">
-      <el-submenu :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'object'">
-        <template slot="title">
-          <span>{{ root.name }}</span>
-        </template>
+    <el-row :gutter="20" style="margin: 0;">
+      <el-col :xs="24" :sm="8" :md="6" :lg="6">
+        <div class="side-bar-wrapper">
 
-        <el-submenu :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'object'">
-          <template slot="title">
-            <span>{{ root.name }}</span>
-          </template>
-        </el-submenu>
-        <el-menu-item :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'string'">
-          <span slot="title">{{ root.name }}</span>
-        </el-menu-item>
+          <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          >
+            <tree-folder v-for="(root, index) in roots"  :folder="root" :key="index"></tree-folder>
+          </el-menu>
+        </div>
 
-      </el-submenu>
-      <el-menu-item :index="index" v-for="(root, index) in roots" :key="index" v-if="root.type === 'string'">
-        <span slot="title">{{ root.name }}</span>
-      </el-menu-item>
-    </el-menu>
+      </el-col>
+    </el-row>
 
   </div>
 </template>
@@ -48,6 +38,7 @@
 <script>
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import { mapGetters } from 'vuex'
+//  import TreeFolder from '../TreeFolder/TreeFolder.vue'
 
   export default {
     components: {
@@ -83,12 +74,19 @@
       }
     },
     mounted () {
+      let i = 0
       for (let key in this.catalog) {
         this.roots.push({
           name: key,
-          type: typeof this.catalog[key]
+          type: typeof this.catalog[key],
+          children: this.catalog[key],
+          index: i + ''
         })
+        i++
       }
+    },
+    beforeCreate: function () {
+//      this.$options.components.TreeFolderContents = require('../TreeFolder/TreeFolderContents.vue')
     }
   }
 </script>
