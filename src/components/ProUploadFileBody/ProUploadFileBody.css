@@ -69,3 +69,14 @@
   color: #76B6C2;
 }
 /*.el-submenu__title*/
+
+.upload-file-wrapper .code-area-wrapper {
+  position: relative;
+  display: inline-block;
+  height: 580px;
+  border: 4px solid #EBF5F8;
+  width: 100%;
+  margin-top: 60px;
+  /*overflow: auto;*/
+  overflow: scroll;
+}

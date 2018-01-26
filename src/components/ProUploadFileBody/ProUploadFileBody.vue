@@ -30,6 +30,17 @@
         </div>
 
       </el-col>
+      <el-col :xs="24" :sm="16" :md="18" :lg="18">
+        <div class="code-area-wrapper">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入内容"
+            v-model="code">
+          </el-input>
+        </div>
+
+      </el-col>
     </el-row>
 
   </div>
@@ -60,7 +71,8 @@
               'mnist_inference.cpython-36.pyc': 'mnist_inference.cpython-36.pyc'
             }
           }
-        }
+        },
+        code: 'as'
       }
     },
     computed: {
