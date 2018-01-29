@@ -11,11 +11,16 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import TreeFolder from './components/TreeFolder/TreeFolder.vue'
 import TreeFolderContents from './components/TreeFolder/TreeFolderContents.vue'
+import VueCodemirror from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Vuex)
-
+Vue.use(VueCodemirror, {
+  options: { theme: 'base16-dark' },
+  events: ['scroll']
+})
 Vue.component('tree-folder', TreeFolder)
 Vue.component('tree-folder-contents', TreeFolderContents)
 
