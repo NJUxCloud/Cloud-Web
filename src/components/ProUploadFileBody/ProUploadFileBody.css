@@ -80,3 +80,22 @@
   /*overflow: auto;*/
   overflow: scroll;
 }
+
+.upload-file-wrapper .code-area-wrapper /deep/ .el-textarea__inner {
+  border: none;
+  resize:none;
+  /*min-width: ;*/
+}
+
+.vue-codemirror {
+  /*position: relative;*/
+  /*display: inline-block ;*/
+  height: 100%;
+  /*min-width: 400px;*/
+}
+
+.vue-codemirror /deep/ .CodeMirror {
+  /*position: relative;*/
+  /*display: inline-block ;*/
+  height: 100%;
+}

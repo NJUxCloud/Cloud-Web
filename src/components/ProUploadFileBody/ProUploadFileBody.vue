@@ -32,12 +32,14 @@
       </el-col>
       <el-col :xs="24" :sm="16" :md="18" :lg="18">
         <div class="code-area-wrapper">
-          <el-input
-            type="textarea"
-            autosize
-            placeholder="请输入内容"
-            v-model="code">
-          </el-input>
+          <!--<el-input-->
+            <!--type="textarea"-->
+            <!--autosize-->
+            <!--placeholder="请输入内容"-->
+            <!--v-model="code">-->
+          <!--</el-input>-->
+
+          <code-area></code-area>
         </div>
 
       </el-col>
@@ -49,11 +51,16 @@
 <script>
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import { mapGetters } from 'vuex'
+  import Pre from 'prettify'
+  import CodeArea from '../CodeArea/CodeArea.vue'
+//  import Pre from 'prettify'
 //  import TreeFolder from '../TreeFolder/TreeFolder.vue'
 
   export default {
     components: {
-      MyButton
+      MyButton,
+      Pre,
+      CodeArea
     },
     data () {
       return {
@@ -72,7 +79,18 @@
             }
           }
         },
-        code: 'as'
+        code: 'as',
+        prettyAreaData: '# -*- coding: UTF-8 -*-\n' +
+        '\n' +
+        '# Filename : helloworld.py\n' +
+        '# author by : www.runoob.com\n' +
+        '\n' +
+        '# 该实例输出 Hello World!\n' +
+        'print(\'Hello World!\')'
+      }
+    },
+    watch: {
+      prettyAreaData: function () {
       }
     },
     computed: {
@@ -96,6 +114,10 @@
         })
         i++
       }
+
+//      setTimeout(() => {
+//        document.body.addEventListener('load', prettyPrint())
+//      }, 2000)
     },
     beforeCreate: function () {
 //      this.$options.components.TreeFolderContents = require('../TreeFolder/TreeFolderContents.vue')
