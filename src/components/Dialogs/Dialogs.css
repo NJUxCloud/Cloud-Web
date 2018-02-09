@@ -115,3 +115,21 @@
   color: #e5abb3;
   /*font-size: 16px;*/
 }
+
+/deep/ .el-upload-list {
+  background-color: #EBF5F8;
+  margin-left: 15%;
+  width: 80%;
+  outline: none;
+}
+
+/deep/ .upload-demo {
+  width: 100%;
+  text-align: center;
+  /*margin-left: 2%;*/
+}
+
+/*/deep/ .el-upload-list__item {*/
+  /*background-color: #EBF5F8*/
+
+/*}*/
