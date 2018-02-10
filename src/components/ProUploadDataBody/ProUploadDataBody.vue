@@ -16,7 +16,7 @@
       <el-row :gutter="20" style="margin: 0">
         <el-col :xs="24" :sm="24" :md="6" :lg="6">
           <div class="left-wrapper">
-            <div class="button-wrapper">
+            <div class="button-wrapper" @click="openUploadData = true">
               <my-button content="点 击 上 传" color="#000000"></my-button>
             </div>
             <div class="intro-wrapper">
@@ -83,6 +83,7 @@
         </div>
   </span>
     </el-dialog>
+    <upload-data-dialog :openUploadData="openUploadData" @closeUploadData="openUploadData=false"></upload-data-dialog>
 
   </div>
 </template>
@@ -90,15 +91,18 @@
 <script>
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
+  import UploadDataDialog from '../Dialogs/UploadDataDialog.vue'
 
   export default {
     components: {
       MyButton,
+      UploadDataDialog,
       MyDialogButton
     },
     data () {
       return {
         confirmDeleteDataStatus: false,
+        openUploadData: false,
         dataList: [
           {
             index: 1,

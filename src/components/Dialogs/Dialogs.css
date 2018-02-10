@@ -2,7 +2,7 @@
   overflow: visible;
 }
 
-.dialog-wrapper .login-wrapper{
+.dialog-wrapper .login-wrapper {
   width: 88%;
   position: absolute;
   margin: 0;
@@ -39,10 +39,9 @@
   color: #666;
   margin-top: 5%;
   margin-left: 5%;
-  font-weight: 600;
+  font-weight: 300;
 
 }
-
 
 /deep/ .el-dialog {
   background-color: #ffffff00;
@@ -86,7 +85,7 @@
   margin-top: 5%;
   /*border-bottom: 2px solid #999;*/
   z-index: 0;
-  font-family:  Menlo, "Songti SC", PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font-family: Menlo, "Songti SC", PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
 /deep/ .el-input input {
@@ -129,7 +128,43 @@
   /*margin-left: 2%;*/
 }
 
+/deep/ .el-upload {
+  width: 100%;
+}
+
+.select-file-button-wrapper .select-file-button {
+  position: relative;
+  display: inline-block;
+  background-color: #EBF5F8;
+  /*margin-left: 15%;*/
+  width: 100%;
+  outline: none;
+  color: #606266;
+  /*display: block;*/
+  margin-right: 40px;
+  overflow: hidden;
+  padding-left: 4px;
+  text-overflow: ellipsis;
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  white-space: nowrap;
+  font-size: 16px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
 /*/deep/ .el-upload-list__item {*/
-  /*background-color: #EBF5F8*/
+/*background-color: #EBF5F8*/
 
 /*}*/
+.select-file-button-wrapper {
+  display: inline-block;
+  margin-top: 5%;
+  white-space: nowrap;
+  width: 80%;
+  margin-left: 25%;
+}
+
+/deep/ .el-upload-list {
+  margin-top: -3%;
+}

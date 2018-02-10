@@ -23,18 +23,54 @@
           :file-list="fileList"
           :on-exceed="handleExceed"
           :on-success="handleSuccess"
+          :on-change="handleDataFileChange"
+          :on-remove="handleDataFileRemove"
           :limit="1"
           :show-file-list="true"
           :auto-upload="false">
-          <div slot="trigger" style="position: relative; display: inline-block; margin-left: 7%; margin-top: 5%; white-space: nowrap">
-            <my-dialog-button content="选取文件" v-show="fileList.length === 0"></my-dialog-button>
+          <div slot="trigger" class="select-file-button-wrapper" v-show="showDataFileButton">
+            <!--<my-dialog-button content="选取文件" v-show="showDataFileButton"></my-dialog-button>-->
+            <!--<ul class="el-upload-list el-upload-list&#45;&#45;text">-->
+              <!--<li class="el-upload-list__item is-ready">-->
+            <!--<a class="el-upload-list__item-name"></a>-->
+
+              <!--</li>-->
+            <!--</ul>-->
+            <a class="select-file-button">选择文件</a>
           </div>
           <!--<el-button slot="trigger" size="small" type="default">选取文件</el-button>-->
           <!--<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</el-button>-->
           <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
         </el-upload>
 
-        <h2>标签文件</h2>
+        <h2 style="position: relative; display: inline-block; margin-top: 5%;">标签文件</h2>
+        <el-upload
+          class="upload-demo"
+          ref="upload"
+          action=""
+          :on-preview="handlePreview"
+          :file-list="fileList"
+          :on-exceed="handleExceed"
+          :on-success="handleSuccess"
+          :on-change="handleTagFileChange"
+          :on-remove="handleTagFileRemove"
+          :limit="1"
+          :show-file-list="true"
+          :auto-upload="false">
+          <div slot="trigger" class="select-file-button-wrapper" v-show="showTagFileButton">
+            <!--<my-dialog-button content="选取文件" v-show="showDataFileButton"></my-dialog-button>-->
+            <!--<ul class="el-upload-list el-upload-list&#45;&#45;text">-->
+            <!--<li class="el-upload-list__item is-ready">-->
+            <!--<a class="el-upload-list__item-name"></a>-->
+
+            <!--</li>-->
+            <!--</ul>-->
+            <a class="select-file-button">选择文件</a>
+          </div>
+          <!--<el-button slot="trigger" size="small" type="default">选取文件</el-button>-->
+          <!--<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</el-button>-->
+          <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+        </el-upload>
       </div>
 
 
@@ -66,7 +102,9 @@
           width: '30%',
           marginLeft: '35%'
         },
-        fileList: []
+        fileList: [],
+        showDataFileButton: true,
+        showTagFileButton: true
       }
     },
     computed: {
@@ -115,6 +153,20 @@
       },
       handleSuccess (response, file, fileList) {
         alert('sa')
+      },
+      handleDataFileChange (file, fileList) {
+//        alert('sa')
+        this.showDataFileButton = false
+      },
+      handleDataFileRemove (file, fileList) {
+        this.showDataFileButton = true
+      },
+      handleTagFileChange (file, fileList) {
+//        alert('sa')
+        this.showTagFileButton = false
+      },
+      handleTagFileRemove (file, fileList) {
+        this.showTagFileButton = true
       }
     },
     watch: {
