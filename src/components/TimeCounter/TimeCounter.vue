@@ -3,7 +3,8 @@
     <h2
     :sendSync="sendSync"
     :autoStart="autoStart"
-    :defaultVal="defaultVal"
+    :defaultValue="defaultValue"
+    :startCountTime="startCountTime"
     style="font-weight: 500"
     >
       {{countString}}
@@ -12,6 +13,24 @@
 </template>
 <script>
   export default {
+    props: {
+      sendSync: {
+        type: Boolean,
+        default: false
+      },
+      autoStart: {
+        type: Boolean,
+        default: false
+      },
+      defaultValue: {
+        type: Number,
+        default: 0
+      },
+      startCountTime: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
         isStart: false,
@@ -22,7 +41,7 @@
         minute: 0,
         second: 0,
         millisecond: 0,
-        countVal: this.defaultVal,
+        countVal: this.defaultValue,
         pauseTime: 0
       }
     },
@@ -44,20 +63,39 @@
             vm.passToParent(vm.countString)
           }
         }
-      }
-    },
-    props: {
-      sendSync: {
-        type: Boolean,
-        default: false
       },
-      autoStart: {
-        type: Boolean,
-        default: false
+      startCountTime: function () {
+        console.log('change')
+        if (this.startCountTime) {
+          this.startCountFn()
+          this.countVal = new Date().getTime()
+        } else {
+          this.stopCountFn()
+          var nowDate = new Date().getTime()
+          console.log('defaultValue: ' + this.defaultValue)
+          console.log('parseTime: ' + this.pauseTime)
+          console.log('countVal: ' + this.countVal)
+          var num = nowDate - this.countVal + this.defaultValue
+          console.log(num)
+
+          this.$emit('setDefaultVal', num)
+        }
       },
-      defaultVal: {
-        type: Number,
-        default: 0
+      defaultValue: function () {
+        console.log('dv: ' + this.defaultValue)
+        if (this.defaultValue === 0) {
+          console.log('0')
+          this.stopCountFn()
+          this.globalTimer = null
+          this.countString = '0秒'
+          this.day = 0
+          this.hour = 0
+          this.minute = 0
+          this.second = 0
+          this.millisecond = 0
+          this.countVal = 0
+          this.pauseTime = 0
+        }
       }
     },
     mounted () {
@@ -82,13 +120,17 @@
     components: {},
     methods: {
       counterFn: function (counterTime) {
+        console.log(this.defaultValue)
+//        alert('sa')
+//        console.log(counterTime)
         var vm = this
         var nowDate = new Date().getTime()
         if (vm.pauseTime === 0) {
           var num = nowDate - counterTime
         } else {
-          vm.pauseTime = vm.pauseTime + 10
-          num = vm.pauseTime - counterTime
+//          vm.pauseTime = vm.pauseTime + 10
+//          num = vm.pauseTime - counterTime
+          num = nowDate - counterTime + vm.defaultValue
         }
         var leave1 = num % (24 * 3600 * 1000)
         var leave2 = leave1 % (3600 * 1000)
@@ -122,6 +164,7 @@
         var vm = this
         if (vm.isStart) {
           window.clearInterval(vm.globalTimer)
+          console.log('clear')
           vm.globalTimer = null
           vm.isStart = false
           vm.pauseTime = new Date().getTime()

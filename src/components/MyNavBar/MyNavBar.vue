@@ -67,7 +67,9 @@
           </div>
           <!--</router-link>-->
           <div style="display: inline-block; position: relative; outline: none" v-popover:popover4 v-show="largeSize">
-            <my-nav-button content="流程探索" class="button"></my-nav-button>
+            <router-link to="/modelCreation">
+              <my-nav-button content="流程探索" class="button"></my-nav-button>
+            </router-link>
           </div>
           <el-button class="collapse-nav-button" style="color: #76B6C2" v-popover:popover2 v-show="largeSize"><i
             class="el-icon-more"></i></el-button>
@@ -85,7 +87,7 @@
           :disabled="!isLogin"
         >
           <!--<my-nav-button content="登录" class="button"></my-nav-button>-->
-          <router-link to="/">
+          <router-link to="/modelCreation">
             <el-button class="collapse-nav-element" style="border: none">流程探索</el-button>
           </router-link>
         </el-popover>
