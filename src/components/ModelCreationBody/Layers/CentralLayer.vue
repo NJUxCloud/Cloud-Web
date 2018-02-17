@@ -11,6 +11,8 @@
 
     <el-dialog
       class="dialog-wrapper"
+      width="80%"
+      top="10vh"
       :title="title"
       :visible.sync="showCentralLayerSetting"
       :modal=true

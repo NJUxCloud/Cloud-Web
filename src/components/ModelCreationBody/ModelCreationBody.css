@@ -24,6 +24,7 @@
 
 .model-creation-content-wrapper {
   padding: 30px;
+  padding-bottom: 0;
 }
 
 .model-creation-content-wrapper /deep/ .el-button {
@@ -80,4 +81,9 @@
   top: 10px;
   font-size: 32px;
   color: #9AD9D7;
+}
+
+.question-icon {
+  font-size: 16px;
+  color: #999;
 }

@@ -78,7 +78,7 @@
                 <el-col :xs="12" :sm="12" :md="4" :lg="4">
                   <p>优化算法</p>
                 </el-col>
-                <el-col :xs="12" :sm="12" :md="6" :lg="6">
+                <el-col :xs="12" :sm="12" :md="8" :lg="8">
                   <el-select v-model="optimizer" placeholder="请选择" style="width: 216px">
                     <el-option
                       v-for="item in optimizerOptions"
@@ -92,16 +92,22 @@
 
               <el-row :gutter="20" style="margin: 0;">
                 <el-col :xs="12" :sm="12" :md="4" :lg="4">
-                  <p>迭代次数</p>
+                  <p style="float: left;">迭代次数</p>
+                  <el-tooltip content="非负整数" placement="right" effect="light">
+                    <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
+                  </el-tooltip>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="8" :lg="8">
-                  <el-input style="width: 216px;"></el-input>
+                  <el-input style="width: 216px;" v-model="iterCount"></el-input>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="4" :lg="4">
-                  <p>学习率</p>
+                  <p style="float: left">学习率</p>
+                  <el-tooltip content="小数" placement="right" effect="light">
+                    <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
+                  </el-tooltip>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="6" :lg="6">
-                  <el-input style="width: 216px;"></el-input>
+                  <el-input style="width: 216px;" v-model="learnRate"></el-input>
                 </el-col>
               </el-row>
             </div>
@@ -195,7 +201,9 @@
           value: 'GradientDescentOptimizer',
           label: 'GradientDescentOptimizer'
         }],
-        optimizer: 'GradientDescentOptimizer'
+        optimizer: 'GradientDescentOptimizer',
+        iterCount: 1000,
+        learnRate: 0
       }
     },
     methods: {

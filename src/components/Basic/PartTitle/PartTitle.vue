@@ -1,7 +1,10 @@
 <template>
-  <div class="part-title-wrapper">
-    <h2>{{ title }}</h2>
+  <div style="width: 100%">
+    <div class="part-title-wrapper">
+      <h2>{{ title }}</h2>
+    </div>
   </div>
+
 </template>
 
 <script>
