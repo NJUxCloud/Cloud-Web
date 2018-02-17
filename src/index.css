@@ -114,3 +114,11 @@ h5, h6 {
 /deep/ .el-input input:focus {
   border-bottom: 2px solid #a7d7d6;
 }
+
+/deep/ .el-select /deep/ .el-input.is-focus /deep/ .el-input__inner {
+  border-bottom: 2px solid #a7d7d6;
+}
+
+/deep/ .el-select-dropdown__item.selected {
+  color: #111111;
+}

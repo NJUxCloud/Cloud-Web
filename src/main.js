@@ -13,6 +13,7 @@ import TreeFolder from './components/TreeFolder/TreeFolder.vue'
 import TreeFolderContents from './components/TreeFolder/TreeFolderContents.vue'
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
+import './element-variables.scss'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
