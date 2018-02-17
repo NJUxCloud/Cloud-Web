@@ -20,6 +20,7 @@
       :show-close=false
       :close-on-click-modal=false
       :close-on-press-escape=false
+      :fullscreen="true"
     >
       <part-title title="参数初始化"></part-title>
       <div class="param-wrapper">
@@ -83,8 +84,8 @@
 
       <part-title title="防止过拟合方法"></part-title>
       <div class="function-wrapper">
-        <el-checkbox v-model="preventingOverFitting[0]">备选项</el-checkbox>
-        <el-checkbox v-model="preventingOverFitting[1]">备选项</el-checkbox>
+        <el-checkbox v-model="preventingOverFitting[0]">batch normalization</el-checkbox>
+        <el-checkbox v-model="preventingOverFitting[1]">dropout</el-checkbox>
       </div>
 
       <span slot="footer" class="dialog-footer footer-wrapper">

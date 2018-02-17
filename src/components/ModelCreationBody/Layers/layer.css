@@ -74,3 +74,10 @@ div {
   padding: 30px;
   text-align: center;
 }
+
+.function-wrapper p {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  white-space: nowrap;
+}
