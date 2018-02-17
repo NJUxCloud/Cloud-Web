@@ -1,0 +1,32 @@
+.layer-wrapper {
+  display: inline-block;
+  position: relative;
+  /*line-height: 300px;*/
+  width: 100px;
+}
+
+.layer-wrapper .square-img-wrapper {
+  top: -20px;
+  position: relative;
+}
+
+.layer-wrapper img {
+  width: 100%;
+}
+
+.layer-wrapper p {
+  width: 70%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+div {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow-wrapper {
+  width: 50px;
+  position: relative;
+  top: -90px;
+}
