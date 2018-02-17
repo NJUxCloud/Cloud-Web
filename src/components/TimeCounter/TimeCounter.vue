@@ -5,7 +5,7 @@
     :autoStart="autoStart"
     :defaultValue="defaultValue"
     :startCountTime="startCountTime"
-    style="font-weight: 500"
+    style="font-weight: 500; margin-bottom: 30px;"
     >
       {{countString}}
     </h2>

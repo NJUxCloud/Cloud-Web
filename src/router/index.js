@@ -6,6 +6,7 @@ import ProModelCollectionsPage from '../pages/ProModelCollectionsPage.vue'
 import UploadedDataPage from '../pages/UploadedDataPage.vue'
 import ProUploadFilePage from '../pages/ProUploadFilePage.vue'
 import UserInfoPage from '../pages/UserInfoPage.vue'
+import ModelCreationPage from '../pages/ModelCreationPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +40,11 @@ export default new Router({
       path: '/info',
       name: 'UserInfoPage',
       component: UserInfoPage
+    },
+    {
+      path: '/modelCreation',
+      name: 'ModelCreationPage',
+      component: ModelCreationPage
     }
   ]
 })

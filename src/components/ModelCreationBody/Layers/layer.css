@@ -3,6 +3,7 @@
   position: relative;
   /*line-height: 300px;*/
   width: 100px;
+  margin-bottom: 30px;
 }
 
 .layer-wrapper .square-img-wrapper {
@@ -18,10 +19,20 @@
   width: 70%;
   text-align: center;
   margin-top: 10px;
+  float: left;
+}
+
+.layer-wrapper i {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+  color: #9AD9D7;
+  cursor: pointer;
+  float: left;
 }
 
 div {
-  position: relative;
+  /*position: relative;*/
   display: inline-block;
 }
 
@@ -29,4 +40,9 @@ div {
   width: 50px;
   position: relative;
   top: -90px;
+}
+
+.dialog-wrapper {
+  /*position: absolute;*/
+  overflow: visible;
 }
