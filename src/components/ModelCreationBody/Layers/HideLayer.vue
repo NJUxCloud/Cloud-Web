@@ -126,6 +126,7 @@
 <script>
   import MyDialogButton from '../../Basic/MyDialogButton/MyDialogButton.vue'
   import PartTitle from '../../Basic/PartTitle/PartTitle.vue'
+
   export default {
     props: ['count', 'totalCount'],
     components: {

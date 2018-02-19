@@ -126,7 +126,7 @@
               <input-layer></input-layer>
               <hide-layer v-for="n in hideLayerCount" :count="n" :key="n" v-if="network === '传统神经网络'" :totalCount="hideLayerCount" @deleteHideLayer="deleteHideLayer"></hide-layer>
               <central-layer v-for="n in centralLayerCount" :count="n" :key="n" v-if="network === 'CNN'" :totalCount="centralLayerCount"  @deleteCentralLayer="deleteCentralLayer"></central-layer>
-              <output-layer></output-layer>
+              <output-layer :type="network"></output-layer>
             </div>
 
           </div>
