@@ -145,10 +145,10 @@
                 })
                 this.closeLoginDialogs()
               },
-              onError: (error) => {
+              onError: () => {
                 this.$message({
                   showClose: true,
-                  message: error,
+                  message: '账户或密码错误',
                   type: 'error'
                 })
               }
@@ -169,10 +169,10 @@
                 })
                 this.closeLoginDialogs()
               },
-              onError: (error) => {
+              onError: () => {
                 this.$message({
                   showClose: true,
-                  message: error,
+                  message: '邮箱已被注册或密码过于简单',
                   type: 'error'
                 })
               }

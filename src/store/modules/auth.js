@@ -28,14 +28,16 @@ const actions = {
         commit('setLoginStatus', true)
         // on-success
       }
-    }, body)
+    }, body, data => {
+      onError(data)
+    })
   },
   'userSignin' ({state, commit}, {body, onSuccess, onError}) {
     console.log('userSignin')
     authApi.userSignin(data => {
       console.log(data)
       if (data.error !== undefined) {
-        // console.log(data.error)
+          // console.log(data.error)
         onError(data)
       } else {
         onSuccess()
@@ -43,9 +45,12 @@ const actions = {
         localStorage.setItem('name', body.username)
         localStorage.setItem('email', body.email)
         commit('setLoginStatus', true)
-        // on-success
+          // on-success
       }
-    }, body)
+    },
+    body, data => {
+      onError(data)
+    })
   },
   'userInfo' ({state, commit}, {onSuccess, onError}) {
     console.log('userInfo')
@@ -59,6 +64,25 @@ const actions = {
         // on-success
       }
     })
+  },
+  'changePassword' ({state, commit}, {onSuccess, onError, body}) {
+    console.log('changePassword')
+    authApi.changePassword(
+      data => {
+        console.log(data)
+        if (data.error !== undefined) {
+          // console.log(data.error)
+          onError(data)
+        } else {
+          onSuccess(data)
+          // on-success
+        }
+      },
+      body,
+      data => {
+        onError(data)
+      }
+    )
   }
 }
 

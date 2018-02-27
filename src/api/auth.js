@@ -3,7 +3,7 @@ import qs from 'qs'
 axios.defaults.headers.Authorization = 'Token ' + localStorage.getItem('key')
 axios.defaults.headers.token = localStorage.getItem('key')
 
-export function userLogIn (callback, body) {
+export function userLogIn (callback, body, errorCallback) {
   console.log(qs.stringify(body))
   // console.log('login')
   axios.post('http://127.0.0.1:8000/rest-auth/login/',
@@ -19,12 +19,12 @@ export function userLogIn (callback, body) {
       // console.log(response)
     })
     .catch(function (error) {
-      console.log(error.response)
+      errorCallback(error.response)
       // callback(error.response)
     })
 }
 
-export function userSignin (callback, body) {
+export function userSignin (callback, body, errorCallback) {
   console.log(body)
   // console.log('login')
   axios.post('http://127.0.0.1:8000/rest-auth/registration/',
@@ -40,7 +40,7 @@ export function userSignin (callback, body) {
       // console.log(response)
     })
     .catch(function (error) {
-      console.log(error)
+      errorCallback(error)
     })
 }
 
@@ -63,5 +63,29 @@ export function userInfo (callback) {
     .catch(function (error) {
       console.log(error)
     })
-  console.log(axios.defaults.headers)
+}
+
+export function changePassword (callback, body, errorCallback) {
+  let Base64 = require('js-base64').Base64
+  let tok = localStorage.getItem('name') + ':' + body.old_password
+  let hash = Base64.encode(tok)
+  let auth = 'Basic ' + hash
+  // console.log('login')
+  // console.log('Token ' + localStorage.getItem('key'))
+  axios.post('http://127.0.0.1:8000/rest-auth/password/change/',
+    body,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': auth
+      }
+    }
+  )
+    .then(function (response) {
+      callback(response.data)
+      // console.log(response)
+    })
+    .catch(function (error) {
+      errorCallback(error)
+    })
 }
