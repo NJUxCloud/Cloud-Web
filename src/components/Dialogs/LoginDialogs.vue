@@ -51,7 +51,7 @@
           <div @click="closeLoginDialogs">
             <my-dialog-button content="取消"></my-dialog-button>
           </div>
-          <div @click="closeLoginDialogs">
+          <div @click="tryLogin">
             <my-dialog-button content="确定"></my-dialog-button>
           </div>
       </span>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
 
   export default {
@@ -90,6 +90,10 @@
       })
     },
     methods: {
+      ...mapActions({
+        log_in: 'userLogin',
+        sign_in: 'userSignin'
+      }),
       closeLoginDialogs: function () {
         this.$emit('closeLogin')
       },
@@ -98,14 +102,14 @@
           this.dialogWidth.width = '100%'
           this.dialogWidth.marginLeft = '0%'
         } else if (this.mainWidth <= 768) {
-          this.dialogWidth.width = '60%'
-          this.dialogWidth.marginLeft = '20%'
+          this.dialogWidth.width = '66%'
+          this.dialogWidth.marginLeft = '17%'
         } else if (this.mainWidth < 992) {
-          this.dialogWidth.width = '40%'
-          this.dialogWidth.marginLeft = '30%'
+          this.dialogWidth.width = '44%'
+          this.dialogWidth.marginLeft = '28%'
         } else {
-          this.dialogWidth.width = '30%'
-          this.dialogWidth.marginLeft = '35%'
+          this.dialogWidth.width = '36%'
+          this.dialogWidth.marginLeft = '32%'
         }
       },
       changeDialog: function () {
@@ -116,6 +120,64 @@
           this.password = 'text'
         } else {
           this.password = 'password'
+        }
+      },
+      tryLogin () {
+        if (!this.isCorrectEmail) {
+          this.$message({
+            showClose: true,
+            message: '邮箱格式错误',
+            type: 'error'
+          })
+        } else {
+          if (this.loginDialog) {
+            this.log_in({
+              body: {
+                username: this.usernameInput,
+                password: this.passwordInput,
+                email: this.emailInput
+              },
+              onSuccess: () => {
+                this.$message({
+                  showClose: true,
+                  message: '登录成功',
+                  type: 'success'
+                })
+                this.closeLoginDialogs()
+              },
+              onError: (error) => {
+                this.$message({
+                  showClose: true,
+                  message: error,
+                  type: 'error'
+                })
+              }
+            })
+          } else {
+            this.sign_in({
+              body: {
+                username: this.usernameInput,
+                password1: this.passwordInput,
+                password2: this.passwordInput,
+                email: this.emailInput
+              },
+              onSuccess: () => {
+                this.$message({
+                  showClose: true,
+                  message: '注册成功',
+                  type: 'success'
+                })
+                this.closeLoginDialogs()
+              },
+              onError: (error) => {
+                this.$message({
+                  showClose: true,
+                  message: error,
+                  type: 'error'
+                })
+              }
+            })
+          }
         }
       }
     },

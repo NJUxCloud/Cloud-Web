@@ -191,7 +191,7 @@
   import ElRow from 'element-ui/packages/row/src/row'
   import ElCol from 'element-ui/packages/col/src/col'
   import MyNavButton from '../Basic/MyNavButton/MyNavButton.vue'
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapMutations} from 'vuex'
   import 'element-ui/lib/theme-chalk/display.css'
   import LoginDialogs from '../Dialogs/LoginDialogs.vue'
   import ContactDialog from '../Dialogs/ContactDialog.vue'
@@ -210,7 +210,6 @@
     data () {
       return {
         isCollapse: true,
-        isLogin: true,
         openLogin: false,
         openSignIn: false,
         openContact: false,
@@ -218,6 +217,9 @@
       }
     },
     methods: {
+      ...mapMutations({
+        setLoginStatus: 'setLoginStatus'
+      }),
       openLoginDialog () {
         this.openLogin = true
         this.openSignIn = false
@@ -227,15 +229,21 @@
         this.openSignIn = true
       },
       doQuitLog () {
-        // todo
         this.$router.push('/')
-        this.isLogin = false
+        localStorage.removeItem('key')
+        this.setLoginStatus(false)
+        this.$message({
+          showClose: true,
+          message: '退出成功',
+          type: 'success'
+        })
       }
     },
     computed: {
       ...mapGetters({
         largeSize: 'largeSize',
-        mainWidth: 'mainWidth'
+        mainWidth: 'mainWidth',
+        isLogin: 'isLogin'
       })
     },
     watch: {}

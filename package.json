@@ -14,10 +14,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "element-ui": "^2.2.0",
     "highlight": "^0.2.4",
     "jquery": "^3.3.1",
     "prettify": "^0.1.7",
+    "qs": "^6.5.1",
     "vue": "^2.5.13",
     "vue-codemirror": "^4.0.3",
     "vue-router": "^3.0.1",

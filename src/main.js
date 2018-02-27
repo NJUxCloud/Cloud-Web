@@ -40,6 +40,9 @@ new Vue({
     }
   },
   mounted () {
+    if (localStorage.getItem('key') !== null) {
+      this.setLoginStatus(true)
+    }
     window.addEventListener('scroll', this.handleScrollEvent)
     const that = this
     window.onresize = () => {
@@ -70,7 +73,8 @@ new Vue({
       setSmall: 'setSmallSize',
       setWindowHeight: 'setHeight',
       setScrollY: 'setScroll',
-      setWidth: 'setWidth'
+      setWidth: 'setWidth',
+      setLoginStatus: 'setLoginStatus'
       // setUsername: types.CHANGE_USERNAME,
       // changeLogStatus: types.CHANGE_LOG_STATUS
     }),
