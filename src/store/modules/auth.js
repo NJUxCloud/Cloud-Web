@@ -22,6 +22,9 @@ const actions = {
       } else {
         onSuccess()
         localStorage.setItem('key', data.key)
+        localStorage.setItem('name', body.username)
+        localStorage.setItem('email', body.email)
+        console.log(data.key)
         commit('setLoginStatus', true)
         // on-success
       }
@@ -37,10 +40,25 @@ const actions = {
       } else {
         onSuccess()
         localStorage.setItem('key', data.key)
+        localStorage.setItem('name', body.username)
+        localStorage.setItem('email', body.email)
         commit('setLoginStatus', true)
         // on-success
       }
     }, body)
+  },
+  'userInfo' ({state, commit}, {onSuccess, onError}) {
+    console.log('userInfo')
+    authApi.userInfo(data => {
+      console.log(data)
+      if (data.error !== undefined) {
+        // console.log(data.error)
+        onError(data)
+      } else {
+        onSuccess(data)
+        // on-success
+      }
+    })
   }
 }
 
