@@ -35,6 +35,7 @@
         <el-col :xs="24" :sm="24" :md="18" :lg="18">
           <div class="right-wrapper">
             <h3>已上传数据</h3>
+            <h1 style="width: 100%; margin-top: 25%; text-align: center;" v-if="dataList.length === 0">尚未上传数据...</h1>
             <!--<img src="../../assets/box-border.png"/>-->
             <el-row :gutter="20">
               <el-col :xs="24" :sm="24" :md="12" :lg="12" v-for="singleData in dataList" :key="singleData.index">
@@ -92,6 +93,7 @@
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
   import UploadDataDialog from '../Dialogs/UploadDataDialog.vue'
+  import {mapActions} from 'vuex'
 
   export default {
     components: {
@@ -144,6 +146,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        getDataList: 'getDataList'
+      }),
       changeIconClass: function (singleData) {
         if (singleData.iconClass === 'el-icon-circle-check') {
           singleData.iconClass = 'el-icon-circle-close'
@@ -157,9 +162,18 @@
       },
       deleteData: function () {
         // todo
-//        console.log(singleData)
         this.confirmDeleteDataStatus = false
       }
+    },
+    mounted () {
+      this.getDataList({
+        onSuccess: (data) => {
+          this.dataList = JSON.parse(JSON.stringify(data))
+          console.log(data)
+        },
+        onError: () => {
+        }
+      })
     }
   }
 </script>
