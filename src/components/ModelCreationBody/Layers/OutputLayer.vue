@@ -2,7 +2,7 @@
   <div>
     <img src="../../../assets/arrow.png" class="arrow-wrapper"/>
     <div class="layer-wrapper">
-      <img src="../../../assets/OutputLayer.png" class="square-img-wrapper" style="cursor: pointer;" @click="showOutputLayerSetting=true">
+      <img src="../../../assets/OutputLayer.png" class="square-img-wrapper" style="cursor: pointer;">
       <p>输出层</p>
     </div>
 

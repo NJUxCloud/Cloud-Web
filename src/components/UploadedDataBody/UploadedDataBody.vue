@@ -17,7 +17,7 @@
     </el-row>
 
     <div class="body-wrapper">
-      <h1 v-if="collections.length === 0">暂无历史数据...</h1>
+      <h1 v-if="collections.length === 0" style="font-weight: 600;">暂无历史数据...</h1>
       <el-row :gutter="20" style="margin: 0;">
         <el-col :xs="24" :sm="12" :md="8" :lg="6"  v-for="(collection, index) in collections" :key="index" style="text-align: center">
           <div class="collection-wrapper">

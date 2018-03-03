@@ -35,7 +35,7 @@
         <el-col :xs="24" :sm="24" :md="18" :lg="18">
           <div class="right-wrapper">
             <h3>已上传数据</h3>
-            <h1 style="width: 100%; margin-top: 25%; text-align: center;" v-if="dataList.length === 0">尚未上传数据...</h1>
+            <h1 style="width: 100%; margin-top: 25%; text-align: center; font-weight: 600;" v-if="dataList.length === 0">尚未上传数据...</h1>
             <!--<img src="../../assets/box-border.png"/>-->
             <el-row :gutter="20">
               <el-col :xs="24" :sm="24" :md="12" :lg="12" v-for="singleData in dataList" :key="singleData.index">
@@ -110,34 +110,6 @@
             index: 1,
             dataName: '数据1',
             path: '/数据1',
-            updateTime: '2017-12-12 12:12:12',
-            iconClass: 'el-icon-circle-check'
-          },
-          {
-            index: 2,
-            dataName: '数据2',
-            path: '/数据2',
-            updateTime: '2017-12-12 12:12:12',
-            iconClass: 'el-icon-circle-check'
-          },
-          {
-            index: 3,
-            dataName: '数据3',
-            path: '/数据3',
-            updateTime: '2017-12-12 12:12:12',
-            iconClass: 'el-icon-circle-check'
-          },
-          {
-            index: 4,
-            dataName: '数据4',
-            path: '/数据4',
-            updateTime: '2017-12-12 12:12:12',
-            iconClass: 'el-icon-circle-check'
-          },
-          {
-            index: 5,
-            dataName: '数据5',
-            path: '/数据5',
             updateTime: '2017-12-12 12:12:12',
             iconClass: 'el-icon-circle-check'
           }

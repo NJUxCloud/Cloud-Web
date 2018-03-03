@@ -22,53 +22,53 @@
       :close-on-press-escape=false
       :fullscreen="true"
     >
-      <part-title title="参数初始化"></part-title>
-      <div class="param-wrapper">
-        <el-row :gutter="20" style="margin: 0; width: 100%;">
-          <el-col :xs="4" :sm="4" :md="4" :lg="4">
-            <p>方法</p>
-          </el-col>
-          <el-col :xs="20" :sm="20" :md="8" :lg="8">
-            <el-select v-model="selectedFunction" placeholder="请选择"  style="width: 216px; margin-bottom: 30px;">
-              <el-option
-                v-for="item in functions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-col>
-          <el-col :xs="4" :sm="4" :md="4" :lg="4">
-            <p style="float: left;">b</p>
-            <el-tooltip content="非负整数" placement="right" effect="light">
-              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
-            </el-tooltip>
-          </el-col>
-          <el-col :xs="20" :sm="20" :md="8" :lg="8">
-            <el-input style="width: 216px;" v-model="bValue"></el-input>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin: 0; width: 100%;">
-          <el-col :xs="4" :sm="4" :md="4" :lg="4">
-            <p style="float: left;">W</p>
-            <el-tooltip content="四个非负整数" placement="right" effect="light">
-              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
-            </el-tooltip>
-          </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5">
-            <el-input style="width: 80%;" v-model="wValue[0]"></el-input>
-          </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5">
-            <el-input style="width: 80%;" v-model="wValue[1]"></el-input>
-          </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5">
-            <el-input style="width: 80%;" v-model="wValue[2]"></el-input>
-          </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5">
-            <el-input style="width: 80%;" v-model="wValue[3]"></el-input>
-          </el-col>
-        </el-row>
-      </div>
+      <!--<part-title title="参数初始化"></part-title>-->
+      <!--<div class="param-wrapper">-->
+        <!--<el-row :gutter="20" style="margin: 0; width: 100%;">-->
+          <!--<el-col :xs="4" :sm="4" :md="4" :lg="4">-->
+            <!--<p>方法</p>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="20" :sm="20" :md="8" :lg="8">-->
+            <!--<el-select v-model="selectedFunction" placeholder="请选择"  style="width: 216px; margin-bottom: 30px;">-->
+              <!--<el-option-->
+                <!--v-for="item in functions"-->
+                <!--:key="item.value"-->
+                <!--:label="item.label"-->
+                <!--:value="item.value">-->
+              <!--</el-option>-->
+            <!--</el-select>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="4" :sm="4" :md="4" :lg="4">-->
+            <!--<p style="float: left;">b</p>-->
+            <!--<el-tooltip content="非负整数" placement="right" effect="light">-->
+              <!--<i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>-->
+            <!--</el-tooltip>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="20" :sm="20" :md="8" :lg="8">-->
+            <!--<el-input style="width: 216px;" v-model="bValue"></el-input>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
+        <!--<el-row :gutter="20" style="margin: 0; width: 100%;">-->
+          <!--<el-col :xs="4" :sm="4" :md="4" :lg="4">-->
+            <!--<p style="float: left;">W</p>-->
+            <!--<el-tooltip content="四个非负整数" placement="right" effect="light">-->
+              <!--<i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>-->
+            <!--</el-tooltip>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="5" :sm="5" :md="5" :lg="5">-->
+            <!--<el-input style="width: 80%;" v-model="wValue[0]"></el-input>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="5" :sm="5" :md="5" :lg="5">-->
+            <!--<el-input style="width: 80%;" v-model="wValue[1]"></el-input>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="5" :sm="5" :md="5" :lg="5">-->
+            <!--<el-input style="width: 80%;" v-model="wValue[2]"></el-input>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="5" :sm="5" :md="5" :lg="5">-->
+            <!--<el-input style="width: 80%;" v-model="wValue[3]"></el-input>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
+      <!--</div>-->
 
       <part-title title="内部层选择"></part-title>
       <div class="function-wrapper">
@@ -88,24 +88,23 @@
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高</p>
             <el-input style="width: 80%;" v-model="kernel[0]"></el-input>
           </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽</p>
             <el-input style="width: 80%;" v-model="kernel[1]"></el-input>
           </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">
-            <p style="float: left;">深度</p>
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
+            <p style="float: left;">输出层</p>
             <el-input style="width: 80%;" v-model="kernel[2]"></el-input>
           </el-col>
-          <el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">
-            <p style="float: left;">个数</p>
-            <el-input style="width: 80%;" v-model="kernel[3]"></el-input>
-          </el-col>
+          <!--<el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">-->
+            <!--<p style="float: left;">个数</p>-->
+            <!--<el-input style="width: 80%;" v-model="kernel[3]"></el-input>-->
+          <!--</el-col>-->
         </el-row>
-
         <el-row :gutter="20" style="margin: 0; width: 100%;">
           <el-col :xs="24" :sm="24" :md="4" :lg="4">
             <p style="float: left;">步长</p>
@@ -113,17 +112,17 @@
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高度步长</p>
             <el-input style="width: 80%;" v-model="convolutionStep[0]"></el-input>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽度步长</p>
             <el-input style="width: 80%;" v-model="convolutionStep[1]"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin: 0; width: 100%;">
-          <el-col :xs="4" :sm="4" :md="4" :lg="4" style="text-align: left">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left">
             <p>填充方式</p>
           </el-col>
           <el-col :xs="20" :sm="20" :md="20" :lg="20" style="text-align: left">
@@ -137,22 +136,69 @@
             </el-select>
           </el-col>
         </el-row>
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left">
+            <p>初始化方式</p>
+          </el-col>
+          <el-col :xs="20" :sm="20" :md="20" :lg="20" style="text-align: left">
+            <el-select v-model="init" placeholder="请选择"  style="width: 216px; margin-bottom: 30px;">
+              <el-option
+                v-for="item in initStrings"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left">
+            <p>是否使用偏移</p>
+          </el-col>
+          <el-col :xs="20" :sm="20" :md="20" :lg="20" style="text-align: left">
+            <el-checkbox v-model="isBias"></el-checkbox>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4">
+            <p style="float: left;">偏移初始化小数</p>
+            <el-tooltip content="值域： 0-1" placement="right" effect="light">
+              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
+            </el-tooltip>
+          </el-col>
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
+            <!--<p style="float: left;">高</p>-->
+            <el-input v-model="biasConstant"></el-input>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4">
+            <p style="float: left;">正太分布值</p>
+            <el-tooltip content="初始化方式不是全零会使用到, 值域： 0-1" placement="right" effect="light">
+              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
+            </el-tooltip>
+          </el-col>
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
+            <!--<p style="float: left;">高</p>-->
+            <el-input v-model="stddevNorm"></el-input>
+          </el-col>
+        </el-row>
       </div>
 
       <part-title title="池化层设置" v-if="innerLayer[1]"></part-title>
       <div class="function-wrapper" v-if="innerLayer[1]">
         <el-row :gutter="20" style="margin: 0; width: 100%;">
           <el-col :xs="24" :sm="24" :md="4" :lg="4">
-            <p style="float: left;">池化窗口大小</p>
+            <p style="float: left;">核参数</p>
             <el-tooltip content="2个正整数" placement="right" effect="light">
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高</p>
             <el-input style="width: 80%;" v-model="poolWindow[0]"></el-input>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽</p>
             <el-input style="width: 80%;" v-model="poolWindow[1]"></el-input>
           </el-col>
@@ -164,11 +210,11 @@
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高度步长</p>
             <el-input style="width: 80%;" v-model="poolStep[0]"></el-input>
           </el-col>
-          <el-col :xs="12" :sm="12" :md="10" :lg="10" style="white-space: nowrap">
+          <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽度步长</p>
             <el-input style="width: 80%;" v-model="poolStep[1]"></el-input>
           </el-col>
@@ -192,53 +238,81 @@
 
       <part-title title="激活层设置" v-if="innerLayer[2]"></part-title>
       <div class="function-wrapper" v-if="innerLayer[2]">
-        <el-select v-model="activationFunction" placeholder="请选择"  style="width: 216px">
-          <el-option
-            v-for="item in activationFunctions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left">
+            <p>激活函数</p>
+          </el-col>
+          <el-col :xs="20" :sm="20" :md="20" :lg="20" style="text-align: left">
+            <el-select v-model="activationFunction" placeholder="请选择"  style="width: 216px; margin-bottom: 30px;">
+              <el-option
+                v-for="item in activationFunctions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" style="margin: 0; width: 100%;" v-if="activationFunction==='leaky_relu'">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4">
+            <p style="float: left;">激活函数参数</p>
+          </el-col>
+          <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
+            <!--<p style="float: left;">高</p>-->
+            <el-input v-model="activeParam[0]"></el-input>
+          </el-col>
+        </el-row>
+
       </div>
 
       <part-title title="全连接层设置" v-if="innerLayer[3]"></part-title>
-      <div class="function-wrapper">
-        <el-checkbox v-model="connectionLayer">展开特征图</el-checkbox>
+      <div class="function-wrapper" v-if="innerLayer[3]">
+        <el-row :gutter="20" style="margin: 0; width: 100%;">
+          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">
+            <p style="float: left">隐藏层个数</p>
+            <el-tooltip content="值域： 大于0正整数" placement="right" effect="light">
+              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
+            </el-tooltip>
+          </el-col>
+          <el-col :xs="24" :sm="24" :md="5" :lg="5" style="text-align: left">
+            <el-input v-model="hiddenCount"></el-input>
+          </el-col>
+        </el-row>
+        <!--<el-checkbox v-model="connectionLayer">展开特征图</el-checkbox>-->
       </div>
 
       <part-title title="归一化层设置" v-if="innerLayer[4]"></part-title>
       <div class="function-wrapper" v-if="innerLayer[4]">
-        <el-row :gutter="20" style="margin: 0; width: 100%;">
-          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">
-            <p style="float: left">shift</p>
-            <el-tooltip content="正整数" placement="right" effect="light">
-              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
-            </el-tooltip>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="20" :lg="20" style="text-align: left">
-            <el-input v-model="shift"></el-input>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20" style="margin: 0; width: 100%;">
-          <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">
-            <p style="float: left">scale</p>
-            <el-tooltip content="正整数" placement="right" effect="light">
-              <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
-            </el-tooltip>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="20" :lg="20" style="text-align: left">
-            <el-input v-model="scale"></el-input>
-          </el-col>
-        </el-row>
+        <!--<el-row :gutter="20" style="margin: 0; width: 100%;">-->
+          <!--<el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">-->
+            <!--<p style="float: left">shift</p>-->
+            <!--<el-tooltip content="正整数" placement="right" effect="light">-->
+              <!--<i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>-->
+            <!--</el-tooltip>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="24" :sm="24" :md="20" :lg="20" style="text-align: left">-->
+            <!--<el-input v-model="shift"></el-input>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
+        <!--<el-row :gutter="20" style="margin: 0; width: 100%;">-->
+          <!--<el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">-->
+            <!--<p style="float: left">scale</p>-->
+            <!--<el-tooltip content="正整数" placement="right" effect="light">-->
+              <!--<i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>-->
+            <!--</el-tooltip>-->
+          <!--</el-col>-->
+          <!--<el-col :xs="24" :sm="24" :md="20" :lg="20" style="text-align: left">-->
+            <!--<el-input v-model="scale"></el-input>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
         <el-row :gutter="20" style="margin: 0; width: 100%;">
           <el-col :xs="24" :sm="24" :md="4" :lg="4" style="text-align: left; white-space: nowrap">
             <p style="float: left">epsilon</p>
-            <el-tooltip content="正整数（显示的是e^n,n是要输入的值）" placement="right" effect="light">
+            <el-tooltip content="值域： 大于0 小于0.1 " placement="right" effect="light">
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="20" :lg="20" style="text-align: left">
+          <el-col :xs="24" :sm="24" :md="5" :lg="5" style="text-align: left">
             <el-input v-model="epsilon"></el-input>
           </el-col>
         </el-row>
@@ -309,7 +383,22 @@
         wValue: [0, 0, 0, 0],
         innerLayer: [true, false, false, false, false],
         kernel: [0, 0, 0, 0],
-        convolutionStep: [0, 0],
+        convolutionStep: [1, 1],
+        initStrings: [{
+          value: 'zero',
+          label: 'zero'
+        }, {
+          value: 'norm',
+          label: 'norm'
+        }, {
+          value: 'xavier',
+          label: 'xavier'
+        }],
+        init: 'norm',
+        isBias: false,
+        biasConstant: 0.1,
+        stddevNorm: 0.1,
+        activeParam: [0.2],
         poolStep: [0, 0],
         fillTypes: [{
           value: 'SAME',
@@ -327,12 +416,16 @@
         }, {
           value: 'ReLU函数',
           label: 'ReLU函数'
+        }, {
+          value: 'leaky_relu',
+          label: 'leaky_relu'
         }],
         activationFunction: 'ReLU函数',
         connectionLayer: true,
         scale: 1,
         shift: 1,
-        epsilon: -1
+        epsilon: 0.001,
+        hiddenCount: 512
       }
     },
     methods: {
