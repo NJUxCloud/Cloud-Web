@@ -9,6 +9,7 @@ import UserInfoPage from '../pages/UserInfoPage.vue'
 import ModelCreationPage from '../pages/ModelCreationPage.vue'
 import ModelNamePage from '../pages/ModelNamePage.vue'
 import DataPretreatmentPage from '../pages/DataPretreatmentPage.vue'
+import ModelResultPage from '../pages/ModelResultPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +58,11 @@ export default new Router({
       path: '/dataPretreatment',
       name: 'DataPretreatmentPage',
       component: DataPretreatmentPage
+    },
+    {
+      path: '/result',
+      name: 'ModelResultPage',
+      component: ModelResultPage
     }
   ]
 })

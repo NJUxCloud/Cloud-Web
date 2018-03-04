@@ -1,0 +1,8 @@
+.training-result-wrapper .chart-wrapper {
+  width: 100%;
+  height: 400px;
+}
+
+.training-result-wrapper .chart-wrapper /deep/ canvas{
+  width: 100%;
+}

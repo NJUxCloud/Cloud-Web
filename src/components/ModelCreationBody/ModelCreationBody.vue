@@ -221,6 +221,7 @@
         } else {
           this.startCountTime = false
         }
+        this.$router.push('/result')
       },
       handleRefresh: function () {
         // todo 判断是否在运行
