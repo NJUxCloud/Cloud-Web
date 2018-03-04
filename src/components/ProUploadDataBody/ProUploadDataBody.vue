@@ -14,54 +14,116 @@
     <model-steps :stepCount="1"></model-steps>
 
     <div class="body-wrapper">
-      <el-row :gutter="20" style="margin: 0">
-        <el-col :xs="24" :sm="24" :md="6" :lg="6">
-          <div class="left-wrapper">
-            <div class="button-wrapper" @click="openUploadData = true">
-              <my-button content="点 击 上 传" color="#000000"></my-button>
-            </div>
-            <div class="intro-wrapper">
-              <h3>数据说明</h3>
-              <!--<img src="../../assets/box-border.png"/>-->
-              <p style="text-align: left">接受格式：</p>
-              <p>.zip</p>
-              <p style="text-align: left">包含格式：</p>
-              <p>.txt</p>
-              <p>.png</p>
-              <p>.jpg</p>
-              <p>.mp3</p>
-            </div>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="24" :md="18" :lg="18">
-          <div class="right-wrapper">
-            <h3>已上传数据</h3>
-            <h1 style="width: 100%; margin-top: 25%; text-align: center; font-weight: 600;" v-if="dataList.length === 0">尚未上传数据...</h1>
-            <!--<img src="../../assets/box-border.png"/>-->
-            <el-row :gutter="20">
-              <el-col :xs="24" :sm="24" :md="12" :lg="12" v-for="singleData in dataList" :key="singleData.index">
-                <div class="data-wrapper">
-                  <div class="header-wrapper">
-                    <i class="el-icon-tickets"></i>
-                    <h4>{{ singleData.dataName }}</h4>
-                  </div>
-                  <div class="path-wrapper">
-                    <p>数据路径：{{ singleData.path }}</p>
-                    <a>拷贝路径</a>
-                  </div>
-                  <div class="time-wrapper">
-                    <p>上传时间：{{ singleData.updateTime }}</p>
-                  </div>
+      <!--<el-row :gutter="20" style="margin: 0">-->
+        <!--<el-col :xs="24" :sm="24" :md="6" :lg="6">-->
+          <!--<div class="left-wrapper">-->
+            <!--<div class="button-wrapper" @click="openUploadData = true">-->
+              <!--<my-button content="点 击 上 传" color="#000000"></my-button>-->
+            <!--</div>-->
+            <!--<div class="intro-wrapper">-->
+              <!--<h3>数据说明</h3>-->
+              <!--&lt;!&ndash;<img src="../../assets/box-border.png"/>&ndash;&gt;-->
+              <!--<p style="text-align: left">接受格式：</p>-->
+              <!--<p>.zip</p>-->
+              <!--<p style="text-align: left">包含格式：</p>-->
+              <!--<p>.txt</p>-->
+              <!--<p>.png</p>-->
+              <!--<p>.jpg</p>-->
+              <!--<p>.mp3</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</el-col>-->
+        <!--<el-col :xs="24" :sm="24" :md="18" :lg="18">-->
+          <!--<div class="right-wrapper">-->
+            <!--<h3>已上传数据</h3>-->
+            <!--<h1 style="width: 100%; margin-top: 25%; text-align: center; font-weight: 600;" v-if="dataList.length === 0">尚未上传数据...</h1>-->
+            <!--&lt;!&ndash;<img src="../../assets/box-border.png"/>&ndash;&gt;-->
+            <!--<el-row :gutter="20">-->
+              <!--<el-col :xs="24" :sm="24" :md="12" :lg="12" v-for="singleData in dataList" :key="singleData.index">-->
+                <!--<div class="data-wrapper">-->
+                  <!--<div class="header-wrapper">-->
+                    <!--<i class="el-icon-tickets"></i>-->
+                    <!--<h4>{{ singleData.dataName }}</h4>-->
+                  <!--</div>-->
+                  <!--<div class="path-wrapper">-->
+                    <!--<p>数据路径：{{ singleData.path }}</p>-->
+                    <!--<a>拷贝路径</a>-->
+                  <!--</div>-->
+                  <!--<div class="time-wrapper">-->
+                    <!--<p>上传时间：{{ singleData.updateTime }}</p>-->
+                  <!--</div>-->
 
-                  <div class="icon-wrapper">
-                    <i :class="singleData.iconClass" @mouseover="changeIconClass(singleData)" @mouseleave="changeIconClass(singleData)" @click="tryDeleteData(singleData)"></i>
-                  </div>
-                </div>
-              </el-col>
-            </el-row>
-          </div>
-        </el-col>
-      </el-row>
+                  <!--<div class="icon-wrapper">-->
+                    <!--<i :class="singleData.iconClass" @mouseover="changeIconClass(singleData)" @mouseleave="changeIconClass(singleData)" @click="tryDeleteData(singleData)"></i>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</el-col>-->
+            <!--</el-row>-->
+          <!--</div>-->
+        <!--</el-col>-->
+      <!--</el-row>-->
+
+      <h2 style="font-weight: 400;">数据文件</h2>
+      <el-upload
+        class="upload-demo"
+        ref="upload"
+        action=""
+        :on-preview="handlePreview"
+        :file-list="fileList"
+        :on-exceed="handleExceed"
+        :on-success="handleSuccess"
+        :on-change="handleDataFileChange"
+        :on-remove="handleDataFileRemove"
+        :limit="1"
+        :show-file-list="true"
+        :auto-upload="false">
+        <div slot="trigger" class="select-file-button-wrapper" v-show="showDataFileButton">
+          <!--<my-dialog-button content="选取文件" v-show="showDataFileButton"></my-dialog-button>-->
+          <!--<ul class="el-upload-list el-upload-list&#45;&#45;text">-->
+          <!--<li class="el-upload-list__item is-ready">-->
+          <!--<a class="el-upload-list__item-name"></a>-->
+
+          <!--</li>-->
+          <!--</ul>-->
+          <a class="select-file-button">选择文件</a>
+        </div>
+        <!--<el-button slot="trigger" size="small" type="default">选取文件</el-button>-->
+        <!--<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</el-button>-->
+        <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+      </el-upload>
+
+      <h2 style="position: relative; display: inline-block; margin-top: 100px; font-weight: 400;">标签文件</h2>
+      <el-upload
+        class="upload-demo"
+        ref="upload"
+        action=""
+        :on-preview="handlePreview"
+        :file-list="fileList"
+        :on-exceed="handleExceed"
+        :on-success="handleSuccess"
+        :on-change="handleTagFileChange"
+        :on-remove="handleTagFileRemove"
+        :limit="1"
+        :show-file-list="true"
+        :auto-upload="false">
+        <div slot="trigger" class="select-file-button-wrapper" v-show="showTagFileButton">
+          <!--<my-dialog-button content="选取文件" v-show="showDataFileButton"></my-dialog-button>-->
+          <!--<ul class="el-upload-list el-upload-list&#45;&#45;text">-->
+          <!--<li class="el-upload-list__item is-ready">-->
+          <!--<a class="el-upload-list__item-name"></a>-->
+
+          <!--</li>-->
+          <!--</ul>-->
+          <a class="select-file-button">选择文件</a>
+        </div>
+        <!--<el-button slot="trigger" size="small" type="default">选取文件</el-button>-->
+        <!--<el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传</el-button>-->
+        <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+      </el-upload>
+
+      <div class="button-wrapper" @click="openUploadData = true">
+        <my-button content="点 击 上 传" color="#000000" style="margin-top: 100px; margin-bottom: 30px"></my-button>
+      </div>
     </div>
 
     <el-dialog
@@ -83,7 +145,7 @@
         <div @click="deleteData" style="display: inline-block;">
           <my-dialog-button type="primary" content="确 定"></my-dialog-button>
         </div>
-  </span>
+        </span>
     </el-dialog>
     <upload-data-dialog :openUploadData="openUploadData" @closeUploadData="openUploadData=false"></upload-data-dialog>
 
@@ -117,7 +179,10 @@
             iconClass: 'el-icon-circle-check'
           }
         ],
-        dataToBeDeleted: {}
+        dataToBeDeleted: {},
+        fileList: [],
+        showDataFileButton: true,
+        showTagFileButton: true
       }
     },
     methods: {
@@ -136,8 +201,21 @@
         this.confirmDeleteDataStatus = true
       },
       deleteData: function () {
-        // todo
         this.confirmDeleteDataStatus = false
+      },
+      handleDataFileChange (file, fileList) {
+//        alert('sa')
+        this.showDataFileButton = false
+      },
+      handleDataFileRemove (file, fileList) {
+        this.showDataFileButton = true
+      },
+      handleTagFileChange (file, fileList) {
+//        alert('sa')
+        this.showTagFileButton = false
+      },
+      handleTagFileRemove (file, fileList) {
+        this.showTagFileButton = true
       }
     },
     mounted () {
