@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div class="breadcrumb-wrapper">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>专业上传</el-breadcrumb-item>
-        <el-breadcrumb-item>上传数据
-          <el-tooltip content="上传数据以供模型选用" placement="bottom" effect="light">
-            <i class="el-icon-question"></i>
-          </el-tooltip>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
+    <!--<div class="breadcrumb-wrapper">-->
+      <!--<el-breadcrumb separator="/">-->
+        <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+        <!--<el-breadcrumb-item>专业上传</el-breadcrumb-item>-->
+        <!--<el-breadcrumb-item>上传数据-->
+          <!--<el-tooltip content="上传数据以供模型选用" placement="bottom" effect="light">-->
+            <!--<i class="el-icon-question"></i>-->
+          <!--</el-tooltip>-->
+        <!--</el-breadcrumb-item>-->
+      <!--</el-breadcrumb>-->
+    <!--</div>-->
+    <model-steps :stepCount="1"></model-steps>
 
     <div class="body-wrapper">
       <el-row :gutter="20" style="margin: 0">
@@ -94,12 +95,14 @@
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
   import UploadDataDialog from '../Dialogs/UploadDataDialog.vue'
   import {mapActions} from 'vuex'
+  import ModelSteps from '../ModelSteps/ModelSteps.vue'
 
   export default {
     components: {
       MyButton,
       UploadDataDialog,
-      MyDialogButton
+      MyDialogButton,
+      ModelSteps
     },
     data () {
       return {

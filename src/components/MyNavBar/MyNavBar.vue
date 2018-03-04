@@ -49,11 +49,14 @@
             :disabled="!isLogin"
           >
             <!--<my-nav-button content="登录" class="button"></my-nav-button>-->
-            <router-link to="/">
-              <el-button class="collapse-nav-element">首页</el-button>
+            <!--<router-link to="/">-->
+              <!--<el-button class="collapse-nav-element">首页</el-button>-->
+            <!--</router-link>-->
+            <router-link to="/proModelCollections">
+              <el-button class="collapse-nav-element">我的数据</el-button>
             </router-link>
             <router-link to="/uploadedData">
-              <el-button class="collapse-nav-element">我的数据</el-button>
+              <el-button class="collapse-nav-element">我的模型</el-button>
             </router-link>
             <router-link to="/info">
               <el-button class="collapse-nav-element">个人信息</el-button>
@@ -62,12 +65,15 @@
           </el-popover>
 
           <!--<router-link to="/proUploadData">-->
-          <div style="display: inline-block; position: relative; outline: none" v-popover:popover3 v-show="largeSize">
-            <my-nav-button content="专业上传" class="button"></my-nav-button>
-          </div>
+          <!--<div style="display: inline-block; position: relative; outline: none" v-popover:popover3 v-show="largeSize">-->
+            <!--<my-nav-button content="专业上传" class="button"></my-nav-button>-->
+          <!--</div>-->
           <!--</router-link>-->
           <div style="display: inline-block; position: relative; outline: none" v-popover:popover4 v-show="largeSize">
-            <router-link to="/modelCreation">
+            <router-link to="/">
+              <my-nav-button content="首页" class="button"></my-nav-button>
+            </router-link>
+            <router-link to="/modelName">
               <my-nav-button content="流程探索" class="button"></my-nav-button>
             </router-link>
           </div>
@@ -79,18 +85,18 @@
       </el-col>
 
       <el-col :xs="20" :sm="20" :md="12" :lg="12" class="hidden-md-and-up">
-        <el-popover
-          ref="popover4"
-          placement="top-start"
-          width="200"
-          trigger="click"
-          :disabled="!isLogin"
-        >
-          <!--<my-nav-button content="登录" class="button"></my-nav-button>-->
-          <router-link to="/modelCreation">
-            <el-button class="collapse-nav-element" style="border: none">流程探索</el-button>
-          </router-link>
-        </el-popover>
+        <!--<el-popover-->
+          <!--ref="popover4"-->
+          <!--placement="top-start"-->
+          <!--width="200"-->
+          <!--trigger="click"-->
+          <!--:disabled="!isLogin"-->
+        <!--&gt;-->
+          <!--&lt;!&ndash;<my-nav-button content="登录" class="button"></my-nav-button>&ndash;&gt;-->
+          <!--<router-link to="/modelCreation">-->
+            <!--<el-button class="collapse-nav-element" style="border: none">流程探索</el-button>-->
+          <!--</router-link>-->
+        <!--</el-popover>-->
 
         <el-popover
           ref="popover5"
@@ -130,53 +136,30 @@
 
           <div v-show="isLogin">
             <router-link to="/">
-              <el-button class="collapse-nav-element">首页</el-button>
+              <el-button class="collapse-nav-element">返回首页</el-button>
             </router-link>
             <router-link to="/uploadedData">
               <el-button class="collapse-nav-element">我的数据</el-button>
             </router-link>
+            <router-link to="/uploadedData">
+              <el-button class="collapse-nav-element">我的模型</el-button>
+            </router-link>
             <router-link to="/info">
               <el-button class="collapse-nav-element">个人信息</el-button>
             </router-link>
-            <el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>
-            <el-button class="collapse-nav-element" @click="openAbout = true">关于</el-button>
-            <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出</el-button>
+            <el-button class="collapse-nav-element" @click="openContact = true">联系方式</el-button>
+            <el-button class="collapse-nav-element" @click="openAbout = true">关于我们</el-button>
+            <el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出登录</el-button>
           </div>
         </el-popover>
 
         <el-button class="collapse-nav-button" style="color: #ffffff" v-popover:popover6 v-show="!largeSize"><i
           class="el-icon-more"></i></el-button>
-        <el-button v-if="isLogin" class="collapse-nav-button" style="color: #ffffff" v-popover:popover4
-                   v-show="!largeSize"><i class="el-icon-tickets"></i></el-button>
-        <el-button v-if="isLogin" class="collapse-nav-button" style="color: #ffffff" v-popover:popover5
-                   v-show="!largeSize"><i class="el-icon-upload2"></i></el-button>
-        <!--<el-popover-->
-        <!--ref="popover1"-->
-        <!--placement="top-start"-->
-        <!--width="200"-->
-        <!--trigger="click"-->
-        <!--:disabled="largeSize"-->
-        <!--&gt;-->
-        <!--&lt;!&ndash;<my-nav-button content="登录" class="button"></my-nav-button>&ndash;&gt;-->
-        <!--<div v-show="!isLogin">-->
-        <!--<el-button class="collapse-nav-element" @click="openLoginDialog">登录</el-button>-->
-        <!--<el-button class="collapse-nav-element" @click="openSignInDialog">注册</el-button>-->
-        <!--<el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>-->
-        <!--<el-button class="collapse-nav-element" style="border: none;" @click="openAbout = true">关于</el-button>-->
-        <!--</div>-->
+        <router-link to="/modelName">
+          <el-button v-if="isLogin" class="collapse-nav-button" style="color: #ffffff"
+                     v-show="!largeSize"><i class="el-icon-tickets"></i></el-button>
+        </router-link>
 
-        <!--<div v-show="isLogin">-->
-        <!--<el-button class="collapse-nav-element">首页</el-button>-->
-        <!--<el-button class="collapse-nav-element">专业上传</el-button>-->
-        <!--<el-button class="collapse-nav-element">流程探索</el-button>-->
-        <!--<el-button class="collapse-nav-element">我的数据</el-button>-->
-        <!--<el-button class="collapse-nav-element">个人信息</el-button>-->
-        <!--<el-button class="collapse-nav-element" @click="openContact = true">联系</el-button>-->
-        <!--<el-button class="collapse-nav-element" @click="openAbout = true">关于</el-button>-->
-        <!--<el-button class="collapse-nav-element" style="border: none" @click="doQuitLog">退出</el-button>-->
-        <!--</div>-->
-        <!--</el-popover>-->
-        <!--<el-button class="collapse-nav-button" v-popover:popover1 ><i class="el-icon-more" ></i> </el-button>-->
       </el-col>
     </el-row>
 
