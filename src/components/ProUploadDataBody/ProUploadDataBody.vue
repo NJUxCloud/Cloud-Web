@@ -121,7 +121,7 @@
         <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
       </el-upload>
 
-      <div class="button-wrapper" @click="openUploadData = true">
+      <div class="button-wrapper" @click="uploadData">
         <my-button content="点 击 上 传" color="#000000" style="margin-top: 100px; margin-bottom: 30px"></my-button>
       </div>
     </div>
@@ -216,6 +216,9 @@
       },
       handleTagFileRemove (file, fileList) {
         this.showTagFileButton = true
+      },
+      uploadData: function () {
+        this.$router.push('/dataPretreatment')
       }
     },
     mounted () {

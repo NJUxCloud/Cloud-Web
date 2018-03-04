@@ -1,0 +1,49 @@
+.data-pretreatment-wrapper {
+  min-height: 450px;
+  width: 100%;
+  text-align: left;
+  padding: 30px;
+}
+
+.data-pretreatment-wrapper /deep/ .el-row {
+  margin: 0;
+}
+
+.data-pretreatment-wrapper h2 {
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.data-pretreatment-wrapper h4 {
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  /*margin-bottom: 10px;*/
+  /*margin-top: 10px;*/
+}
+
+.data-pretreatment-wrapper .param-wrapper {
+  padding: 30px;
+  border-bottom: 2px solid #9AD9D750;
+}
+
+.data-pretreatment-wrapper .param-wrapper p {
+  position: absolute;
+  font-size: 14px;
+  margin-top: -20px;
+  white-space: nowrap;
+}
+
+.data-pretreatment-wrapper .operation-selection {
+  position: relative;
+  display: inline-block;
+  width: 80%;
+  margin-left: 10%;
+  text-align: left;
+  border: 3px solid #9AD9D750;
+  padding: 30px 30px 0px 30px;
+}
+
+.data-pretreatment-wrapper .operation-selection .el-checkbox {
+  margin-bottom: 30px;
+}
