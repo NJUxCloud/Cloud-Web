@@ -1,19 +1,21 @@
 <template>
   <div class="model-creation-wrapper">
-    <el-row :gutter="20" style="margin: 0;">
-      <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <div class="breadcrumb-wrapper">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>模型构建
-              <el-tooltip content="" placement="bottom" effect="light">
-                <i class="el-icon-question"></i>
-              </el-tooltip>
-            </el-breadcrumb-item>
-          </el-breadcrumb>
-        </div>
-      </el-col>
-    </el-row>
+    <!--<el-row :gutter="20" style="margin: 0;">-->
+      <!--<el-col :xs="24" :sm="24" :md="12" :lg="12">-->
+        <!--<div class="breadcrumb-wrapper">-->
+          <!--<el-breadcrumb separator="/">-->
+            <!--<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>-->
+            <!--<el-breadcrumb-item>模型构建-->
+              <!--<el-tooltip content="" placement="bottom" effect="light">-->
+                <!--<i class="el-icon-question"></i>-->
+              <!--</el-tooltip>-->
+            <!--</el-breadcrumb-item>-->
+          <!--</el-breadcrumb>-->
+        <!--</div>-->
+      <!--</el-col>-->
+    <!--</el-row>-->
+    <model-steps :stepCount="3"></model-steps>
+
 
     <div class="model-creation-content-wrapper">
       <el-row :gutter="20" style="margin: 0;">
@@ -145,6 +147,7 @@
   import HideLayer from './Layers/HideLayer.vue'
   import OutputLayer from './Layers/OutputLayer.vue'
   import CentralLayer from './Layers/CentralLayer.vue'
+  import ModelSteps from '../ModelSteps/ModelSteps.vue'
 
   export default {
     components: {
@@ -153,7 +156,8 @@
       InputLayer,
       HideLayer,
       OutputLayer,
-      CentralLayer
+      CentralLayer,
+      ModelSteps
     },
     data () {
       return {
