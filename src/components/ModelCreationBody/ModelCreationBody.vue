@@ -21,7 +21,7 @@
       <el-row :gutter="20" style="margin: 0;">
         <el-col :xs="24" :sm="6" :md="5" :lg="4">
           <div class="time-wrapper">
-            <el-button typeof="default" @click="handleRefresh">
+            <el-button typeof="default" @click="handleRefresh" style="opacity: 0;">
               <i class="el-icon-refresh"></i>
             </el-button>
 
@@ -29,9 +29,9 @@
               <i :class="[startButton ? 'el-icon-caret-right' : 'el-icon-loading']"></i>
             </el-button>
 
-            <p>已运行时间</p>
+            <!--<p>已运行时间</p>-->
             <!--<h2>{{ time }}</h2>-->
-            <time-counter :startCountTime="startCountTime" :defaultValue="defaultValue" @setDefaultVal="setDefaultVal"></time-counter>
+            <!--<time-counter :startCountTime="startCountTime" :defaultValue="defaultValue" @setDefaultVal="setDefaultVal"></time-counter>-->
             <!--<time-counter :startCountTime="startCountTime" :defaultVal="defaultVal" v-if="!startCountTime"></time-counter>-->
           </div>
         </el-col>

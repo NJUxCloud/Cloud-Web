@@ -9,7 +9,6 @@
         </router-link>
       </el-col>
       <el-col :xs="20" :sm="20" :md="12" :lg="12"  class="hidden-sm-and-down">
-        <!--<p>NJUxCloud</p>-->
         <div class="buttons-wrapper" v-show="!isLogin">
           <div style="position: relative; display: inline-block" @click="openLoginDialog">
             <my-nav-button content="登录" class="button"></my-nav-button>
@@ -69,7 +68,8 @@
             <!--<my-nav-button content="专业上传" class="button"></my-nav-button>-->
           <!--</div>-->
           <!--</router-link>-->
-          <div style="display: inline-block; position: relative; outline: none" v-popover:popover4 v-show="largeSize">
+
+          <div style="display: inline-block; position: relative; outline: none" v-show="largeSize">
             <router-link to="/">
               <my-nav-button content="首页" class="button"></my-nav-button>
             </router-link>

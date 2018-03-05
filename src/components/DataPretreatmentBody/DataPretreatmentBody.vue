@@ -180,7 +180,7 @@
         </el-row>
       </div>
 
-      <div v-if="selections[14+i]" class="param-wrapper" v-for="i in 2">
+      <div v-if="selections[14+i]" class="param-wrapper" v-for="i in 1">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="6" :md="6" :lg="6">
             <h4>{{ operations[14+i].operationName }}</h4>
@@ -203,17 +203,17 @@
         </el-row>
       </div>
 
-      <div v-if="selections[17]" class="param-wrapper">
+      <div v-if="selections[16]" class="param-wrapper">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="6" :md="6" :lg="6">
-            <h4>{{ operations[17].operationName }}</h4>
+            <h4>{{ operations[16].operationName }}</h4>
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
-            <el-checkbox v-model="operations[17].overlap">是否覆盖原数据</el-checkbox>
+            <el-checkbox v-model="operations[16].overlap">是否覆盖原数据</el-checkbox>
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>噪声覆盖百分比</p>
-            <el-slider v-model="operations[17].value1" :format-tooltip="formatTooltip" :disabled="!operations[17].overlap"></el-slider>
+            <el-slider v-model="operations[16].value1" :format-tooltip="formatTooltip" :disabled="!operations[16].overlap"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -366,12 +366,6 @@
           },
           {
             'operationName': '灰度非局部平均值去噪',
-            'overlap': false,
-            'value1': 6,
-            'value2': null
-          },
-          {
-            'operationName': '彩色非局部平均值去噪',
             'overlap': false,
             'value1': 6,
             'value2': null
