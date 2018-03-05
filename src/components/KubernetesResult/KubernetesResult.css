@@ -1,0 +1,48 @@
+.kuber-result-wrapper {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 30px;
+}
+
+.kuber-result-wrapper .collapse-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+.kuber-result-wrapper .collapse-wrapper .collapse-inner-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.kuber-result-wrapper .collapse-wrapper .collapse-inner-wrapper p {
+  margin-bottom: 10px;
+}
+
+.kubernetes-charts-wrapper .chart-wrapper {
+  position: relative;
+  display: inline-block;
+  height: 200px;
+  width: 300px;
+  text-align: left;
+  /*width: 100%;*/
+}
+
+.kubernetes-charts-wrapper .chart-wrapper  /deep/ canvas{
+  width: 100%;
+}
+
+.kubernetes-charts-wrapper h4 {
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.kubernetes-charts-wrapper h4 span{
+  color: #50A7C2;
+  font-size: 1.6em;
+}

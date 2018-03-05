@@ -4,6 +4,7 @@
     <model-steps :stepCount="4"></model-steps>
     <div class="result-wrapper">
       <training-result></training-result>
+      <kubernetes-result></kubernetes-result>
     </div>
     <!--<pro-model-collections></pro-model-collections>-->
     <my-footer></my-footer>
@@ -16,6 +17,7 @@
   import MyFooter from '../components/MyFooter/MyFooter.vue'
   import ModelSteps from '../components/ModelSteps/ModelSteps.vue'
   import TrainingResult from '../components/TrainingResult/TrainingResult.vue'
+  import KubernetesResult from '../components/KubernetesResult/KubernetesResult.vue'
 
   export default {
     components: {
@@ -23,7 +25,8 @@
       MyButton,
       MyFooter,
       ModelSteps,
-      TrainingResult
+      TrainingResult,
+      KubernetesResult
     },
     data () {
       return {

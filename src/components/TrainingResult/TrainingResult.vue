@@ -1,11 +1,11 @@
 <template>
   <div class="training-result-wrapper">
-    <part-title title="训练结果"></part-title>
-    <el-row :gutter="20" style="margin: 0">
-      <el-col :xs="24" :sm="24" :md="12" :lg="12">
+    <part-title title="训练结果" style="margin-bottom: 30px"></part-title>
+    <el-row :gutter="20" style="margin: 0; padding: 0;">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" style="padding: 0">
         <div class="chart-wrapper" id="accuracy-chart"></div>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="12">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" style="padding: 0">
         <div class="chart-wrapper" id="time-chart"></div>
       </el-col>
     </el-row>
