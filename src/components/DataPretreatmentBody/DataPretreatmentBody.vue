@@ -40,7 +40,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>调整为原来的n倍</p>
-            <el-slider v-model="operations[4].value1" :format-tooltip="formatTooltip" :disabled="!operations[4].overlap"></el-slider>
+            <el-slider v-model="operations[4].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -54,7 +54,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最多调整为原来的n倍</p>
-            <el-slider v-model="operations[5].value1" :format-tooltip="formatTooltip" :disabled="!operations[5].overlap"></el-slider>
+            <el-slider v-model="operations[5].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -70,7 +70,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>调整为原来的n倍</p>
-            <el-slider v-model="operations[6].value1" :format-tooltip="formatTooltip" :disabled="!operations[6].overlap"></el-slider>
+            <el-slider v-model="operations[6].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -84,11 +84,11 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最少调整为原来的m倍</p>
-            <el-slider v-model="operations[7].value1" :format-tooltip="formatTooltip" :disabled="!operations[9].overlap"></el-slider>
+            <el-slider v-model="operations[7].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最多调整为原来的n倍</p>
-            <el-slider v-model="operations[7].value2" :format-tooltip="formatTooltip" :disabled="!operations[9].overlap"></el-slider>
+            <el-slider v-model="operations[7].value2" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -104,7 +104,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>调整为原来的n倍</p>
-            <el-slider v-model="operations[8].value1" :format-tooltip="formatTooltip" :disabled="!operations[8].overlap"></el-slider>
+            <el-slider v-model="operations[8].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -118,7 +118,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最多调整为原来的n倍</p>
-            <el-slider v-model="operations[9].value1" :format-tooltip="formatTooltip" :disabled="!operations[9].overlap"></el-slider>
+            <el-slider v-model="operations[9].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -134,7 +134,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>调整为原来的n倍</p>
-            <el-slider v-model="operations[10].value1" :format-tooltip="formatTooltip" :disabled="!operations[10].overlap"></el-slider>
+            <el-slider v-model="operations[10].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -148,11 +148,11 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最少调整为原来的m倍</p>
-            <el-slider v-model="operations[11].value1" :format-tooltip="formatTooltip" :disabled="!operations[11].overlap"></el-slider>
+            <el-slider v-model="operations[11].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最多调整为原来的n倍</p>
-            <el-slider v-model="operations[11].value2" :format-tooltip="formatTooltip" :disabled="!operations[11].overlap"></el-slider>
+            <el-slider v-model="operations[11].value2" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -213,7 +213,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>噪声覆盖百分比</p>
-            <el-slider v-model="operations[16].value1" :format-tooltip="formatTooltip" :disabled="!operations[16].overlap"></el-slider>
+            <el-slider v-model="operations[16].value1" :format-tooltip="formatTooltip"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -232,7 +232,7 @@
 <script>
   import ModelSteps from '../ModelSteps/ModelSteps.vue'
   import MyButton from '../Basic/MyButton/MyButton.vue'
-
+  import {mapGetters, mapActions} from 'vuex'
   export default {
     components: {
       ModelSteps,
@@ -379,12 +379,67 @@
         ]
       }
     },
+    computed: {
+      ...mapGetters({
+        dataID: 'dataID',
+        modelName: 'modelName'
+      })
+    },
     methods: {
+      ...mapActions({
+        pretreatData: 'pretreatData'
+      }),
       formatTooltip (val) {
         return val / 100
       },
       doPretreatment: function () {
-        this.$router.push('/modelCreation')
+//        this.selectedOperation.append('dataId', this.dataID)
+//        this.selectedOperation.append('modelName', this.modelName)
+        let doAction = true
+
+        let body = {
+          'dataId': this.dataID,
+          'modelName': this.modelName,
+          'operations': []
+        }
+
+        for (let i = 0; i < this.selections.length; i++) {
+          if (this.selections[i]) {
+            if ((i > 3 && i < 12) || i === this.selections.length - 1) {
+              if (this.operations[i].value1 !== null) {
+                this.operations[i].value1 = this.operations[i].value1 / 100
+              }
+              if (this.operations[i].value2 !== null) {
+                this.operations[i].value2 = this.operations[i].value2 / 100
+                if (this.operations[i].value2 < this.operations[i].value1) {
+                  this.$message({
+                    showClose: true,
+                    type: 'error',
+                    message: '最大倍数不能小于最小倍数！'
+                  })
+                }
+              }
+            }
+            body.operations.push(this.operations[i])
+          }
+        }
+
+        if (doAction) {
+          this.pretreatData({
+            onSuccess: () => {
+              this.$message({
+                showClose: true,
+                type: 'success',
+                message: '成功预处理数据！'
+              })
+            },
+            body: body
+          })
+        }
+
+        console.log(body)
+//        console.log(this.selectedOperation)
+//        this.$router.push('/modelCreation')
       }
     },
     mounted () {

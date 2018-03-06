@@ -2,7 +2,7 @@ import * as dataApi from '../../api/data'
 
 // initial state
 const state = {
-  dataID: ''
+  dataID: 41
   // largeSize: document.body.clientWidth > 1200
 }
 
@@ -51,6 +51,14 @@ const actions = {
         onSuccess(data)
         // on-success
       }
+    }, body)
+  },
+  pretreatData ({state, commit}, {onSuccess, body}) {
+    console.log('pretreatData')
+    dataApi.pretreatData(data => {
+      console.log(data)
+      onSuccess(data)
+        // on-success
     }, body)
   }
 }

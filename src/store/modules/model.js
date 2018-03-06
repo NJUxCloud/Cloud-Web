@@ -2,7 +2,7 @@ import * as modelApi from '../../api/model'
 
 // initial state
 const state = {
-  modelName: ''
+  modelName: '哈哈哈'
 }
 
 // getters
