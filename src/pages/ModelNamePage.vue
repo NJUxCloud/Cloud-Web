@@ -20,6 +20,7 @@
   import MyButton from '../components/Basic/MyButton/MyButton.vue'
   import MyFooter from '../components/MyFooter/MyFooter.vue'
   import ModelSteps from '../components/ModelSteps/ModelSteps.vue'
+  import {mapActions} from 'vuex'
 
   export default {
     components: {
@@ -34,7 +35,32 @@
       }
     },
     methods: {
+      ...mapActions({
+        createModel: 'createModel'
+      }),
       createNewModel: function () {
+        this.createModel({
+          onSuccess: () => {
+            this.$message({
+              showClose: true,
+              message: '成功创建新模型',
+              type: 'success'
+            })
+            this.$router.push('/proUploadData')
+          },
+          onError: () => {
+            this.$message({
+              showClose: true,
+              message: '创建新模型失败',
+              type: 'error'
+            })
+          },
+          body: {
+            modelName: this.modelName + ''
+          }
+        })
+
+        // todo
         this.$router.push('/proUploadData')
       }
     }

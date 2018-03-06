@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import global from './modules/global'
 import auth from './modules/auth'
 import data from './modules/data'
+import model from './modules/model'
 
 // import createLogger from '../../../src/plugins/logger'
 
@@ -16,7 +17,8 @@ export default new Vuex.Store({
   modules: {
     global,
     auth,
-    data
+    data,
+    model
   },
   strict: debug
   // plugins: debug ? [createLogger()] : []
