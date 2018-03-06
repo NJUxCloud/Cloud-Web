@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 export function createModel (callback, body) {
-  // console.log('login')
-  axios.post('http://127.0.0.1:8000/data/create/',
-    body,
+  console.log(body)
+  var params = new URLSearchParams()
+  params.append('modelName', body.modelName)
+
+  console.log(params)
+  axios.post('http://119.23.51.139:8008/data/create/',
+    params,
     {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Token ' + localStorage.getItem('key')
       }
     }

@@ -13,7 +13,7 @@ const getters = {
 // actions
 const actions = {
   getDataList ({state, commit}, {onSuccess, onError}) {
-    console.log('userSignin')
+    console.log('getDataList')
     dataApi.getDataList(data => {
       console.log(data)
       if (data.error !== undefined) {
@@ -24,6 +24,19 @@ const actions = {
         // on-success
       }
     })
+  },
+  uploadData ({state, commit}, {onSuccess, onError, body}) {
+    console.log('uploadData')
+    dataApi.uploadData(data => {
+      console.log(data)
+      if (data.error !== undefined) {
+        // console.log(data.error)
+        onError(data)
+      } else {
+        onSuccess(data)
+        // on-success
+      }
+    }, body)
   }
 }
 

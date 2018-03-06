@@ -56,12 +56,12 @@
             })
           },
           body: {
-            modelName: this.modelName + ''
+            modelName: this.modelName
           }
         })
 
         // todo
-        this.$router.push('/proUploadData')
+//        this.$router.push('/proUploadData')
       }
     }
   }
