@@ -2,12 +2,13 @@ import * as dataApi from '../../api/data'
 
 // initial state
 const state = {
+  dataID: ''
   // largeSize: document.body.clientWidth > 1200
 }
 
 // getters
 const getters = {
-  // largeSize: state => state.largeSize
+  dataID: state => state.dataID
 }
 
 // actions
@@ -34,6 +35,20 @@ const actions = {
         onError(data)
       } else {
         onSuccess(data)
+        commit('setDataID', data.data_id)
+        // on-success
+      }
+    }, body)
+  },
+  uploadTag ({state, commit}, {onSuccess, onError, body}) {
+    console.log('uploadTag')
+    dataApi.uploadTag(data => {
+      console.log(data)
+      if (data.error !== undefined) {
+        // console.log(data.error)
+        onError(data)
+      } else {
+        onSuccess(data)
         // on-success
       }
     }, body)
@@ -42,9 +57,9 @@ const actions = {
 
 // mutations
 const mutations = {
-  // 'setLargeSize' (state) {
-  //   state.largeSize = true
-  // }
+  'setDataID' (state, dataID) {
+    state.dataID = dataID
+  }
 }
 
 export default {

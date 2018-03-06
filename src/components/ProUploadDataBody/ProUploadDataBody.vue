@@ -66,17 +66,16 @@
       <h2 style="font-weight: 400;">数据文件</h2>
       <el-upload
         class="upload-demo"
-        ref="upload"
+        ref="dataUpload"
         action=""
-        :on-preview="handlePreview"
         :file-list="fileList"
-        :on-exceed="handleExceed"
-        :on-success="handleSuccess"
+        :before-upload="beforeUploadData"
         :on-change="handleDataFileChange"
         :on-remove="handleDataFileRemove"
         :limit="1"
         :show-file-list="true"
-        :auto-upload="false">
+        :auto-upload="false"
+      >
         <div slot="trigger" class="select-file-button-wrapper" v-show="showDataFileButton">
           <!--<my-dialog-button content="选取文件" v-show="showDataFileButton"></my-dialog-button>-->
           <!--<ul class="el-upload-list el-upload-list&#45;&#45;text">-->
@@ -95,12 +94,10 @@
       <h2 style="position: relative; display: inline-block; margin-top: 100px; font-weight: 400;">标签文件</h2>
       <el-upload
         class="upload-demo"
-        ref="upload"
+        ref="tagUpload"
         action=""
-        :on-preview="handlePreview"
-        :file-list="fileList"
-        :on-exceed="handleExceed"
-        :on-success="handleSuccess"
+        :file-list="tagList"
+        :before-upload="beforeUploadTag"
         :on-change="handleTagFileChange"
         :on-remove="handleTagFileRemove"
         :limit="1"
@@ -156,7 +153,7 @@
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
   import UploadDataDialog from '../Dialogs/UploadDataDialog.vue'
-  import {mapActions} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import ModelSteps from '../ModelSteps/ModelSteps.vue'
 
   export default {
@@ -181,13 +178,22 @@
         ],
         dataToBeDeleted: {},
         fileList: [],
+        tagList: [],
         showDataFileButton: true,
-        showTagFileButton: true
+        showTagFileButton: true,
+        uploaded: [false, false]
       }
+    },
+    computed: {
+      ...mapGetters({
+        modelName: 'modelName'
+      })
     },
     methods: {
       ...mapActions({
-        getDataList: 'getDataList'
+        getDataList: 'getDataList',
+        uploadDataAction: 'uploadData',
+        uploadTagAction: 'uploadTag'
       }),
       changeIconClass: function (singleData) {
         if (singleData.iconClass === 'el-icon-circle-check') {
@@ -217,19 +223,132 @@
       handleTagFileRemove (file, fileList) {
         this.showTagFileButton = true
       },
+      beforeUploadData (file) {
+        console.log(file)
+        if (file.name.split('.')[file.name.split('.').length - 1] !== 'zip') {
+          this.$message({
+            type: 'error',
+            showClose: true,
+            message: '只接受zip类型数据文件！'
+          })
+          this.uploaded[0] = false
+          this.uploaded[1] = false
+        } else {
+          this.uploadDataAction({
+            onSuccess: () => {
+//              this.fileList.push(file)
+//              this.$message({
+//                'showClose': true,
+//                'type': 'success',
+//                'message': '上传数据成功!'
+              this.uploaded[0] = true
+              this.uploadFinish()
+//              })
+            },
+            onError: () => {
+              this.$message({
+                'showClose': true,
+                'type': 'error',
+                'message': '上传数据失败!'
+              })
+            },
+            body: {
+              'file_type': 'zip',
+              'file_class': 'picture',
+              'file': file
+            }
+          })
+        }
+        return false
+      },
+      beforeUploadTag (file) {
+        console.log(file)
+        if (file.name.split('.')[file.name.split('.').length - 1] !== 'json') {
+          this.$message({
+            type: 'error',
+            showClose: true,
+            message: '只接受json类型标签文件！'
+          })
+          this.uploaded[0] = false
+          this.uploaded[1] = false
+        } else {
+          this.uploadTagAction({
+            onSuccess: () => {
+//              this.tagList.push(file)
+//              this.$message({
+//                'showClose': true,
+//                'type': 'success',
+//                'message': '上传标签文件成功!'
+//              })
+              this.uploaded[1] = true
+              this.uploadFinish()
+            },
+            onError: () => {
+              this.$message({
+                'showClose': true,
+                'type': 'error',
+                'message': '上传标签文件失败!'
+              })
+            },
+            body: {
+              'modelName': this.modelName,
+              'file': file
+            }
+          })
+        }
+        return false
+      },
       uploadData: function () {
-        this.$router.push('/dataPretreatment')
+//        console.log(this.$refs.upload)
+        if (this.$refs.dataUpload.uploadFiles.length > 0 && this.$refs.tagUpload.uploadFiles.length > 0) {
+          this.$refs.dataUpload.submit()
+          this.$refs.tagUpload.submit()
+        } else {
+          this.$message({
+            showClose: true,
+            message: '请分别选择数据文件和标签文件！',
+            type: 'error'
+          })
+        }
+//        console.log(this.$refs.dataUpload.uploadFiles.length)
+//        console.log(this.$refs.tagUpload.uploadFiles.length)
+      },
+      uploadFinish () {
+        if (this.uploaded[0] === true && this.uploaded[1] === true) {
+          this.$router.push('/dataPretreatment')
+          this.$message({
+            showClose: true,
+            message: '上传数据及标签文件成功！',
+            type: 'success'
+          })
+        }
+      }
+    },
+    watch: {
+      fileList: function () {
+        if (this.fileList.length === 0) {
+          this.showDataFileButton = true
+        } else {
+          this.showDataFileButton = false
+        }
+      },
+      tagList: function () {
+        if (this.tagList.length === 0) {
+          this.showTagFileButton = true
+        } else {
+          this.showTagFileButton = false
+        }
       }
     },
     mounted () {
-      this.getDataList({
-        onSuccess: (data) => {
-          this.dataList = JSON.parse(JSON.stringify(data))
-          console.log(data)
-        },
-        onError: () => {
-        }
-      })
+//      this.getDataList({
+//        onSuccess: (data) => {
+//          this.dataList = JSON.parse(JSON.stringify(data))
+//          console.log(data)
+//        },
+//        onError: () => {
+//        }
+//      })
     }
   }
 </script>
