@@ -427,8 +427,14 @@
         }
 
         if (doAction) {
+          let loadingInstance = this.$loading({
+            body: true,
+            lock: true,
+            text: '数据预处理中...'
+          })
           this.pretreatData({
             onSuccess: () => {
+              loadingInstance.close()
               this.$message({
                 showClose: true,
                 type: 'success',
@@ -436,7 +442,15 @@
               })
               this.$router.push('/modelCreation')
             },
-            body: body
+            body: body,
+            onError: () => {
+              loadingInstance.close()
+              this.$message({
+                showClose: true,
+                type: 'error',
+                message: '预处理数据失败！'
+              })
+            }
           })
         }
 

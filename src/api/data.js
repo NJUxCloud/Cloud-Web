@@ -65,7 +65,7 @@ export function uploadTag (callback, body) {
     })
 }
 
-export function pretreatData (callback, body) {
+export function pretreatData (callback, body, errorCallback) {
   console.log(body)
   // util.transferToURLSearchParams(body)
   axios.post('http://119.23.51.139:8008/preprocess/',
@@ -81,8 +81,8 @@ export function pretreatData (callback, body) {
       callback(response.data)
       // console.log(response)
     })
-    .catch(function (error) {
-      console.log(error.response)
+    .catch(function (response) {
+      errorCallback(response.data)
       // callback(error.response)
     })
 }

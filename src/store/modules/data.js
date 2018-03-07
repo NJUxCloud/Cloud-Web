@@ -53,13 +53,19 @@ const actions = {
       }
     }, body)
   },
-  pretreatData ({state, commit}, {onSuccess, body}) {
+  pretreatData ({state, commit}, {onSuccess, body, onError}) {
     console.log('pretreatData')
-    dataApi.pretreatData(data => {
-      console.log(data)
-      onSuccess(data)
+    dataApi.pretreatData(
+      data => {
+        console.log(data)
+        onSuccess(data)
         // on-success
-    }, body)
+      },
+      body,
+      data => {
+        onError(data)
+      }
+    )
   }
 }
 
