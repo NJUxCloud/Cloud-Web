@@ -118,7 +118,7 @@
           </el-col>
           <el-col :xs="8" :sm="6" :md="6" :lg="6">
             <p>最多调整为原来的n倍</p>
-            <el-slider v-model="operations[9].value1" :format-tooltip="formatTooltip"></el-slider>
+            <el-slider v-model="operations[9].value1" :format-tooltip="formatTooltip1"></el-slider>
           </el-col>
         </el-row>
       </div>
@@ -392,6 +392,9 @@
       formatTooltip (val) {
         return val / 100
       },
+      formatTooltip1 (val) {
+        return val / 200
+      },
       doPretreatment: function () {
 //        this.selectedOperation.append('dataId', this.dataID)
 //        this.selectedOperation.append('modelName', this.modelName)
@@ -410,6 +413,9 @@
             if ((i > 3 && i < 12) || i === this.selections.length - 1) {
               if (curOperation.value1 !== null) {
                 curOperation.value1 = curOperation.value1 / 100
+                if (i === 9) {
+                  curOperation.value1 = curOperation.value1 / 2
+                }
               }
               if (curOperation.value2 !== null) {
                 curOperation.value2 = curOperation.value2 / 100
