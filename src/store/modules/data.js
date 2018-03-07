@@ -30,15 +30,13 @@ const actions = {
     console.log('uploadData')
     dataApi.uploadData(data => {
       console.log(data)
-      if (data.error !== undefined) {
-        // console.log(data.error)
-        onError(data)
-      } else {
-        onSuccess(data)
-        commit('setDataID', data.data_id)
-        // on-success
-      }
-    }, body)
+      onSuccess(data)
+      commit('setDataID', data.data_id)
+    }, body,
+     data => {
+       onError()
+     }
+    )
   },
   uploadTag ({state, commit}, {onSuccess, onError, body}) {
     console.log('uploadTag')

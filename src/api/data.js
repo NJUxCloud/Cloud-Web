@@ -21,7 +21,7 @@ export function getDataList (callback) {
     })
 }
 
-export function uploadData (callback, body) {
+export function uploadData (callback, body, errorCallback) {
   // console.log('login')
   // util.transferToURLSearchParams(body)
   axios.post('http://119.23.51.139:8008/data/list/',
@@ -38,7 +38,7 @@ export function uploadData (callback, body) {
       // console.log(response)
     })
     .catch(function (error) {
-      console.log(error.response)
+      errorCallback(error.response)
       // callback(error.response)
     })
 }

@@ -12,8 +12,22 @@
       <!--</el-breadcrumb>-->
     <!--</div>-->
     <model-steps :stepCount="1"></model-steps>
+    <div class="type-select-wrapper">
+      <h2 style="font-weight: 400;">上传类型</h2>
+      <el-select v-model="uploadType" placeholder="请选择"  style="width: 300px; margin-top: 20px; margin-bottom: 20px; text-align: center;">
+        <el-option
+          v-for="item in uploadTypes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+    </div>
 
-    <div class="body-wrapper">
+
+
+    <div class="body-wrapper" v-if="uploadType==='file'">
       <!--<el-row :gutter="20" style="margin: 0">-->
         <!--<el-col :xs="24" :sm="24" :md="6" :lg="6">-->
           <!--<div class="left-wrapper">-->
@@ -123,6 +137,20 @@
       </div>
     </div>
 
+    <div class="body-wrapper" v-if="uploadType==='url'">
+      <h2 style="font-weight: 400; margin-top: 30px">文件链接
+        <i class="el-icon-circle-plus" @click="urlCount++"></i>
+        <i class="el-icon-remove" @click="urlCount > 1 ? urlCount-- : ''"></i>
+      </h2>
+      <div :key="i" v-for="i in urlCount">
+        <el-input style="width: 300px; margin-top: 20px;" :placeholder="'链接' + i" v-model="urls[i]"></el-input>
+      </div>
+
+      <div class="button-wrapper" @click="uploadUrl">
+        <my-button content="点 击 上 传" color="#000000" style="margin-top: 100px; margin-bottom: 30px"></my-button>
+      </div>
+    </div>
+
     <el-dialog
       title="删除数据"
       :visible.sync="confirmDeleteDataStatus"
@@ -181,7 +209,17 @@
         tagList: [],
         showDataFileButton: true,
         showTagFileButton: true,
-        uploaded: [false, false]
+        uploaded: [false, false],
+        uploadType: 'file',
+        uploadTypes: [{
+          value: 'file',
+          label: '本地文件'
+        }, {
+          value: 'url',
+          label: '链接文件'
+        }],
+        urls: [],
+        urlCount: 1
       }
     },
     computed: {
@@ -322,6 +360,39 @@
             type: 'success'
           })
         }
+      },
+      uploadUrl: function () {
+        let loadingInstance = this.$loading({
+          body: true,
+          lock: true,
+          text: '数据下载中...'
+        })
+
+        this.uploadDataAction({
+          onSuccess: () => {
+            loadingInstance.close()
+            this.$message({
+              'showClose': true,
+              'type': 'success',
+              'message': '成功下载数据!'
+            })
+            this.$router.push('/modelCreation')
+          },
+          onError: () => {
+            loadingInstance.close()
+            this.$message({
+              'showClose': true,
+              'type': 'error',
+              'message': '下载数据失败，请检查数据链接是否正确!'
+            })
+          },
+          body: {
+            'file_type': 'url',
+            'file_class': 'picture',
+            'url': this.urls.join(';').slice(1)
+          }
+        })
+        console.log(this.urls.join(';').slice(1))
       }
     },
     watch: {
@@ -337,6 +408,14 @@
           this.showTagFileButton = true
         } else {
           this.showTagFileButton = false
+        }
+      },
+      urlCount: function (newValue, oldValue) {
+        console.log('urlCount: ' + newValue + ';' + oldValue)
+        if (newValue > oldValue) {
+          this.urls.push('')
+        } else {
+          this.urls.pop()
         }
       }
     },
