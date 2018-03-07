@@ -109,7 +109,8 @@
                   </el-tooltip>
                 </el-col>
                 <el-col :xs="12" :sm="12" :md="6" :lg="6">
-                  <el-input style="width: 216px;" v-model="learnRate"></el-input>
+                  <el-slider v-model="learnRate" :format-tooltip="formatTooltip" style="width: 216px;"></el-slider>
+                  <!--<el-input style="width: 216px;" v-model="learnRate"></el-input>-->
                 </el-col>
               </el-row>
             </div>
@@ -120,14 +121,14 @@
 
 
             <div class="layers-wrapper">
-              <el-tooltip content="增加层数" placement="right" effect="light">
-                <i class="el-icon-circle-plus" @click="hideLayerCount++" v-if="network === '传统神经网络'"></i>
-                <i class="el-icon-circle-plus" @click="centralLayerCount++" v-if="network === 'CNN'"></i>
-              </el-tooltip>
+              <!--<el-tooltip content="增加层数" placement="right" effect="light">-->
+                <!--<i class="el-icon-circle-plus" @click="hideLayerCount++" v-if="network === '传统神经网络'"></i>-->
+                <!--<i class="el-icon-circle-plus" @click="centralLayerCount++" v-if="network === 'CNN'"></i>-->
+              <!--</el-tooltip>-->
 
               <input-layer></input-layer>
               <hide-layer v-for="n in hideLayerCount" :count="n" :key="n" v-if="network === '传统神经网络'" :totalCount="hideLayerCount" @deleteHideLayer="deleteHideLayer"></hide-layer>
-              <central-layer v-for="n in centralLayerCount" :count="n" :key="n" v-if="network === 'CNN'" :totalCount="centralLayerCount"  @deleteCentralLayer="deleteCentralLayer"></central-layer>
+              <central-layer v-for="n in centralLayerCount" :count="n" :key="n" v-if="network === 'CNN'" :totalCount="centralLayerCount"  @deleteCentralLayer="deleteCentralLayer" @setCentralLayer="setCentralLayer"></central-layer>
               <output-layer :type="network"></output-layer>
             </div>
 
@@ -185,29 +186,35 @@
         testValue: 80,
         hideLayerCount: 1,
         centralLayerCount: 1,
+//        networkOptions: [{
+//          value: '传统神经网络',
+//          label: '传统神经网络'
+//        }, {
+//          value: 'CNN',
+//          label: 'CNN'
+//        }],
         networkOptions: [{
-          value: '传统神经网络',
-          label: '传统神经网络'
-        }, {
           value: 'CNN',
           label: 'CNN'
         }],
         network: 'CNN',
         lossOptions: [{
-          value: '平方差函数',
+          value: 'mse',
           label: '平方差函数'
         }, {
-          value: '交叉熵函数',
+          value: 'entropy',
           label: '交叉熵函数'
         }],
-        loss: '平方差函数',
+        loss: 'mse',
         optimizerOptions: [{
           value: 'GradientDescentOptimizer',
           label: 'GradientDescentOptimizer'
         }],
         optimizer: 'GradientDescentOptimizer',
         iterCount: 1000,
-        learnRate: 0
+        learnRate: 1,
+        middleLayer: [],
+        choosedMiddleSetting: false
       }
     },
     methods: {
@@ -221,10 +228,43 @@
         } else {
           this.startCountTime = false
         }
-        this.$router.push('/result')
+        let re = /^[0-9]+$/
+
+//        console.log(typeof (this.iterCount))
+        if (!re.test(this.iterCount)) {
+          this.$message({
+            showClose: true,
+            type: 'error',
+            message: '迭代次数必须为非负整数！'
+          })
+          return
+        }
+
+        if (!this.choosedMiddleSetting) {
+          this.$message({
+            showClose: true,
+            type: 'error',
+            message: '请点击中间层进行参数设置！！'
+          })
+          return
+        }
+
+        let body = {
+          'iter': parseInt(this.iterCount),
+          'learning_rate': this.learnRate / 100,
+          'ratio': this.testValue / 100,
+          'loss_name': this.loss,
+          'optimizer_name': this.optimizer,
+          'net_type': 'CNN',
+          'net_config': {
+            'middle_layer': this.middleLayer,
+            'output_layer': {}
+          }
+        }
+        console.log(body)
+//        this.$router.push('/result')
       },
       handleRefresh: function () {
-        // todo 判断是否在运行
         this.startButton = true
         this.time = 0
         this.defaultValue = 0
@@ -243,6 +283,11 @@
       },
       deleteCentralLayer: function () {
         this.centralLayerCount--
+      },
+      setCentralLayer: function (data) {
+        this.choosedMiddleSetting = true
+        this.middleLayer = data
+//        console.log(data)
       }
     }
   }

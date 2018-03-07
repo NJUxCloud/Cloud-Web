@@ -168,7 +168,7 @@
           </el-col>
           <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <!--<p style="float: left;">高</p>-->
-            <el-input v-model="biasConstant"></el-input>
+            <el-slider v-model="biasConstant" :format-tooltip="formatTooltip" style="width: 216px;"></el-slider>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin: 0; width: 100%;">
@@ -180,7 +180,8 @@
           </el-col>
           <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <!--<p style="float: left;">高</p>-->
-            <el-input v-model="stddevNorm"></el-input>
+            <el-slider v-model="stddevNorm" :format-tooltip="formatTooltip" style="width: 216px;"></el-slider>
+            <!--<el-input v-model="stddevNorm"></el-input>-->
           </el-col>
         </el-row>
       </div>
@@ -313,13 +314,15 @@
             </el-tooltip>
           </el-col>
           <el-col :xs="24" :sm="24" :md="5" :lg="5" style="text-align: left">
-            <el-input v-model="epsilon"></el-input>
+            <!--<el-input v-model="epsilon"></el-input>-->
+            <el-slider v-model="epsilon" :format-tooltip="formatNorm" style="width: 216px;"></el-slider>
+
           </el-col>
         </el-row>
       </div>
 
       <span slot="footer" class="dialog-footer footer-wrapper">
-          <div @click="showCentralLayerSetting=false">
+          <div @click="saveSetting">
             <my-dialog-button content="确定"></my-dialog-button>
           </div>
             <div @click="showCentralLayerSetting=false">
@@ -382,7 +385,7 @@
         bValue: 0,
         wValue: [0, 0, 0, 0],
         innerLayer: [true, false, false, false, false],
-        kernel: [0, 0, 0, 0],
+        kernel: [0, 0, 0],
         convolutionStep: [1, 1],
         initStrings: [{
           value: 'zero',
@@ -396,8 +399,8 @@
         }],
         init: 'norm',
         isBias: false,
-        biasConstant: 0.1,
-        stddevNorm: 0.1,
+        biasConstant: 10,
+        stddevNorm: 10,
         activeParam: [0.2],
         poolStep: [0, 0],
         fillTypes: [{
@@ -411,10 +414,10 @@
         poolFillType: 'SAME',
         poolWindow: [0, 0],
         activationFunctions: [{
-          value: 'Sigmoid函数',
+          value: 'sigmoid',
           label: 'Sigmoid函数'
         }, {
-          value: 'ReLU函数',
+          value: 'relu',
           label: 'ReLU函数'
         }, {
           value: 'leaky_relu',
@@ -424,14 +427,72 @@
         connectionLayer: true,
         scale: 1,
         shift: 1,
-        epsilon: 0.001,
+        epsilon: 1,
         hiddenCount: 512
       }
     },
     methods: {
+      formatTooltip (val) {
+        return val / 100
+      },
+      formatNorm (val) {
+        return val / 1000
+      },
       deleteCentralLayerSettingFunction: function () {
         this.deleteCentralLayerSetting = false
         this.$emit('deleteCentralLayer')
+      },
+      saveSetting () {
+        let middleLayer = []
+        for (let i = 0; i < this.innerLayer.length; i++) {
+          if (this.innerLayer[i]) {
+            switch (i) {
+              case 0:
+                middleLayer.push({
+                  'layer': 'conv',
+                  'filter': this.kernel,
+                  'stride': this.convolutionStep,
+                  'padding': this.convolutionFillType,
+                  'init': this.init,
+                  'isBias': this.isBias,
+                  'bias_constant': this.biasConstant / 100,
+                  'stddev_norm': this.stddevNorm / 100
+                })
+                break
+              case 1:
+                middleLayer.push({
+                  'layer': 'pool',
+                  'kernel': this.poolWindow,
+                  'stride': this.poolStep,
+                  'padding': this.poolFillType
+                })
+                break
+              case 2:
+                middleLayer.push({
+                  'layer': 'active',
+                  'active_func': this.activationFunction,
+                  'param': this.activeParam
+                })
+                break
+              case 3:
+                middleLayer.push({
+                  'layer': 'connect',
+                  'active_func': this.hiddenCount
+                })
+                break
+              case 4:
+                middleLayer.push({
+                  'layer': 'norm',
+                  'active_func': this.epsilon / 1000
+                })
+                break
+            }
+          }
+        }
+
+//        console.log(middleLayer)
+        this.showCentralLayerSetting = false
+        this.$emit('setCentralLayer', middleLayer)
       }
     },
     watch: {
