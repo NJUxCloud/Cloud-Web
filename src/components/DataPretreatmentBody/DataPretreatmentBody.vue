@@ -405,13 +405,16 @@
 
         for (let i = 0; i < this.selections.length; i++) {
           if (this.selections[i]) {
+            body.operations.push(JSON.parse(JSON.stringify(this.operations[i])))
+            let curOperation = body.operations[body.operations.length - 1]
             if ((i > 3 && i < 12) || i === this.selections.length - 1) {
-              if (this.operations[i].value1 !== null) {
-                this.operations[i].value1 = this.operations[i].value1 / 100
+              if (curOperation.value1 !== null) {
+                curOperation.value1 = curOperation.value1 / 100
               }
-              if (this.operations[i].value2 !== null) {
-                this.operations[i].value2 = this.operations[i].value2 / 100
-                if (this.operations[i].value2 < this.operations[i].value1) {
+              if (curOperation.value2 !== null) {
+                curOperation.value2 = curOperation.value2 / 100
+                if (curOperation.value2 <= curOperation.value1) {
+                  doAction = false
                   this.$message({
                     showClose: true,
                     type: 'error',
@@ -420,7 +423,6 @@
                 }
               }
             }
-            body.operations.push(this.operations[i])
           }
         }
 
@@ -432,6 +434,7 @@
                 type: 'success',
                 message: '成功预处理数据！'
               })
+              this.$router.push('/modelCreation')
             },
             body: body
           })
