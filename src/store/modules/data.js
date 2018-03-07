@@ -85,6 +85,9 @@ const mutations = {
   },
   'uploadData' (state) {
     state.useUploadedData = false
+  },
+  'setDataType' (state, type) {
+    state.isUrl = type
   }
 }
 

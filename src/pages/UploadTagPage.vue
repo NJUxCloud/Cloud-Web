@@ -4,7 +4,7 @@
     <model-steps :stepCount="1"></model-steps>
 
     <div  class="body-wrapper" v-if="isUrl">
-      <h2 style="font-weight: 400; margin-top: 100px;">使用已上传数据无需再次上传数据，<br>点击下一步进行数据预处理吧！</h2>
+      <h2 style="font-weight: 400; margin-top: 100px;">使用已上传数据无需再次上传数据，<br>点击下一步进行模型构建吧！</h2>
       <div class="button-wrapper" style="margin-top: 100px" @click="skipUpload">
         <my-button content="下 一 步" color="#000000" style="margin-top: 100px; margin-bottom: 30px"></my-button>
       </div>
@@ -85,7 +85,11 @@
                 'type': 'success',
                 'message': '上传标签文件成功!'
               })
-              this.$router.push('/dataPretreatment')
+              if (this.isUrl) {
+                this.$router.push('/modelCreation')
+              } else {
+                this.$router.push('/dataPretreatment')
+              }
             },
             onError: () => {
               this.$message({
@@ -127,8 +131,8 @@
       })
     },
     mounted () {
-      alert(this.isUrl)
-      alert(this.dataID)
+//      alert(this.isUrl)
+//      alert(this.dataID)
     }
   }
 </script>

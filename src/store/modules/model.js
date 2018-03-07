@@ -29,6 +29,19 @@ const actions = {
         onError()
       }
     )
+  },
+  'constructModel' ({state, commit}, {onSuccess, onError, body}) {
+    console.log(body)
+    modelApi.constructModel(
+      data => {
+        console.log(data)
+        onSuccess(data)
+      },
+      body,
+      () => {
+        onError()
+      }
+    )
   }
 }
 

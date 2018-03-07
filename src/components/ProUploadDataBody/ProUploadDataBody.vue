@@ -181,7 +181,7 @@
   import MyButton from '../Basic/MyButton/MyButton.vue'
   import MyDialogButton from '../Basic/MyDialogButton/MyDialogButton.vue'
   import UploadDataDialog from '../Dialogs/UploadDataDialog.vue'
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapGetters, mapActions, mapMutations} from 'vuex'
   import ModelSteps from '../ModelSteps/ModelSteps.vue'
 
   export default {
@@ -232,6 +232,9 @@
         getDataList: 'getDataList',
         uploadDataAction: 'uploadData',
         uploadTagAction: 'uploadTag'
+      }),
+      ...mapMutations({
+        setDataType: 'setDataType'
       }),
       changeIconClass: function (singleData) {
         if (singleData.iconClass === 'el-icon-circle-check') {
@@ -353,7 +356,13 @@
       },
       uploadFinish () {
         if (this.uploaded[0] === true && this.uploaded[1] === true) {
-          this.$router.push('/dataPretreatment')
+          if (this.uploadType === 'file') {
+            this.$router.push('/dataPretreatment')
+            this.setDataType(false)
+          } else {
+            this.$router.push('/modelCreation')
+            this.setDataType(true)
+          }
           this.$message({
             showClose: true,
             message: '上传数据及标签文件成功！',
