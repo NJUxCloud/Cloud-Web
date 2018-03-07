@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function createModel (callback, body) {
+export function createModel (callback, body, errorCallback) {
   console.log(body)
   var params = new URLSearchParams()
   params.append('modelName', body.modelName)
@@ -19,8 +19,8 @@ export function createModel (callback, body) {
       callback(response.data)
       // console.log(response)
     })
-    .catch(function (error) {
-      console.log(error.response)
+    .catch(function () {
+      errorCallback()
       // callback(error.response)
     })
 }

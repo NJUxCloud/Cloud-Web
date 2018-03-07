@@ -2,13 +2,17 @@ import * as dataApi from '../../api/data'
 
 // initial state
 const state = {
-  dataID: 41
+  dataID: 41,
+  useUploadedData: false,
+  isUrl: false
   // largeSize: document.body.clientWidth > 1200
 }
 
 // getters
 const getters = {
-  dataID: state => state.dataID
+  dataID: state => state.dataID,
+  useUploadedData: state => state.useUploadedData,
+  isUrl: state => state.isUrl
 }
 
 // actions
@@ -71,6 +75,16 @@ const actions = {
 const mutations = {
   'setDataID' (state, dataID) {
     state.dataID = dataID
+  },
+  'useData' (state, {dataID, isUrl}) {
+    console.log('isUrl: ' + isUrl)
+    console.log('dataID: ' + dataID)
+    state.dataID = dataID
+    state.useUploadedData = true
+    state.isUrl = isUrl
+  },
+  'uploadData' (state) {
+    state.useUploadedData = false
   }
 }
 

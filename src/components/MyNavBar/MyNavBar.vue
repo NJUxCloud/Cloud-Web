@@ -51,10 +51,10 @@
             <!--<router-link to="/">-->
               <!--<el-button class="collapse-nav-element">首页</el-button>-->
             <!--</router-link>-->
-            <router-link to="/proModelCollections">
+            <router-link to="/uploadedData">
               <el-button class="collapse-nav-element">我的数据</el-button>
             </router-link>
-            <router-link to="/uploadedData">
+            <router-link to="/proModelCollections">
               <el-button class="collapse-nav-element">我的模型</el-button>
             </router-link>
             <router-link to="/info">
@@ -69,13 +69,15 @@
           <!--</div>-->
           <!--</router-link>-->
 
-          <div style="display: inline-block; position: relative; outline: none" v-show="largeSize">
+          <div style="display: inline-block; position: relative; outline: none; white-space: nowrap;" v-show="largeSize">
             <router-link to="/">
               <my-nav-button content="首页" class="button"></my-nav-button>
             </router-link>
-            <router-link to="/modelName">
+            <!--<router-link to="/modelName">-->
+            <div style="position: relative; display: inline-block;" @click="startCreatingModel">
               <my-nav-button content="流程探索" class="button"></my-nav-button>
-            </router-link>
+            </div>
+            <!--</router-link>-->
           </div>
           <el-button class="collapse-nav-button" style="color: #76B6C2" v-popover:popover2 v-show="largeSize"><i
             class="el-icon-more"></i></el-button>
@@ -201,7 +203,8 @@
     },
     methods: {
       ...mapMutations({
-        setLoginStatus: 'setLoginStatus'
+        setLoginStatus: 'setLoginStatus',
+        uploadData: 'uploadData'
       }),
       openLoginDialog () {
         this.openLogin = true
@@ -220,6 +223,10 @@
           message: '退出成功',
           type: 'success'
         })
+      },
+      startCreatingModel: function () {
+        this.uploadData()
+        this.$router.push('/modelName')
       }
     },
     computed: {

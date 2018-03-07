@@ -10,6 +10,7 @@ import ModelCreationPage from '../pages/ModelCreationPage.vue'
 import ModelNamePage from '../pages/ModelNamePage.vue'
 import DataPretreatmentPage from '../pages/DataPretreatmentPage.vue'
 import ModelResultPage from '../pages/ModelResultPage.vue'
+import UploadTagPage from '../pages/UploadTagPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -63,6 +64,11 @@ export default new Router({
       path: '/result',
       name: 'ModelResultPage',
       component: ModelResultPage
+    },
+    {
+      path: '/uploadTag',
+      name: 'UploadTagPage',
+      component: UploadTagPage
     }
   ]
 })

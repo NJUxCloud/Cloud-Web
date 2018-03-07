@@ -24,7 +24,11 @@ const actions = {
         onSuccess(data)
         // on-success
       }
-    }, body)
+    }, body,
+      data => {
+        onError()
+      }
+    )
   }
 }
 

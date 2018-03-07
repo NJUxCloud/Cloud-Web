@@ -20,7 +20,7 @@
   import MyButton from '../components/Basic/MyButton/MyButton.vue'
   import MyFooter from '../components/MyFooter/MyFooter.vue'
   import ModelSteps from '../components/ModelSteps/ModelSteps.vue'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     components: {
@@ -46,12 +46,17 @@
               message: '成功创建新模型',
               type: 'success'
             })
-            this.$router.push('/proUploadData')
+
+            if (!this.useUploadedData) {
+              this.$router.push('/proUploadData')
+            } else {
+              this.$router.push('uploadTag')
+            }
           },
           onError: () => {
             this.$message({
               showClose: true,
-              message: '创建新模型失败',
+              message: '已存在同名模型，请更换模型名称！',
               type: 'error'
             })
           },
@@ -59,10 +64,15 @@
             modelName: this.modelName
           }
         })
-
-        // todo
-//        this.$router.push('/proUploadData')
       }
+    },
+    computed: {
+      ...mapGetters({
+        useUploadedData: 'useUploadedData'
+      })
+    },
+    mounted () {
+      console.log(this.useUploadedData)
     }
   }
 </script>
