@@ -123,3 +123,7 @@ h5, h6 {
   color: #111111;
 }
 
+.el-input-number /deep/ span{
+  background: none;
+  border: none;
+}

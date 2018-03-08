@@ -90,15 +90,16 @@
           </el-col>
           <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高</p>
-            <el-input style="width: 80%;" v-model="kernel[0]"></el-input>
+            <el-input-number size="mini" v-model="kernel[0]" :min="1"></el-input-number>
+            <!--<el-input style="width: 80%;" v-model="kernel[0]"></el-input>-->
           </el-col>
           <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽</p>
-            <el-input style="width: 80%;" v-model="kernel[1]"></el-input>
+            <el-input-number size="mini" v-model="kernel[1]" :min="1"></el-input-number>
           </el-col>
           <el-col :xs="8" :sm="8" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">输出层</p>
-            <el-input style="width: 80%;" v-model="kernel[2]"></el-input>
+            <el-input-number size="mini" v-model="kernel[2]" :min="1"></el-input-number>
           </el-col>
           <!--<el-col :xs="5" :sm="5" :md="5" :lg="5" style="white-space: nowrap">-->
             <!--<p style="float: left;">个数</p>-->
@@ -114,11 +115,12 @@
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高度步长</p>
-            <el-input style="width: 80%;" v-model="convolutionStep[0]"></el-input>
+            <!--<el-input style="width: 80%;" v-model="convolutionStep[0]"></el-input>-->
+            <el-input-number size="mini" v-model="convolutionStep[0]" :min="1"></el-input-number>
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽度步长</p>
-            <el-input style="width: 80%;" v-model="convolutionStep[1]"></el-input>
+            <el-input-number size="mini" v-model="convolutionStep[1]" :min="1"></el-input-number>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin: 0; width: 100%;">
@@ -197,11 +199,12 @@
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高</p>
-            <el-input style="width: 80%;" v-model="poolWindow[0]"></el-input>
+            <el-input-number size="mini" v-model="poolWindow[0]" :min="1"></el-input-number>
+            <!--<el-input style="width: 80%;" v-model="poolWindow[0]"></el-input>-->
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽</p>
-            <el-input style="width: 80%;" v-model="poolWindow[1]"></el-input>
+            <el-input-number size="mini" v-model="poolWindow[1]" :min="1"></el-input-number>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin: 0; width: 100%;">
@@ -213,11 +216,12 @@
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">高度步长</p>
-            <el-input style="width: 80%;" v-model="poolStep[0]"></el-input>
+            <el-input-number size="mini" v-model="poolStep[0]" :min="1"></el-input-number>
+            <!--<el-input style="width: 80%;" v-model="poolStep[0]"></el-input>-->
           </el-col>
           <el-col :xs="12" :sm="12" :md="5" :lg="5" style="white-space: nowrap">
             <p style="float: left;">宽度步长</p>
-            <el-input style="width: 80%;" v-model="poolStep[1]"></el-input>
+            <el-input-number size="mini" v-model="poolStep[1]" :min="1"></el-input-number>
           </el-col>
         </el-row>
         <el-row :gutter="20" style="margin: 0; width: 100%;">
@@ -276,7 +280,8 @@
             </el-tooltip>
           </el-col>
           <el-col :xs="24" :sm="24" :md="5" :lg="5" style="text-align: left">
-            <el-input v-model="hiddenCount"></el-input>
+            <el-input-number size="mini" v-model="hiddenCount" :min="1"></el-input-number>
+            <!--<el-input v-model="hiddenCount"></el-input>-->
           </el-col>
         </el-row>
         <!--<el-checkbox v-model="connectionLayer">展开特征图</el-checkbox>-->
