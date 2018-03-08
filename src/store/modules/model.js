@@ -2,7 +2,7 @@ import * as modelApi from '../../api/model'
 
 // initial state
 const state = {
-  modelName: 'TestModel10',
+  modelName: 'asfsagf',
   modelIter: 1000
 }
 

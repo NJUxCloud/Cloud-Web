@@ -137,11 +137,11 @@
       }
     },
     mounted () {
-//      this.getData()
-//
-//      setInterval(() => {
-//        this.getData()
-//      }, 5000)
+      this.getData()
+
+      setInterval(() => {
+        this.getData()
+      }, 5000)
     }
   }
 </script>

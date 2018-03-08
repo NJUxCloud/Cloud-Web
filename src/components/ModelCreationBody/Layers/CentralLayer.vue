@@ -108,7 +108,7 @@
         <el-row :gutter="20" style="margin: 0; width: 100%;">
           <el-col :xs="24" :sm="24" :md="4" :lg="4">
             <p style="float: left;">步长</p>
-            <el-tooltip content="2个正整数" placement="right" effect="light">
+            <el-tooltip content="3个正整数" placement="right" effect="light">
               <i class="el-icon-question" style="font-size: 16px; color: #999; position: relative; top: 2px;"></i>
             </el-tooltip>
           </el-col>
@@ -384,8 +384,8 @@
         selectedFunction: '全零',
         bValue: 0,
         wValue: [0, 0, 0, 0],
-        innerLayer: [true, false, false, false, false],
-        kernel: [0, 0, 0],
+        innerLayer: [true, true, true, true, true],
+        kernel: [1, 1, 1],
         convolutionStep: [1, 1],
         initStrings: [{
           value: 'zero',
@@ -402,7 +402,7 @@
         biasConstant: 10,
         stddevNorm: 10,
         activeParam: [0.2],
-        poolStep: [0, 0],
+        poolStep: [2, 2],
         fillTypes: [{
           value: 'SAME',
           label: 'SAME'
@@ -412,7 +412,7 @@
         }],
         convolutionFillType: 'SAME',
         poolFillType: 'SAME',
-        poolWindow: [0, 0],
+        poolWindow: [2, 2],
         activationFunctions: [{
           value: 'sigmoid',
           label: 'Sigmoid函数'
@@ -423,7 +423,7 @@
           value: 'leaky_relu',
           label: 'leaky_relu'
         }],
-        activationFunction: 'ReLU函数',
+        activationFunction: 'relu',
         connectionLayer: true,
         scale: 1,
         shift: 1,
@@ -477,44 +477,17 @@
               case 3:
                 middleLayer.push({
                   'layer': 'connect',
-                  'active_func': this.hiddenCount
+                  'hidden': this.hiddenCount
                 })
                 break
               case 4:
                 middleLayer.push({
                   'layer': 'norm',
-                  'active_func': this.epsilon / 1000
+                  'epsilon': this.epsilon / 1000
                 })
                 break
             }
           } else {
-            switch (i) {
-              case 0:
-                middleLayer.push({
-                  'layer': 'conv'
-                })
-                break
-              case 1:
-                middleLayer.push({
-                  'layer': 'pool'
-                })
-                break
-              case 2:
-                middleLayer.push({
-                  'layer': 'active'
-                })
-                break
-              case 3:
-                middleLayer.push({
-                  'layer': 'connect'
-                })
-                break
-              case 4:
-                middleLayer.push({
-                  'layer': 'norm'
-                })
-                break
-            }
           }
         }
 

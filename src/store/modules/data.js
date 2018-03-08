@@ -2,7 +2,7 @@ import * as dataApi from '../../api/data'
 
 // initial state
 const state = {
-  dataID: 63,
+  dataID: 48,
   useUploadedData: false,
   isUrl: false
   // largeSize: document.body.clientWidth > 1200
