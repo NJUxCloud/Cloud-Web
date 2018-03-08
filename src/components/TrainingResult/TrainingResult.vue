@@ -15,7 +15,7 @@
 <script>
   import PartTitle from '../Basic/PartTitle/PartTitle.vue'
   import echarts from 'echarts'
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     components: {
@@ -25,11 +25,15 @@
       return {
         accuracyChart: '',
         timeChart: '',
-        accuracy: [20, 28, 36],
-        timeList1: [100, 200, 300]
+        accuracy: [],
+        timeList1: [],
+        duration: []
       }
     },
     methods: {
+      ...mapActions({
+        getTrainResult: 'getTrainResult'
+      }),
       drawLineChart (id, xData, yData, name, yName) {
         let charts = echarts.init(document.getElementById(id))
         charts.setOption({
@@ -94,11 +98,36 @@
         })
 
         return charts
+      },
+      getData: function () {
+        this.getTrainResult({
+          onSuccess: (data) => {
+            for (let i = this.timeList1.length; i < data.every_result.length; i++) {
+              this.duration.push(data.every_result[i].duration)
+              this.accuracy.push(data.every_result[i].accuracy)
+              this.timeList1.push(data.every_result[i].step)
+            }
+            this.accuracyChart = this.drawLineChart('accuracy-chart', this.timeList1, this.accuracy, '准确度', '准确度(%)')
+            this.timeChart = this.drawLineChart('time-chart', this.timeList1, this.duration, '每一百轮的训练时间', '时间(s)')
+//            this.accuracy = accu
+//            this.timeList1 = time
+//            this.duration = dura
+          },
+          onError: () => {
+            console.log('error')
+          },
+          body: {
+            modelName: this.modelName,
+            iter: this.modelIter
+          }
+        })
       }
     },
     computed: {
       ...mapGetters({
-        mainWidth: 'mainWidth'
+        mainWidth: 'mainWidth',
+        modelName: 'modelName',
+        modelIter: 'modelIter'
       })
     },
     watch: {
@@ -108,10 +137,11 @@
       }
     },
     mounted () {
-      this.$nextTick(function () {
-        this.accuracyChart = this.drawLineChart('accuracy-chart', this.timeList1, this.accuracy, '准确度', '准确度(%)')
-        this.timeChart = this.drawLineChart('time-chart', this.timeList1, this.accuracy, '每一百轮的训练时间', '时间(s)')
-      })
+      this.getData()
+
+//      setInterval(() => {
+//        this.getData()
+//      }, 5000)
     }
   }
 </script>

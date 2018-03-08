@@ -149,6 +149,7 @@
   import OutputLayer from './Layers/OutputLayer.vue'
   import CentralLayer from './Layers/CentralLayer.vue'
   import ModelSteps from '../ModelSteps/ModelSteps.vue'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     components: {
@@ -217,17 +218,26 @@
         choosedMiddleSetting: false
       }
     },
+    computed: {
+      ...mapGetters({
+        isUrl: 'isUrl',
+        modelName: 'modelName'
+      })
+    },
     methods: {
+      ...mapActions({
+        constructModel: 'constructModel'
+      }),
       formatTooltip (val) {
         return val / 100
       },
       handleStartClick: function () {
-        this.startButton = !this.startButton
-        if (!this.startButton) {
-          this.startCountTime = true
-        } else {
-          this.startCountTime = false
-        }
+//        this.startButton = !this.startButton
+//        if (!this.startButton) {
+//          this.startCountTime = true
+//        } else {
+//          this.startCountTime = false
+//        }
         let re = /^[0-9]+$/
 
 //        console.log(typeof (this.iterCount))
@@ -248,6 +258,11 @@
           })
           return
         }
+        let loadingInstance = this.$loading({
+          body: true,
+          lock: true,
+          text: '模型构建中...'
+        })
 
         let body = {
           'iter': parseInt(this.iterCount),
@@ -261,7 +276,27 @@
             'output_layer': {}
           }
         }
-        console.log(body)
+
+        let modelInfo = {
+          modelName: this.modelName,
+          dataType: this.isUrl ? 'url' : 'file'
+        }
+
+        this.constructModel({
+          onSuccess: () => {
+            loadingInstance.close()
+            this.$router.push('/result')
+          },
+          onError: () => {
+            this.$message({
+              showClose: true,
+              type: 'error',
+              message: '构建模型失败！'
+            })
+          },
+          body: body,
+          modelInfo: modelInfo
+        })
 //        this.$router.push('/result')
       },
       handleRefresh: function () {

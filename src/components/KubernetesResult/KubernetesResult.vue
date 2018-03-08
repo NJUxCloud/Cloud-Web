@@ -2,7 +2,7 @@
   <div>
     <part-title title="Kubernetes结果" style="margin-bottom: 30px"></part-title>
     <div class="kuber-result-wrapper">
-      <el-collapse class="collapse-wrapper">
+      <el-collapse class="collapse-wrapper" v-model="activeName" accordion>
         <el-collapse-item title="Conditions" name="1">
           <el-table
             :data="conditionsData"
@@ -91,7 +91,7 @@
         </el-collapse-item>
         <el-collapse-item title="Non-terminated Pods" name="6">
           <div class="collapse-inner-wrapper">
-            <kubernetes-charts :chartsData="chartsData"></kubernetes-charts>
+            <kubernetes-charts :chartsData="chartsData" :openCharts="openCharts"></kubernetes-charts>
 
             <!--<div v-for="(item, key) in chartsData" class="pod-wrapper">-->
               <!--<h4>{{ key }}</h4>-->
@@ -115,7 +115,7 @@
   import PartTitle from '../Basic/PartTitle/PartTitle.vue'
   import KubernetesCharts from './KubernetesCharts.vue'
   import echarts from 'echarts'
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     components: {
@@ -128,33 +128,26 @@
         timeChart: '',
         accuracy: [20, 28, 36],
         timeList1: [100, 200, 300],
-        conditionsData: [{
-          'Type': 'OutOfDisk',
-          'Status': 'False',
-          'LastHeartbeatTime': 'Sat, 03 Mar 2018 17:17:49 +0800',
-          'LastTransitionTime': 'Mon, 26 Feb 2018 17:49:10 +0800',
-          'Reason': 'KubeletHasSufficientDisk',
-          'Message': 'kubelet has sufficient disk space available'
-        }],
-        InternalIP: '119.23.51.139',
-        Hostname: 'k8s-node-3',
+        conditionsData: [],
+        InternalIP: '',
+        Hostname: '',
         Capacity: {
-          cpu: '1',
-          memory: '1883724Ki',
-          pods: 110
+          cpu: '',
+          memory: '',
+          pods: 0
         },
         Allocatable: {
-          cpu: '1',
-          memory: '1781324Ki',
-          pods: 110
+          cpu: '',
+          memory: '',
+          pods: 0
         },
         SystemInfo: {
-          'OS Image': 'CentOS Linux 7 (Core)',
-          'Operating System': 'linux',
-          'Architecture': 'amd64',
-          'Container Runtime Version': 'docker://Unknown',
-          'Kubelet Version': 'v1.8.2',
-          'Kube-Proxy Version': 'v1.8.2'
+          'OS Image': '',
+          'Operating System': '',
+          'Architecture': '',
+          'Container Runtime Version': '',
+          'Kubelet Version': '',
+          'Kube-Proxy Version': ''
         },
         chartsData: {
           'tensorflow-ps-rc-tmrww': {
@@ -186,13 +179,38 @@
             memoryRequests: [],
             curMemory: 0,
             memories: []
+          },
+          'kube-flannel-ds-dgvf8': {
+            curCpuRequest: 0,
+            cpuRequests: [],
+            curCpuLimit: 0,
+            cpuLimits: [],
+            curMemoryRequest: 0,
+            memoryRequests: [],
+            curMemory: 0,
+            memories: []
+          },
+          'kube-proxy-dt8hx': {
+            curCpuRequest: 0,
+            cpuRequests: [],
+            curCpuLimit: 0,
+            cpuLimits: [],
+            curMemoryRequest: 0,
+            memoryRequests: [],
+            curMemory: 0,
+            memories: []
           }
         },
         charts: [],
-        timeList: [1, 2, 3, 4, 5]
+        timeList: [1, 2, 3, 4, 5],
+        activeName: '1',
+        openCharts: false
       }
     },
     methods: {
+      ...mapActions({
+        getKubernetesResult: 'getKubernetesResult'
+      }),
       drawLineChart (id, xData, yData, name, yName) {
         let charts = echarts.init(document.getElementById(id))
         charts.setOption({
@@ -256,6 +274,40 @@
         })
 
         return charts
+      },
+      getData () {
+        this.getKubernetesResult({
+          onSuccess: (data) => {
+            console.log(data)
+            this.conditionsData = data.Conditions
+            this.SystemInfo = data['System Info']
+            this.Allocatable = data.Allocatable
+            this.Capacity = data.Capacity
+            this.InternalIP = data.Addresses.InternalIP
+            this.Hostname = data.Addresses.Hostname
+
+//            console.log(data['Non-terminated Pods'].length)
+            for (let i = 0; i < data['Non-terminated Pods'].length; i++) {
+              let pod = data['Non-terminated Pods'][i]
+//              console.log(pod['Name'])
+
+              this.chartsData[pod['Name']].curCpuRequest = parseInt(pod['CPU Requests'].split(' ')[0])
+              this.chartsData[pod['Name']].cpuRequests.push(parseInt(pod['CPU Requests'].split(' ')[1].split('(')[1].split('%')[0]))
+              this.chartsData[pod['Name']].curCpuLimit = parseInt(pod['CPU Limits'].split(' ')[0])
+              this.chartsData[pod['Name']].cpuLimits.push(parseInt(pod['CPU Limits'].split(' ')[1].split('(')[1].split('%')[0]))
+              this.chartsData[pod['Name']].curMemoryRequest = parseInt(pod['Memory Requests'].split(' ')[0])
+              this.chartsData[pod['Name']].memoryRequests.push(parseInt(pod['Memory Requests'].split(' ')[1].split('(')[1].split('%')[0]))
+              this.chartsData[pod['Name']].curMemory = parseInt(pod['Memory Limits'].split(' ')[0])
+              this.chartsData[pod['Name']].memories.push(parseInt(pod['Memory Limits'].split(' ')[1].split('(')[1].split('%')[0]))
+            }
+//            this.accuracy = accu
+//            this.timeList1 = time
+//            this.duration = dura
+          },
+          onError: () => {
+            console.log('error')
+          }
+        })
       }
     },
     computed: {
@@ -267,81 +319,21 @@
       mainWidth: function () {
         for (let i = 0; i < this.charts; i++) {
           this.charts[i].resize()
-          console.log('saas')
+        }
+      },
+      activeName: function () {
+        if (this.activeName === '6') {
+          this.openCharts = true
+        } else {
+          this.openCharts = false
         }
       }
     },
     mounted () {
-      let data = {
-        'Non-terminated Pods': [
-          {
-            'Namespace': 'default',
-            'Name': 'tensorflow-ps-rc-tmrww',
-            'CPU Requests': '1 (2%)',
-            'CPU Limits': '3 (1%)',
-            'Memory Requests': '5 (6%)',
-            'Memory': '7 (0%)'
-          },
-          {
-            'Namespace': 'default',
-            'Name': 'tensorflow-ps-rc-tmrww',
-            'CPU Requests': '1 (4%)',
-            'CPU Limits': '3 (3%)',
-            'Memory Requests': '5 (9%)',
-            'Memory': '7 (1%)'
-          },
-          {
-            'Namespace': 'default',
-            'Name': 'tensorflow-ps-rc-tmrww',
-            'CPU Requests': '1 (6%)',
-            'CPU Limits': '3 (5%)',
-            'Memory Requests': '5 (16%)',
-            'Memory': '7 (2%)'
-          },
-          {
-            'Namespace': 'default',
-            'Name': 'tensorflow-ps-rc-tmrww',
-            'CPU Requests': '1 (9%)',
-            'CPU Limits': '3 (12%)',
-            'Memory Requests': '5 (22%)',
-            'Memory': '7 (14%)'
-          },
-          {
-            'Namespace': 'default',
-            'Name': 'tensorflow-ps-rc-tmrww',
-            'CPU Requests': '1 (17%)',
-            'CPU Limits': '3 (15%)',
-            'Memory Requests': '5 (35%)',
-            'Memory': '7 (22%)'
-          }
-        ]
-      }
-      for (let i = 0; i < data['Non-terminated Pods'].length; i++) {
-        let pod = data['Non-terminated Pods'][i]
-        this.chartsData[pod['Name']].curCpuRequest = parseInt(pod['CPU Requests'].split(' ')[0])
-        this.chartsData[pod['Name']].cpuRequests.push(parseInt(pod['CPU Requests'].split(' ')[1].split('(')[1].split('%')[0]))
-        this.chartsData[pod['Name']].curCpuLimit = parseInt(pod['CPU Limits'].split(' ')[0])
-        this.chartsData[pod['Name']].cpuLimits.push(parseInt(pod['CPU Limits'].split(' ')[1].split('(')[1].split('%')[0]))
-        this.chartsData[pod['Name']].curMemoryRequest = parseInt(pod['Memory Requests'].split(' ')[0])
-        this.chartsData[pod['Name']].memoryRequests.push(parseInt(pod['Memory Requests'].split(' ')[1].split('(')[1].split('%')[0]))
-        this.chartsData[pod['Name']].curMemory = parseInt(pod['Memory'].split(' ')[0])
-        this.chartsData[pod['Name']].memories.push(parseInt(pod['Memory'].split(' ')[1].split('(')[1].split('%')[0]))
-//        console.log(this.chartsData[pod['Name']])
-      }
-
-      console.log(this.chartsData)
-
-//      this.$nextTick(function () {
-//        for (let chartName in this.chartsData) {
-//          this.charts.push(this.drawLineChart('cpu-chart-' + chartName, this.timeList, this.chartsData[chartName].cpuRequests, '准确度', '准确度(%)'))
-//          this.charts.push(this.drawLineChart('memory-chart-' + chartName, this.timeList, this.chartsData[chartName].cpuRequests, '准确度', '准确度(%)'))
-//
-//          console.log(chartName)
-//        }
-//        this.charts.push(this.drawLineChart('cpu-chart-', this.timeList1, this.accuracy, '准确度', '准确度(%)'))
-//        this.accuracyChart = this.drawLineChart('accuracy-chart', this.timeList1, this.accuracy, '准确度', '准确度(%)')
-//        this.timeChart = this.drawLineChart('time-chart', this.timeList1, this.accuracy, '每一百轮的训练时间', '时间(s)')
-//      })
+      this.getData()
+      setInterval(() => {
+        this.getData()
+      }, 10000)
     }
   }
 </script>
