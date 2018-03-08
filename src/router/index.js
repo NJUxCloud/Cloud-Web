@@ -11,6 +11,7 @@ import ModelNamePage from '../pages/ModelNamePage.vue'
 import DataPretreatmentPage from '../pages/DataPretreatmentPage.vue'
 import ModelResultPage from '../pages/ModelResultPage.vue'
 import UploadTagPage from '../pages/UploadTagPage.vue'
+import ModelUsingPage from '../pages/ModelUsingPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -69,6 +70,11 @@ export default new Router({
       path: '/uploadTag',
       name: 'UploadTagPage',
       component: UploadTagPage
+    },
+    {
+      path: '/construct/:id',
+      name: 'ModelUsingPage',
+      component: ModelUsingPage
     }
   ]
 })

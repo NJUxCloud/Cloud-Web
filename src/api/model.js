@@ -97,3 +97,23 @@ export function getKubernetesResult (callback) {
       // callback(error.response)
     })
 }
+
+export function getModelList (callback) {
+  // console.log('login')
+  axios.get('http://119.23.51.139:8008/construct/config/',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + localStorage.getItem('key')
+      }
+    }
+  )
+    .then(function (response) {
+      callback(response.data)
+      // console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error.response)
+      // callback(error.response)
+    })
+}

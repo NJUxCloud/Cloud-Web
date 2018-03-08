@@ -86,7 +86,20 @@
                 'message': '上传标签文件成功!'
               })
               if (this.isUrl) {
-                this.$router.push('/modelCreation')
+//                this.$router.push('/modelCreation')
+                let body = {
+                  'dataId': this.dataID,
+                  'modelName': this.modelName,
+                  'operations': []
+                }
+                this.pretreatData({
+                  onSuccess: () => {
+                    this.$router.push('/modelCreation')
+                  },
+                  body: body,
+                  onError: () => {
+                  }
+                })
               } else {
                 this.$router.push('/dataPretreatment')
               }
@@ -127,7 +140,8 @@
     computed: {
       ...mapGetters({
         isUrl: 'isUrl',
-        dataID: 'dataID'
+        dataID: 'dataID',
+        modelName: 'modelName'
       })
     },
     mounted () {

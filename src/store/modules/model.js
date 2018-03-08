@@ -62,6 +62,14 @@ const actions = {
       onSuccess(data)
       // on-success
     })
+  },
+  'getModelList' ({state, commit}, {onSuccess, onError}) {
+    console.log('getModelList')
+    modelApi.getModelList(data => {
+      // console.log(data)
+      onSuccess(data)
+      // on-success
+    })
   }
 }
 
