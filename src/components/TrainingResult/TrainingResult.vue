@@ -137,8 +137,8 @@
       }
     },
     mounted () {
-      this.getData()
-
+//      this.getData()
+//
 //      setInterval(() => {
 //        this.getData()
 //      }, 5000)

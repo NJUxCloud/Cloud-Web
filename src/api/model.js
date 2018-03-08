@@ -31,7 +31,7 @@ export function constructModel (callback, body, errorCallback, modelInfo) {
   // var params = new URLSearchParams()
   // params.append('modelName', body.modelName)
 
-  // console.log(url)
+  console.log(url)
   axios.post(url,
     body,
     {

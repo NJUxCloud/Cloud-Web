@@ -487,6 +487,34 @@
                 })
                 break
             }
+          } else {
+            switch (i) {
+              case 0:
+                middleLayer.push({
+                  'layer': 'conv'
+                })
+                break
+              case 1:
+                middleLayer.push({
+                  'layer': 'pool'
+                })
+                break
+              case 2:
+                middleLayer.push({
+                  'layer': 'active'
+                })
+                break
+              case 3:
+                middleLayer.push({
+                  'layer': 'connect'
+                })
+                break
+              case 4:
+                middleLayer.push({
+                  'layer': 'norm'
+                })
+                break
+            }
           }
         }
 

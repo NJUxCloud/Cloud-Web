@@ -224,14 +224,16 @@
     },
     computed: {
       ...mapGetters({
-        modelName: 'modelName'
+        modelName: 'modelName',
+        dataID: 'dataID'
       })
     },
     methods: {
       ...mapActions({
         getDataList: 'getDataList',
         uploadDataAction: 'uploadData',
-        uploadTagAction: 'uploadTag'
+        uploadTagAction: 'uploadTag',
+        pretreatData: 'pretreatData'
       }),
       ...mapMutations({
         setDataType: 'setDataType'
@@ -360,7 +362,6 @@
             this.$router.push('/dataPretreatment')
             this.setDataType(false)
           } else {
-            this.$router.push('/modelCreation')
             this.setDataType(true)
           }
           this.$message({
@@ -378,14 +379,27 @@
         })
 
         this.uploadDataAction({
-          onSuccess: () => {
+          onSuccess: (data) => {
             loadingInstance.close()
+            this.setDataType(true)
             this.$message({
               'showClose': true,
               'type': 'success',
               'message': '成功下载数据!'
             })
-            this.$router.push('/modelCreation')
+            let body = {
+              'dataId': data.data_id,
+              'modelName': this.modelName,
+              'operations': []
+            }
+            this.pretreatData({
+              onSuccess: () => {
+                this.$router.push('/modelCreation')
+              },
+              body: body,
+              onError: () => {
+              }
+            })
           },
           onError: () => {
             loadingInstance.close()

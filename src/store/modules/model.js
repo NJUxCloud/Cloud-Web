@@ -2,7 +2,7 @@ import * as modelApi from '../../api/model'
 
 // initial state
 const state = {
-  modelName: 'asfsagf',
+  modelName: 'TestModel10',
   modelIter: 1000
 }
 
@@ -58,7 +58,7 @@ const actions = {
   'getKubernetesResult' ({state, commit}, {onSuccess, onError}) {
     console.log('getKubernetesResult')
     modelApi.getKubernetesResult(data => {
-      console.log(data)
+      // console.log(data)
       onSuccess(data)
       // on-success
     })

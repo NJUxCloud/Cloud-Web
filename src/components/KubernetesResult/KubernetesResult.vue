@@ -278,7 +278,7 @@
       getData () {
         this.getKubernetesResult({
           onSuccess: (data) => {
-            console.log(data)
+//            console.log(data)
             this.conditionsData = data.Conditions
             this.SystemInfo = data['System Info']
             this.Allocatable = data.Allocatable
