@@ -1,5 +1,5 @@
 .model-using-wrapper {
-  min-height: 800px;
+  min-height: 700px;
 }
 
 .breadcrumb-wrapper {
@@ -15,4 +15,9 @@
   cursor: pointer;
   margin-left: 10px;
   outline: none;
+}
+
+.canvas-wrapper {
+  width: 100%;
+  text-align: center;
 }

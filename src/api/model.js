@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as util from './util'
 
 export function createModel (callback, body, errorCallback) {
   console.log(body)
@@ -114,6 +115,31 @@ export function getModelList (callback) {
     })
     .catch(function (error) {
       console.log(error.response)
+      // callback(error.response)
+    })
+}
+
+export function constructInference (callback, body, modelName, errorCallback) {
+  let url = 'http://119.23.51.139:8008/construct/inference/' + modelName + '/'
+  console.log(url)
+  console.log(body)
+  // console.log('login')
+  // util.transferToURLSearchParams(body)
+  axios.post(url,
+    util.transferToFormData(body),
+    {
+      headers: {
+        'Content-Type': 'application/form-data',
+        'Authorization': 'Token ' + localStorage.getItem('key')
+      }
+    }
+  )
+    .then(function (response) {
+      callback(response.data)
+      // console.log(response)
+    })
+    .catch(function (error) {
+      errorCallback(error.response)
       // callback(error.response)
     })
 }

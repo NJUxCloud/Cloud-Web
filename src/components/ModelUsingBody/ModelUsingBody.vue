@@ -17,17 +17,23 @@
 
     </el-row>
 
+    <div class="canvas-wrapper">
+      <draw-canvas></draw-canvas>
+    </div>
+
 
   </div>
 </template>
 
 <script>
   import MyButton from '../Basic/MyButton/MyButton.vue'
+  import DrawCanvas from '../DrawCanvas/DrawCanvas.vue'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
     components: {
-      MyButton
+      MyButton,
+      DrawCanvas
     },
     data () {
       return {

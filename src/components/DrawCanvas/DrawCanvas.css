@@ -1,0 +1,82 @@
+@media screen and (max-width: 700px) {
+  #img-box,
+  #canvas-drawImage h5,
+  #canvas-drawImage button {
+    width: auto;
+    position: absolute;
+    flex: 1;
+  }
+}
+
+.inner.draw {
+  display: flex;
+  flex-direction: row;
+  /*text-align: center;*/
+  width: 90%;
+  margin-top: 100px;
+  margin-left: 5%;
+  /*position: fixed;*/
+  /*display: inline-block;*/
+}
+
+.draw h5 {
+  margin-bottom: 10px;
+}
+
+.wrap {
+  /*width: 740px;*/
+  border: 3px #a7d7d650 solid;
+  height: 400px;
+  width: 400px;
+  /*overflow: hidden;*/
+}
+
+.fl {
+  float: left;
+  display: block;
+}
+
+#canvas {
+  /*border-right: 3px #a7d7d650 solid;*/
+  /*border-right: 1px #585858 solid;*/
+  cursor: crosshair;
+}
+
+.buttons-wrapper {
+  position: absolute;
+  margin-top: 30px;
+  left: 5%;
+  width: 400px;
+  top: 700px;
+  text-align: center;
+}
+
+.buttons-wrapper div {
+  position: relative;
+  display: inline-block;
+}
+
+#img-box {
+  flex: 1;
+  padding-left: 10px;
+  text-align: center;
+}
+
+#img-box .img-item {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+
+}
+
+#img-box .img-item p {
+  width: 100%;
+  text-align: center;
+}
+
+#img-box img {
+  border: 1px #ccc solid;
+  width: 120px;
+  height: 120px;
+  margin: 5px;
+}

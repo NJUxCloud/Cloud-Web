@@ -70,6 +70,18 @@ const actions = {
       onSuccess(data)
       // on-success
     })
+  },
+  'constructInference' ({state, commit}, {onSuccess, onError, body, modelName}) {
+    console.log('constructInference')
+    modelApi.constructInference(data => {
+      // console.log(data)
+      onSuccess(data)
+      // on-success
+    }, body, modelName,
+      () => {
+        onError()
+      }
+    )
   }
 }
 
