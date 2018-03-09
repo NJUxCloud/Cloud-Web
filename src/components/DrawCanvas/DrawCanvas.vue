@@ -58,7 +58,7 @@
         middleAry: [],
         // 配置参数
         config: {
-          lineWidth: 1,
+          lineWidth: 30,
           lineColor: '#76B6C2',
           shadowBlur: 2
         },
