@@ -121,10 +121,10 @@
 
 
             <div class="layers-wrapper">
-              <!--<el-tooltip content="增加层数" placement="right" effect="light">-->
+              <el-tooltip content="增加层数" placement="right" effect="light">
                 <!--<i class="el-icon-circle-plus" @click="hideLayerCount++" v-if="network === '传统神经网络'"></i>-->
-                <!--<i class="el-icon-circle-plus" @click="centralLayerCount++" v-if="network === 'CNN'"></i>-->
-              <!--</el-tooltip>-->
+                <i class="el-icon-circle-plus" @click="centralLayerCount++" v-if="network === 'CNN'"></i>
+              </el-tooltip>
 
               <input-layer></input-layer>
               <hide-layer v-for="n in hideLayerCount" :count="n" :key="n" v-if="network === '传统神经网络'" :totalCount="hideLayerCount" @deleteHideLayer="deleteHideLayer"></hide-layer>
@@ -321,7 +321,8 @@
       },
       setCentralLayer: function (data) {
         this.choosedMiddleSetting = true
-        this.middleLayer = data
+        this.middleLayer = this.middleLayer.concat(data)
+        console.log(this.middleLayer)
 //        console.log(data)
       }
     }

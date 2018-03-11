@@ -26,7 +26,6 @@ const actions = {
         localStorage.setItem('email', body.email)
         console.log(data.key)
         commit('setLoginStatus', true)
-        // on-success
       }
     }, body, data => {
       onError(data)

@@ -3,7 +3,7 @@ import * as util from './util'
 
 export function getDataList (callback) {
   // console.log('login')
-  axios.get('http://119.23.51.139:8008/data/list/',
+  axios.get('/data/list/',
     {
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export function getDataList (callback) {
 export function uploadData (callback, body, errorCallback) {
   // console.log('login')
   // util.transferToURLSearchParams(body)
-  axios.post('http://119.23.51.139:8008/data/list/',
+  axios.post('/data/list/',
     util.transferToFormData(body),
     {
       headers: {
@@ -46,7 +46,7 @@ export function uploadData (callback, body, errorCallback) {
 export function uploadTag (callback, body) {
   console.log(body)
   // util.transferToURLSearchParams(body)
-  axios.post('http://119.23.51.139:8008/data/tag/',
+  axios.post('/data/tag/',
     util.transferToFormData(body),
     {
       headers: {
@@ -68,7 +68,7 @@ export function uploadTag (callback, body) {
 export function pretreatData (callback, body, errorCallback) {
   console.log(body)
   // util.transferToURLSearchParams(body)
-  axios.post('http://119.23.51.139:8008/preprocess/',
+  axios.post('/preprocess/',
     body,
     {
       headers: {

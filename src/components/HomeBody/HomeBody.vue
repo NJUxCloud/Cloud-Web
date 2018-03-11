@@ -91,7 +91,7 @@
             index: 1,
             url: require('../../assets/data-image.png'),
             title: '输入数据 可视化分析',
-            contents: ['·多维度分析上传数据', '·图标展示分析结果', '·选择数据集并划分使用比例'],
+            contents: ['·多维度分析上传数据', '·图表展示分析结果', '·选择数据集并划分使用比例'],
             left: true
           },
           {

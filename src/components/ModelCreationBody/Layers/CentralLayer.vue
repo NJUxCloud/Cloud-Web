@@ -5,7 +5,7 @@
       <div class="layer-wrapper">
         <img src="../../../assets/CentralLayer.png" style="margin-right: 10px; cursor: pointer;" @click="showCentralLayerSetting = true">
         <p>中间层{{ count }}</p>
-        <i v-if="showDeleteCentral" class="el-icon-circle-close" @click="deleteCentralLayerSetting=true"></i>
+        <!--<i v-if="showDeleteCentral" class="el-icon-circle-close" @click="deleteCentralLayerSetting=true"></i>-->
       </div>
     </div>
 
@@ -389,7 +389,7 @@
         selectedFunction: '全零',
         bValue: 0,
         wValue: [0, 0, 0, 0],
-        innerLayer: [true, true, true, true, true],
+        innerLayer: [false, false, false, false, false],
         kernel: [1, 1, 1],
         convolutionStep: [1, 1],
         initStrings: [{

@@ -6,3 +6,15 @@
 .training-result-wrapper .chart-wrapper /deep/ canvas{
   width: 100%;
 }
+
+.training-result-wrapper p{
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  padding: 15px;
+  font-weight: 800;
+}
+
+.training-result-wrapper p span {
+  color: #9AD9D7;
+}

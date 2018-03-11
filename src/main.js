@@ -14,6 +14,7 @@ import TreeFolderContents from './components/TreeFolder/TreeFolderContents.vue'
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import './element-variables.scss'
+// import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -24,6 +25,7 @@ Vue.use(VueCodemirror, {
 })
 Vue.component('tree-folder', TreeFolder)
 Vue.component('tree-folder-contents', TreeFolderContents)
+// axios.defaults.baseURL = 'http://119.23.51.139:8088/'
 
 /* eslint-disable no-new */
 new Vue({
@@ -40,6 +42,7 @@ new Vue({
     }
   },
   mounted () {
+    console.log(document.cookie)
     if (localStorage.getItem('key') !== null) {
       this.setLoginStatus(true)
     }

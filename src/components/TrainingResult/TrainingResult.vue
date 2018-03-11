@@ -1,6 +1,9 @@
 <template>
   <div class="training-result-wrapper">
     <part-title title="训练结果" style="margin-bottom: 30px"></part-title>
+
+    <p v-if="!finished"><i class="el-icon-loading"></i>训练中...</p>
+    <p v-if="finished">最终结果: <span>{{ finalAccuracy * 100 }} %</span></p>
     <el-row :gutter="20" style="margin: 0; padding: 0;">
       <el-col :xs="24" :sm="24" :md="12" :lg="12" style="padding: 0">
         <div class="chart-wrapper" id="accuracy-chart"></div>
@@ -27,7 +30,10 @@
         timeChart: '',
         accuracy: [],
         timeList1: [],
-        duration: []
+        duration: [],
+        finalAccuracy: 0,
+        finished: false,
+        timer: ''
       }
     },
     methods: {
@@ -104,11 +110,19 @@
           onSuccess: (data) => {
             for (let i = this.timeList1.length; i < data.every_result.length; i++) {
               this.duration.push(data.every_result[i].duration)
-              this.accuracy.push(data.every_result[i].accuracy)
+              this.accuracy.push(data.every_result[i].accuracy * 100)
               this.timeList1.push(data.every_result[i].step)
             }
             this.accuracyChart = this.drawLineChart('accuracy-chart', this.timeList1, this.accuracy, '准确度', '准确度(%)')
             this.timeChart = this.drawLineChart('time-chart', this.timeList1, this.duration, '每一百轮的训练时间', '时间(s)')
+
+            if (data.final_accuracy !== undefined) {
+              this.finalAccuracy = data.final_accuracy
+              this.finished = true
+              return true
+            } else {
+              return false
+            }
 //            this.accuracy = accu
 //            this.timeList1 = time
 //            this.duration = dura
@@ -134,13 +148,20 @@
       mainWidth: function () {
         this.accuracyChart.resize()
         this.timeChart.resize()
+      },
+      finished: function () {
+        clearInterval(this.timer)
       }
     },
     mounted () {
-      this.getData()
+//      this.getData()
+      this.accuracyChart = this.drawLineChart('accuracy-chart', this.timeList1, this.accuracy, '准确度', '准确度(%)')
+      this.timeChart = this.drawLineChart('time-chart', this.timeList1, this.duration, '每一百轮的训练时间', '时间(s)')
 
-      setInterval(() => {
-        this.getData()
+      this.timer = setInterval(() => {
+        if (this.getData()) {
+//          clearInterval(timer)
+        }
       }, 5000)
     }
   }

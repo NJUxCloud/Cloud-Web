@@ -7,7 +7,7 @@ export function createModel (callback, body, errorCallback) {
   params.append('modelName', body.modelName)
 
   console.log(params)
-  axios.post('http://119.23.51.139:8008/data/create/',
+  axios.post('/data/create/',
     params,
     {
       headers: {
@@ -28,7 +28,7 @@ export function createModel (callback, body, errorCallback) {
 
 export function constructModel (callback, body, errorCallback, modelInfo) {
   console.log(body)
-  let url = 'http://119.23.51.139:8008/construct/construction/' + modelInfo.modelName + '/' + modelInfo.dataType + '/'
+  let url = '/construct/construction/' + modelInfo.modelName + '/' + modelInfo.dataType + '/'
   // var params = new URLSearchParams()
   // params.append('modelName', body.modelName)
 
@@ -54,7 +54,7 @@ export function constructModel (callback, body, errorCallback, modelInfo) {
 
 export function getTrainResult (callback, body) {
   console.log(body)
-  let url = 'http://119.23.51.139:8008/runtime/train/' + body.modelName + '/' + body.iter + '/'
+  let url = '/runtime/train/' + body.modelName + '/' + body.iter + '/'
     // var params = new URLSearchParams()
   // params.append('modelName', body.modelName)
 
@@ -79,7 +79,7 @@ export function getTrainResult (callback, body) {
 
 export function getKubernetesResult (callback) {
   // console.log(body)
-  let url = 'http://119.23.51.139:8008/runtime/kubernetes/'
+  let url = '/runtime/kubernetes/'
 
   axios.get(url,
     {
@@ -101,7 +101,7 @@ export function getKubernetesResult (callback) {
 
 export function getModelList (callback) {
   // console.log('login')
-  axios.get('http://119.23.51.139:8008/construct/config/',
+  axios.get('/construct/config/',
     {
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export function getModelList (callback) {
 }
 
 export function constructInference (callback, body, modelName, errorCallback) {
-  let url = 'http://119.23.51.139:8008/construct/inference/' + modelName + '/'
+  let url = '/construct/inference/' + modelName + '/'
   console.log(url)
   console.log(body)
   // console.log('login')

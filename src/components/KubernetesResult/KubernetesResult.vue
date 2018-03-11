@@ -331,9 +331,9 @@
     },
     mounted () {
       this.getData()
-      setInterval(() => {
-        this.getData()
-      }, 10000)
+//      setInterval(() => {
+//        this.getData()
+//      }, 10000)
     }
   }
 </script>

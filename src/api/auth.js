@@ -6,7 +6,7 @@ axios.defaults.headers.token = localStorage.getItem('key')
 export function userLogIn (callback, body, errorCallback) {
   console.log(qs.stringify(body))
   // console.log('login')
-  axios.post('http://119.23.51.139:8008/rest-auth/login/',
+  axios.post('/rest-auth/login/',
     body,
     {
       headers: {
@@ -27,7 +27,7 @@ export function userLogIn (callback, body, errorCallback) {
 export function userSignin (callback, body, errorCallback) {
   console.log(body)
   // console.log('login')
-  axios.post('http://119.23.51.139:8008/rest-auth/registration/',
+  axios.post('/rest-auth/registration/',
     body,
     {
       headers: {
@@ -47,7 +47,7 @@ export function userSignin (callback, body, errorCallback) {
 export function userInfo (callback) {
   // console.log('login')
   console.log('Token ' + localStorage.getItem('key'))
-  axios.get('http://119.23.51.139:8008/rest-auth/user/',
+  axios.get('/rest-auth/user/',
     {
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export function changePassword (callback, body, errorCallback) {
   let auth = 'Basic ' + hash
   // console.log('login')
   // console.log('Token ' + localStorage.getItem('key'))
-  axios.post('http://119.23.51.139:8008/rest-auth/password/change/',
+  axios.post('/rest-auth/password/change/',
     body,
     {
       headers: {

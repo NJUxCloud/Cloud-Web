@@ -3,7 +3,7 @@
     <img src="../../assets/footer-bg.png"/>
     <el-row style="padding: 0; margin: 0;">
       <el-col :xs="24" :sm="24" :md="12" :lg="12">
-        <p :style="[largeSize ? '' : smallSizeFooter]">copyright@2017 - NJUxCloud Team Created</p>
+        <p :style="[largeSize ? '' : smallSizeFooter]">copyright@2018 - NJUxCloud Team Created</p>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="12" class="hidden-sm-and-down">
         <!--<p>NJUxCloud</p>-->
