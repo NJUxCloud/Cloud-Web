@@ -67,11 +67,7 @@
       return {
         openDeleteCollection: false,
         openModifyCollection: false,
-        collections: [{
-          file_name: 'url_sad',
-          created_at: 'sadTsad.saf',
-          dataId: 41
-        }]
+        collections: []
       }
     },
     computed: {
