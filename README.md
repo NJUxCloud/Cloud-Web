@@ -1,4 +1,4 @@
-<p align="center" style="width: 100%"><img src="https://github.com/Island0214/ISNOTE/blob/master/src/assets/cloudtitle.png?raw=true"/></p>
+<p align="center" style="width: 100%"><img src="https://github.com/NJUxCloud/Cloud-Web/blob/master/src/assets/cloudtitle.png?raw=true"/></p>
 <h1 align="center" style="width: 100%; color: #a7d7d6;">Cloud-Web</h1>
 <p align="center" style="width: 100%">Front end of a distributed deep learning platform based on TensorFlow and Kubernetes, built with Vue.js</p>
 <p align="center">
@@ -28,7 +28,7 @@
 
 ****
 ## ExamplePage
-<p align="center" style="width: 100%"><img src="https://github.com/Island0214/Cloud-Web/blob/master/src/assets/creation.png?raw=true"/></p>
+<p align="center" style="width: 100%"><img src="https://github.com/NJUxCloud/Cloud-Web/blob/master/src/assets/creation.png?raw=true"/></p>
 
 
 ****
