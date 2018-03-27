@@ -58,4 +58,4 @@ npm run build --report
 
 MIT
 
-ISLAND @2017 All Rights Reserved
+NJUxCloud Team @2018 All Rights Reserved
